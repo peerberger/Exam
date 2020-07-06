@@ -1,0 +1,6 @@
+C:\פאר\האקריו\Exam Project\ExamProject\Library\bin\Debug\Library.dll
+C:\פאר\האקריו\Exam Project\ExamProject\Library\bin\Debug\Library.pdb
+C:\פאר\האקריו\Exam Project\ExamProject\Library\obj\Debug\Library.csprojAssemblyReference.cache
+C:\פאר\האקריו\Exam Project\ExamProject\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
+C:\פאר\האקריו\Exam Project\ExamProject\Library\obj\Debug\Library.dll
+C:\פאר\האקריו\Exam Project\ExamProject\Library\obj\Debug\Library.pdb
