@@ -8,6 +8,6 @@ namespace Library.Models
 {
     public class MultipleChoiceTextQuestion:MultipleChoiceQuestion
     {
-
+        
     }
 }

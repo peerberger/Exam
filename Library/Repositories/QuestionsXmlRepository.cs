@@ -90,9 +90,9 @@ namespace Library.Repositories
             XElement xQuestions = new XElement("Questions");
             foreach (var question in entityToUpdate.Questions)
             {
-                if (question is MultipleChoiseTextQuestion)
+                if (question is MultipleChoiceTextQuestion)
                 {
-                    MultipleChoiseTextQuestion multipleText = question as MultipleChoiseTextQuestion;
+                    MultipleChoiceTextQuestion multipleText = question as MultipleChoiceTextQuestion;
                     XElement xAnswers = new XElement("Answers");
                     int i = 0;
                     foreach (string answer in multipleText.Answers)
