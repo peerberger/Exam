@@ -9,13 +9,14 @@ namespace Library.Models
 {
     public class Exam
     {
-        public IEnumerable<IQuestion> Questions { get; set; }
+        public List<IQuestion> Questions { get; set; } = new List<IQuestion>();
         public double FinalGrade { get; set; }
         public Timer ExamTime { get; set; }
         public bool IsTimed { get; set; }
         public int ExamId { get; set; }
         public int ClassId { get; set; }
         public string QuestionsPath { get; set; }
+        public string Title { get; set; }
 
         public Exam()
         {
