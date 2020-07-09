@@ -15,7 +15,7 @@ namespace Library
         {
             Models.Classroom class1 = new Models.Classroom();
             class1.Id = 0;
-            class1.ClassName = "Math";
+            class1.Name = "Math";
 
             #region Math Classroom Exam1
 
@@ -67,8 +67,8 @@ namespace Library
 
             Models.Exam exam1 = new Models.Exam();
             exam1.Title = "Simple Math Test";
-            exam1.ExamId = 0;
-            exam1.ClassId = 0;
+            exam1.Id = 0;
+            exam1.ClassroomId = 0;
             exam1.Questions.Add(q1);
             exam1.Questions.Add(q2);
             exam1.Questions.Add(q3);
@@ -121,8 +121,8 @@ namespace Library
 
             Models.Exam exam2 = new Models.Exam();
             exam2.Title = "Simple Math Test2";
-            exam2.ExamId = 1;
-            exam2.ClassId = 0;
+            exam2.Id = 1;
+            exam2.ClassroomId = 0;
             exam2.Questions.Add(q21);
             exam2.Questions.Add(q22);
             exam2.Questions.Add(q23);
@@ -133,7 +133,7 @@ namespace Library
 
             Models.Classroom class2 = new Models.Classroom();
             class2.Id = 1;
-            class2.ClassName = "Programming";
+            class2.Name = "Programming";
 
             #region Programming Classroom Exam3
 
@@ -172,8 +172,8 @@ namespace Library
 
             Models.Exam exam3 = new Models.Exam();
             exam3.Title = "Simple Programming Test";
-            exam3.ExamId = 2;
-            exam3.ClassId = 1;
+            exam3.Id = 2;
+            exam3.ClassroomId = 1;
             exam3.Questions.Add(q31);
             exam3.Questions.Add(q32);
             exam3.Questions.Add(q33);

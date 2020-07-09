@@ -8,9 +8,9 @@ namespace Library.Models
 {
     public class Classroom
     {
-        public string ClassName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public List<Exam> Exams { get; set; }
         public List<User> Students { get; set; }
-        public int Id { get; set; }
     }
 }
