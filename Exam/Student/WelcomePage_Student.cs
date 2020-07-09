@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DAL;
+using DAL.Repositories;
+using Library.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +18,15 @@ namespace Exam
 		public WelcomePage_Student()
 		{
 			InitializeComponent();
+
+			using (var unitOfWork = new UnitOfWork(new ExamContext()))
+			{
+				Classroom c = unitOfWork.Classrooms.GetById(2);
+
+				unitOfWork.Classrooms.Remove(c);
+
+				unitOfWork.Complete();
+			}
 		}
 	}
 }
