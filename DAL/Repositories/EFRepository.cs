@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-	public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
+	public class EFRepository<TEntity> : IEFRepository<TEntity> where TEntity : class
 	{
 		protected readonly DbContext _context;
 

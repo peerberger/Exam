@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    //public interface IXmlRepository<TEntity> : IRepository<TEntity>
-    //{
+	public interface IXmlRepository<TEntity> : IRepository<TEntity> where TEntity : class
+	{
+		// removing
+		void Remove(object id);
 
-    //}
+		// updating
+		void Update(TEntity entityToUpdate);
+	}
 }
