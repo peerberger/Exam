@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,11 +67,18 @@
       <DependentUpon>QuestionPage_Student.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Class1.cs" />
-    <Compile Include="UserControls\IQuestionView.cs" />
-    <Compile Include="UserControls\QuestionUC.cs">
+    <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
+    <Compile Include="UserControls\LoginView\ILoginView.cs" />
+    <Compile Include="UserControls\LoginView\LoginUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\QuestionUC.Designer.cs">
+    <Compile Include="UserControls\LoginView\LoginUC.Designer.cs">
+      <DependentUpon>LoginUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\QuestionsView\QuestionUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\QuestionsView\QuestionUC.Designer.cs">
       <DependentUpon>QuestionUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Student\StartPage_Student.cs">
@@ -120,7 +128,10 @@
     <EmbeddedResource Include="Student\StartPage_Student.resx">
       <DependentUpon>StartPage_Student.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\QuestionUC.resx">
+    <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
+      <DependentUpon>LoginUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\QuestionsView\QuestionUC.resx">
       <DependentUpon>QuestionUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TimeBarUC.resx">

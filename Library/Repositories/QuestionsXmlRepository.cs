@@ -101,6 +101,7 @@ namespace Library.Repositories
                         i++;
                     }
                     XElement xQuestion = new XElement("MultipleChoiseTextQuestion", new object[]{
+                       new XElement("QuestionDescription",multipleText.QuestionDescription),
                        new XElement("QuestionText",multipleText.QuestionText),
                        xAnswers,
                        new XElement("RightAnswer",multipleText.RightAnswer),

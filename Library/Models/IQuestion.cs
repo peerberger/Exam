@@ -10,5 +10,6 @@ namespace Library.Models
     {
         string QuestionText { get; set; }
         double Points { get; set; }
+        string QuestionDescription { get; set; }
     }
 }
