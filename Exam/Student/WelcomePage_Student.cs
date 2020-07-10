@@ -21,9 +21,7 @@ namespace Exam
 
 			using (var unitOfWork = new UnitOfWork(new ExamContext()))
 			{
-				Classroom c = unitOfWork.Classrooms.GetById(2);
-
-				unitOfWork.Classrooms.Remove(c);
+				unitOfWork.Classrooms.Add(new Classroom { Name = "Science" });
 
 				unitOfWork.Complete();
 			}

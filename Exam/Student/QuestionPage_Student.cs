@@ -15,11 +15,11 @@ namespace Exam
 	{
 		public QuestionPage_Student()
 		{
-			//InitializeComponent();
-			//Library.Repositories.QuestionsXmlRepository questionsXml = new Library.Repositories.QuestionsXmlRepository();
-			//MockData.LoadMocData();
-			//Library.Models.Exam exam = MockData.exams[0];
-			//questionsXml.Update(exam);
+			InitializeComponent();
+			DAL.Repositories.QuestionsXmlRepository questionsXml = new DAL.Repositories.QuestionsXmlRepository();
+			MockData.LoadMocData();
+			Library.Models.Exam exam = MockData.exams[0];
+			questionsXml.Update(exam);
 		}
 	}
 }
