@@ -15,6 +15,10 @@ namespace Exam
         public Form1()
         {
             InitializeComponent();
+            UserControls.LoginView.LoginUC view = new UserControls.LoginView.LoginUC();
+            Controllers.LoginController controller = new Controllers.LoginController(view);
+            this.Controls.Add(view);
         }
+
     }
 }

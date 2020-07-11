@@ -16,5 +16,6 @@ namespace Library.Models
         public Users Role { get; set; }
         public int ClassroomId { get; set; }
         public List<Exam> Exams { get; set; }
+        public string Password { get; set; }
     }
 }

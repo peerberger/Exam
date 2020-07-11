@@ -16,7 +16,11 @@ namespace Exam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WelcomePage_Student());
+            // Application.Run(new QuestionPage_Student());
+            
+            
+            Application.Run(new Form1());
+
         }
     }
 }
