@@ -11,10 +11,10 @@ namespace Library.Models
     }
     public class User
     {
-        public Users Role { get; set; }
-        public string UserId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int ClassId { get; set; }
+        public Users Role { get; set; }
+        public int ClassroomId { get; set; }
         public List<Exam> Exams { get; set; }
         public string Password { get; set; }
     }
