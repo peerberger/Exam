@@ -89,6 +89,7 @@ namespace Exam
         {
 
             questionNumber--;
+            this.UpdateQuestionNumberLabel();
             if (questionNumber >= 0)
             {
                 questionController.UpdateQuestionView(_exam.Questions[questionNumber]);

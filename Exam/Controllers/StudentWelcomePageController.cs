@@ -50,8 +50,5 @@ namespace Exam.Controllers
             }
             _view.ExamsDataSource = list;
         }
-
-
-
     }
 }
