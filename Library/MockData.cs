@@ -32,7 +32,7 @@ namespace Library
             q1.Answers.Add("10");
             q1.Answers.Add("18");
             q1.Answers.Add("8");
-            q1.RightAnswer = 0;
+            q1.RightAnswer = "0";
             q1.QuestionText = "How much is 4*4?";
             q1.Points = 20;
 
@@ -40,7 +40,7 @@ namespace Library
             q2.Answers.Add("x^2+y^2");
             q2.Answers.Add("x^2+2xy+y^2");
             q2.Answers.Add("2x+2xy+2y");
-            q2.RightAnswer = 2;
+            q2.RightAnswer = "2";
             q2.QuestionText = "How much is (x+y)^2";
             q2.Points = 20;
 
@@ -56,7 +56,7 @@ namespace Library
             q4.Answers.Add("0");
             q4.Points = 20;
             q4.QuestionText = "How much is 2/2";
-            q4.RightAnswer = 0;
+            q4.RightAnswer = "0";
 
             q5.QuestionDescription = "Fill in the blank";
             q5.Points = 20;
@@ -89,7 +89,7 @@ namespace Library
             q21.Answers.Add("10");
             q21.Answers.Add("18");
             q21.Answers.Add("8");
-            q21.RightAnswer = 3;
+            q21.RightAnswer = "3";
             q21.QuestionText = "How much is 2^2?";
             q21.Points = 25;
 
@@ -98,7 +98,7 @@ namespace Library
             q22.Answers.Add("x^2-2xy-y^2");
             q22.Answers.Add("x^2-2xy+y^2");
             q22.Answers.Add("2x+2xy+2y");
-            q22.RightAnswer = 3;
+            q22.RightAnswer = "3";
             q22.QuestionText = "How much is (x+y)^2";
             q22.Points = 25;
 
@@ -114,7 +114,7 @@ namespace Library
             q24.Answers.Add("0");
             q24.Points = 25;
             q24.QuestionText = "How much is 4/2";
-            q24.RightAnswer = 1;
+            q24.RightAnswer = "1";
 
 
             #endregion Exam 2 Questions
@@ -147,7 +147,7 @@ namespace Library
             q31.Answers.Add("11");
             q31.Answers.Add("9");
             q31.Answers.Add("10");
-            q31.RightAnswer = 2;
+            q31.RightAnswer = "2";
             q31.QuestionText = "What is the value of b?" +
                 "\n int a = 10;" +
                 "\n int b =a;" +
@@ -158,7 +158,7 @@ namespace Library
             q32.Answers.Add("string");
             q32.Answers.Add("int");
             q32.Answers.Add("double");
-            q32.RightAnswer = 0;
+            q32.RightAnswer = "0";
             q32.QuestionText = "What varient is either true of false?";
             q33.Points = 40;
 

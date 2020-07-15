@@ -16,22 +16,22 @@ namespace Exam
 {
 	public partial class QuestionPage_Student : Form
 	{
-        private EventHandler nextClicked;
         public Library.Models.Exam _exam;
         public int questionNumber;
         private QuestionController questionController;
-        public event EventHandler NextClicked
-        {
-            add
-            {
-                nextClicked += value;
-            }
+        //private EventHandler nextClicked;
+        //public event EventHandler NextClicked
+        //{
+        //    add
+        //    {
+        //        nextClicked += value;
+        //    }
 
-            remove
-            {
-                nextClicked -= value;
-            }
-        }
+        //    remove
+        //    {
+        //        nextClicked -= value;
+        //    }
+        //}
         public QuestionPage_Student()
 		{
 			InitializeComponent();
@@ -55,7 +55,7 @@ namespace Exam
         {
 
             questionController =
-                      new QuestionController(this.Question, _exam.Questions[questionNumber], this);
+                      new QuestionController(this.Question, _exam.Questions[questionNumber]);
         }
         //private void SetQuestionController()
         //{
@@ -63,14 +63,36 @@ namespace Exam
         //}
         private void NextButton_Click(object sender, EventArgs e)
         {
+            questionController.UpdateIsRightAnswer();
             questionNumber++;
             if (questionNumber < _exam.Questions.Count)
             {
-                nextClicked.Invoke(this, null);
+                questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
             }
             else
             {
-                MessageBox.Show("TestOver");
+                foreach (var question in _exam.Questions)
+                {
+                    if (question.IsCorrect)
+                    {
+                        _exam.FinalGrade += question.Points;
+                    }
+                }
+                MessageBox.Show(_exam.FinalGrade.ToString());
+            }
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+
+            questionNumber--;
+            if (questionNumber >= 0)
+            {
+                questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
+            }
+            else
+            {
+                MessageBox.Show("This is the start");
             }
         }
     }

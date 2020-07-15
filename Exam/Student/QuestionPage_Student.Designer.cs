@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            Library.Models.MultipleChoiceTextQuestion multipleChoiceTextQuestion1 = new Library.Models.MultipleChoiceTextQuestion();
             this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.Question = new Exam.Student.QuestionUC();
             this.NextButton = new System.Windows.Forms.Button();
@@ -65,15 +64,12 @@
             // Question
             // 
             this.TableLayout.SetColumnSpan(this.Question, 3);
-            multipleChoiceTextQuestion1.Answers = null;
-            multipleChoiceTextQuestion1.Points = 20D;
-            multipleChoiceTextQuestion1.QuestionDescription = "Select the correct answer";
-            multipleChoiceTextQuestion1.QuestionText = "How much is 4*4?";
-            multipleChoiceTextQuestion1.RightAnswer = 0;
-            this.Question.CurrQuestion = multipleChoiceTextQuestion1;
+           // this.Question.CurrQuestion = null;
             this.Question.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Question.Location = new System.Drawing.Point(3, 48);
             this.Question.Name = "Question";
+            this.Question.QuestionDescription = "";
+            this.Question.QuestionText = "When and what did who do for how much?";
             this.Question.Size = new System.Drawing.Size(794, 331);
             this.Question.TabIndex = 9;
             // 
@@ -99,6 +95,7 @@
             this.PreviousButton.TabIndex = 4;
             this.PreviousButton.Text = "Previous";
             this.PreviousButton.UseVisualStyleBackColor = true;
+            this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
             // label1
             // 

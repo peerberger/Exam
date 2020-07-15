@@ -9,42 +9,56 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Exam.UserControls;
 using Exam.Controllers;
+using Library.Models;
 
 namespace Exam.Student
 {
 	public partial class QuestionUC : UserControl, IQuestionView
-	{
-        private Library.Models.MultipleChoiceTextQuestion _question;
+    {
+        //private IQuestion _question;
         private List<RadioButton> _answers = new List<RadioButton>();
         QuestionController _controller;
-     
-        public Library.Models.MultipleChoiceTextQuestion CurrQuestion
-        {
-            get { return _question; }
-    set
-            {
-                _question = value;
-                QuestionTextBox.Text = _question.QuestionText;
-            }
-}
 
-public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
+        //public Library.Models.MultipleChoiceTextQuestion CurrQuestion
+        //{
+        //    get { return _question; }
+        //    set
+        //    {
+        //        _question = value;
+        //        QuestionTextBox.Text = _question.QuestionText;
+        //    }
+        //}
+
+        public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
         public string QuestionDescription { get => descriptionTextBox.Text; set => descriptionTextBox.Text = value; }
 
         public QuestionUC()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             //CurrQuestion = Class1.LoadQ1();
-		}
-        public void SetAnswerPartOfView()
+        }
+        public void LoadQuestion(IQuestion question)
+        {
+            if (question is MultipleChoiceQuestion)
+            {
+                MultipleChoiceQuestion multipleQuestion = question as MultipleChoiceQuestion;
+                SetAnswerPartOfView(multipleQuestion.Answers);
+            }
+            else if (question is OpenQuestion)
+            {
+                OpenQuestion openQuestion = question as OpenQuestion;
+                SetAnswerPartOfView();
+            }
+        }
+        private void SetAnswerPartOfView()
         {
             AnswersFlowLayout.Controls.Clear();
             TextBox answerTextBox = new TextBox();
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
 
-        public void SetAnswerPartOfView(List<string> answers)
+        private void SetAnswerPartOfView(List<string> answers)
         {
             this.AddAnswersToView(answers);
         }
@@ -76,30 +90,19 @@ public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox
             RadioButton radioButton = sender as RadioButton;
         }
 
-        private RadioButton GetCheckedRadio()
+        public string GetAnswer()
         {
             foreach (var radio in _answers)
             {
                 if (radio != null && radio.Checked)
                 {
-                    return radio;
+                    return radio.Name;
                 }
             }
             return null;
         }
 
-        public bool IsRightAnswer()
-        {
-            var checkedButton = GetCheckedRadio();
-            if (int.Parse(checkedButton.Name) == CurrQuestion.RightAnswer)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
 
         public void SetController(QuestionController controller)
         {

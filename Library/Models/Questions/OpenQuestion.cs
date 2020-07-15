@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Library.Models
 {
-    public class OpenQuestion : IGenericQuestion<string>
+    public class OpenQuestion : IQuestion
     {
         public string QuestionDescription { get; set; }
         public string RightAnswer { get; set; }
         public string QuestionText { get; set; }
         public double Points { get; set; }
+        public bool IsAnswered { get; set; }
+        public bool IsCorrect { get; set; }
     }
 }

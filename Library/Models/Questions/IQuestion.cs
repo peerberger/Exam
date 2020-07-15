@@ -11,5 +11,8 @@ namespace Library.Models
         string QuestionText { get; set; }
         double Points { get; set; }
         string QuestionDescription { get; set; }
+        bool IsAnswered { get; set; }
+        bool IsCorrect { get; set; }
+        string RightAnswer { get; set; }
     }
 }
