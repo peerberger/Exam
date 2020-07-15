@@ -32,42 +32,45 @@ namespace Exam
         //        nextClicked -= value;
         //    }
         //}
-        public QuestionPage_Student()
+        public QuestionPage_Student(Library.Models.Exam exam)
 		{
 			InitializeComponent();
 
             //Library.Repositories.QuestionsXmlRepository questionsXml = new Library.Repositories.QuestionsXmlRepository();
-            _exam = LoadExam();
+            _exam = exam;
 			questionNumber = 0;
-            if(_exam.Questions.Count!=0 && _exam.Questions!= null)
+            this.UpdateQuestionNumberLabel();
+            if (_exam.Questions.Count!=0 && _exam.Questions!= null)
             {
                 CreatQuestionController();
             }
 
         }
-
-        private Library.Models.Exam LoadExam()
-        {
-            MockData.LoadMocData();
-            return MockData.exams[0];
-        }
         private void CreatQuestionController()
         {
-
             questionController =
                       new QuestionController(this.Question, _exam.Questions[questionNumber]);
         }
-        //private void SetQuestionController()
-        //{
-        //    questionController.SetQuestion(_exam.Questions[questionNumber]);
-        //}
+
+        private Library.Models.Exam LoadExam()
+        {
+           //Getting the selected exam
+            MockData.LoadMocData();
+            return MockData.exams[0];
+        }
+
         private void NextButton_Click(object sender, EventArgs e)
         {
             questionController.UpdateIsRightAnswer();
             questionNumber++;
+            this.UpdateQuestionNumberLabel();
             if (questionNumber < _exam.Questions.Count)
             {
                 questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
+                if(questionNumber == _exam.Questions.Count-1)
+                {
+                    this.NextButton.Text = "Finish";
+                }
             }
             else
             {
@@ -94,6 +97,10 @@ namespace Exam
             {
                 MessageBox.Show("This is the start");
             }
+        }
+        private void UpdateQuestionNumberLabel()
+        {
+            this.questionNumberLabel.Text = $"{questionNumber + 1} / {_exam.Questions.Count}";
         }
     }
 }

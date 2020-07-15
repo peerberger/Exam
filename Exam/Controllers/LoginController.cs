@@ -50,8 +50,8 @@ namespace Exam.Controllers
         public void PreformLogin()
         {
             //Check Id/Password and decide if can login or not
-            QuestionPage_Student questionfrm = new QuestionPage_Student();
-            questionfrm.Show();
+            WelcomePage_Student welcomForm = new WelcomePage_Student();
+            welcomForm.Show();
         }
     }
 }

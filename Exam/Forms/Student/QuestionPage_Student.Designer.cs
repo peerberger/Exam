@@ -32,7 +32,7 @@
             this.Question = new Exam.Student.QuestionUC();
             this.NextButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.questionNumberLabel = new System.Windows.Forms.Label();
             this.TimeBar = new Exam.TimeBarUC();
             this.TableLayout.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +48,7 @@
             this.TableLayout.Controls.Add(this.Question, 0, 1);
             this.TableLayout.Controls.Add(this.NextButton, 2, 2);
             this.TableLayout.Controls.Add(this.PreviousButton, 0, 2);
-            this.TableLayout.Controls.Add(this.label1, 1, 2);
+            this.TableLayout.Controls.Add(this.questionNumberLabel, 1, 2);
             this.TableLayout.Controls.Add(this.TimeBar, 0, 0);
             this.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayout.Location = new System.Drawing.Point(0, 0);
@@ -64,7 +64,6 @@
             // Question
             // 
             this.TableLayout.SetColumnSpan(this.Question, 3);
-           // this.Question.CurrQuestion = null;
             this.Question.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Question.Location = new System.Drawing.Point(3, 48);
             this.Question.Name = "Question";
@@ -97,17 +96,17 @@
             this.PreviousButton.UseVisualStyleBackColor = true;
             this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
-            // label1
+            // questionNumberLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(130, 392);
-            this.label1.Margin = new System.Windows.Forms.Padding(10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(540, 48);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "13 / 30";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.questionNumberLabel.AutoSize = true;
+            this.questionNumberLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionNumberLabel.Location = new System.Drawing.Point(130, 392);
+            this.questionNumberLabel.Margin = new System.Windows.Forms.Padding(10);
+            this.questionNumberLabel.Name = "questionNumberLabel";
+            this.questionNumberLabel.Size = new System.Drawing.Size(540, 48);
+            this.questionNumberLabel.TabIndex = 6;
+            this.questionNumberLabel.Text = "13 / 30";
+            this.questionNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TimeBar
             // 
@@ -137,7 +136,7 @@
 		private System.Windows.Forms.TableLayoutPanel TableLayout;
 		private System.Windows.Forms.Button NextButton;
 		private System.Windows.Forms.Button PreviousButton;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label questionNumberLabel;
 		private TimeBarUC TimeBar;
 		private Student.QuestionUC Question;
 	}

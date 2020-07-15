@@ -17,6 +17,7 @@ namespace Library.Models
         public string QuestionsPath { get; set; }
         public List<IQuestion> Questions { get; set; } = new List<IQuestion>();
         public double FinalGrade { get; set; }
+        public bool IsAnswered { get; set; }
 
         public Exam()
         {
