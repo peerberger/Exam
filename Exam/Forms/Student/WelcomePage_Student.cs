@@ -21,7 +21,10 @@ namespace Exam
         private User user;
         public WelcomePage_Student()
         {
+            //Loading mock data to user 
+            //needs to be passed from login
             LoadStudentMockData();
+            
             InitializeComponent();
             welcomeController =
           new StudentWelcomePageController(user, studentWelcomePageUC);
@@ -32,6 +35,11 @@ namespace Exam
 
             //    unitOfWork.Complete();
             //}
+        }
+
+        public WelcomePage_Student(User user) : base()
+        {
+            this.user = user;
         }
 
 

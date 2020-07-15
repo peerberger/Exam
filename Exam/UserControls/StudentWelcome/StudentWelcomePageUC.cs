@@ -16,7 +16,11 @@ namespace Exam.UserControls
 
 
         public int SelectedExam { get; set; }
-        public object ExamsDataSource { get { return examsGridView.DataSource; } set => examsGridView.DataSource = value; }
+        public object ExamsDataSource
+        {
+            get => examsGridView.DataSource;
+            set => examsGridView.DataSource = value;
+        }
 
         private StudentWelcomePageController _controller;
         private EventHandler startExam;
@@ -44,7 +48,7 @@ namespace Exam.UserControls
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            startExam.Invoke(this,null);
+            startExam.Invoke(this, null);
         }
     }
 }
