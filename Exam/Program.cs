@@ -19,7 +19,7 @@ namespace Exam
             // Application.Run(new QuestionPage_Student());
             
             
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
 
         }
     }
