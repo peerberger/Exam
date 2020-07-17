@@ -5,7 +5,7 @@ namespace Library.Models
 {
     public enum Users
     {
-        Admin =0,
+        Admin = 0,
         Teacher = 1,
         Student = 2
     }
@@ -16,6 +16,6 @@ namespace Library.Models
         public Users Role { get; set; }
         public int ClassroomId { get; set; }
         public List<Exam> Exams { get; set; }
-        public string Password { get; set; }
+        //public string Password { get; set; }
     }
 }
