@@ -16,7 +16,7 @@ namespace Library.Models
         public bool IsTimed { get; set; }
         public string QuestionsPath { get; set; }
         public List<IQuestion> Questions { get; set; } = new List<IQuestion>();
-        public double FinalGrade { get; set; }
+        public double? FinalGrade { get; set; }
 
         public Exam()
         {

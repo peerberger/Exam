@@ -24,11 +24,18 @@ namespace Exam
 
 			using (var unitOfWork = new UnitOfWork(new ExamContext()))
 			{
-				unitOfWork.Classrooms.Add(new Classroom { Name="Occult"});
+				//unitOfWork.Users.Add(new User { Id = "321321321", Name = "bob", Role = Users.Student, ClassroomId = 1 });
 
-				//var users = unitOfWork.Users.GetAll();
+				var c = unitOfWork.Users.GetById("321321321").Classrooms;
 
-				//unitOfWork.Users.RemoveRange(users);
+				c.Add(unitOfWork.Classrooms.GetById(1));
+				c.Add(unitOfWork.Classrooms.GetById(1002));
+
+				//WelcomeLabel.Text = string.Empty;
+				//foreach (var item in c)
+				//{
+				//	WelcomeLabel.Text += item.Name;
+				//}
 
 				unitOfWork.Complete();
 			}

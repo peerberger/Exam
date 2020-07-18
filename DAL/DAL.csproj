@@ -56,6 +56,22 @@
     <Compile Include="Migrations\202007081456245_First.designer.cs">
       <DependentUpon>202007081456245_First.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007172015368_User.Id-string.cs" />
+    <Compile Include="Migrations\202007172015368_User.Id-string.designer.cs">
+      <DependentUpon>202007172015368_User.Id-string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007172047263_Add-User.Password.cs" />
+    <Compile Include="Migrations\202007172047263_Add-User.Password.designer.cs">
+      <DependentUpon>202007172047263_Add-User.Password.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007172101379_Mod-Exam.FinalGrade-Nullable.cs" />
+    <Compile Include="Migrations\202007172101379_Mod-Exam.FinalGrade-Nullable.designer.cs">
+      <DependentUpon>202007172101379_Mod-Exam.FinalGrade-Nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007181510309_Add-Classrooms_Users.cs" />
+    <Compile Include="Migrations\202007181510309_Add-Classrooms_Users.designer.cs">
+      <DependentUpon>202007181510309_Add-Classrooms_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IEFRepository.cs" />
@@ -79,6 +95,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007081456245_First.resx">
       <DependentUpon>202007081456245_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007172015368_User.Id-string.resx">
+      <DependentUpon>202007172015368_User.Id-string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007172047263_Add-User.Password.resx">
+      <DependentUpon>202007172047263_Add-User.Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007172101379_Mod-Exam.FinalGrade-Nullable.resx">
+      <DependentUpon>202007172101379_Mod-Exam.FinalGrade-Nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007181510309_Add-Classrooms_Users.resx">
+      <DependentUpon>202007181510309_Add-Classrooms_Users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
