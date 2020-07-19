@@ -14,6 +14,7 @@ namespace Exam.Controllers
     {
         public User user;
         private IStudentWelcomePage _view;
+        public event EventHandler StartExam;
 
         public StudentWelcomePageController(User user, IStudentWelcomePage view)
         {
@@ -34,8 +35,10 @@ namespace Exam.Controllers
             //Gets the selected Exam
             //Loads questions to the exam
             //Passes exam to QuestionPage_Student
-            QuestionPage_Student questionfrm = new QuestionPage_Student(user.Exams[_view.SelectedExam]);
-            questionfrm.Show();
+            //QuestionPage_Student questionfrm = new QuestionPage_Student(user.Exams[_view.SelectedExam]);
+            //questionfrm.Show();
+
+            StartExam.Invoke(user.Exams[_view.SelectedExam], null);
         }
 
         //Setting the exam into a Title/Grade list and passes to view

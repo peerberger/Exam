@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
+using Exam.Forms;
+using Exam.UserControls.LoginView;
 using Library;
 using Library.Models;
 
@@ -16,8 +18,8 @@ namespace Exam
     public partial class LoginForm : Form, IAppsForms
     {
         public Controllers.LoginController Controller { get; set; }
-        private EventHandler<Forms.FormEventArgs> changeForm;
-        public event EventHandler<Forms.FormEventArgs> ChangeForm
+        private EventHandler<FormEventArgs> changeForm;
+        public event EventHandler<FormEventArgs> ChangeForm
         {
             add { changeForm += value; }
             remove { changeForm -= value; }
@@ -25,7 +27,7 @@ namespace Exam
         public LoginForm()
         {
             InitializeComponent();
-            UserControls.LoginView.LoginUC view = new UserControls.LoginView.LoginUC();
+            LoginUC view = new LoginUC();
             Controller = new Controllers.LoginController(view);
             Controller.Login += Controller_Login;
             this.Controls.Add(view);
@@ -40,7 +42,7 @@ namespace Exam
 
         private void Controller_Login(object sender, EventArgs e)
         {
-            changeForm.Invoke(this, new Forms.FormEventArgs(sender));
+            changeForm.Invoke(this, new FormEventArgs(sender));
         }
     }
 }

@@ -21,21 +21,13 @@ namespace Exam
         public int questionNumber;
         private QuestionController questionController;
 
-        public event EventHandler<FormEventArgs> ChangeForm;
+        private EventHandler<FormEventArgs> changeForm;
+        public event EventHandler<FormEventArgs> ChangeForm
+        {
+            add { changeForm += value; }
+            remove { changeForm -= value; }
+        }
 
-        //private EventHandler nextClicked;
-        //public event EventHandler NextClicked
-        //{
-        //    add
-        //    {
-        //        nextClicked += value;
-        //    }
-
-        //    remove
-        //    {
-        //        nextClicked -= value;
-        //    }
-        //}
         public QuestionPage_Student(Library.Models.Exam exam)
 		{
 			InitializeComponent();
@@ -62,12 +54,7 @@ namespace Exam
             NextButton.Enabled = true;
         }
 
-        //private Library.Models.Exam LoadExam()
-        //{
-        //   //Getting the selected exam
-        //    MockData.LoadMocData();
-        //    return MockData.exams[0];
-        //}
+
 
         private void NextButton_Click(object sender, EventArgs e)
         {

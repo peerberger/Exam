@@ -19,16 +19,16 @@ namespace Exam
     public partial class WelcomePage_Student : Form, IAppsForms
     {
         private StudentWelcomePageController welcomeController;
-        private User user;
+     //   private User user;
+        private EventHandler<FormEventArgs> changeForm;
+        public event EventHandler<FormEventArgs> ChangeForm
+        {
+            add { changeForm += value; }
+            remove { changeForm -= value; }
+        }
         public WelcomePage_Student()
         {
-            //Loading mock data to user 
-            //needs to be passed from login
-           // LoadStudentMockData();
-            
             InitializeComponent();
-            welcomeController =
-          new StudentWelcomePageController(user, studentWelcomePageUC);
 
             //using (var unitOfWork = new UnitOfWork(new ExamContext()))
             //{
@@ -38,20 +38,17 @@ namespace Exam
             //}
         }
 
-        public WelcomePage_Student(User user)
+        public WelcomePage_Student(User user) : this()
         {
-            InitializeComponent();
-            this.user = user;
+      //      this.user = user;
+            welcomeController=
             new StudentWelcomePageController(user, studentWelcomePageUC);
+            welcomeController.StartExam += WelcomeController_StartExam;
         }
 
-        public event EventHandler<FormEventArgs> ChangeForm;
-
-        //private void LoadStudentMockData()
-        //{
-        //    Library.MockData.LoadMocData();
-        //    this.user = new User();
-        //    this.user.Exams = Library.MockData.exams;
-        //}
+        private void WelcomeController_StartExam(object sender, EventArgs e)
+        {
+            changeForm.Invoke(this, new FormEventArgs(sender));
+        }
     }
 }

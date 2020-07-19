@@ -44,7 +44,13 @@ namespace Exam.Controllers
                     ThisForm = newForm;
                 }
             (ThisForm as WelcomePage_Student).Show();
-            (PreviousForm as Form).Close();
+            (PreviousForm as Form).Hide();
+            }
+            if(sender is WelcomePage_Student)
+            {
+                Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
+                ThisForm = new QuestionPage_Student(exam);
+                (ThisForm as QuestionPage_Student).ShowDialog();
             }
 
 
