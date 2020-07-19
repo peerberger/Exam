@@ -90,7 +90,7 @@ namespace Library
             q21.Answers.Add("18");
             q21.Answers.Add("8");
             q21.RightAnswer = "3";
-            q21.QuestionText = "How much is 2^2?";
+            q21.QuestionText = "How much is 2^3?";
             q21.Points = 25;
 
             q22.Answers.Add("2x-2x");
@@ -99,7 +99,7 @@ namespace Library
             q22.Answers.Add("x^2-2xy+y^2");
             q22.Answers.Add("2x+2xy+2y");
             q22.RightAnswer = "3";
-            q22.QuestionText = "How much is (x+y)^2";
+            q22.QuestionText = "How much is (x-y)^2";
             q22.Points = 25;
 
             q23.Points = 25;
@@ -164,7 +164,7 @@ namespace Library
 
             q33.Points = 40;
             q33.QuestionDescription = "Fill in the blank";
-            q33.QuestionText = "______ str = \"This is a string\"";
+            q33.QuestionText = "______ str = \"This is a string\";";
             q33.RightAnswer = "string";
 
 

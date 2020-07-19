@@ -22,5 +22,10 @@ namespace Exam.Student
 			InitializeComponent();
 			GradeLabel.Text = grade;
         }
-	}
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+			this.Close();
+        }	
+    }
 }
