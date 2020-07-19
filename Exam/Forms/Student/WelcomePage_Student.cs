@@ -1,6 +1,7 @@
 ﻿using DAL;
 using DAL.Repositories;
 using Exam.Controllers;
+using Exam.Forms;
 using Exam.UserControls;
 using Library.Models;
 using System;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace Exam
 {
-    public partial class WelcomePage_Student : Form
+    public partial class WelcomePage_Student : Form, IAppsForms
     {
         private StudentWelcomePageController welcomeController;
         private User user;
@@ -23,7 +24,7 @@ namespace Exam
         {
             //Loading mock data to user 
             //needs to be passed from login
-            LoadStudentMockData();
+           // LoadStudentMockData();
             
             InitializeComponent();
             welcomeController =
@@ -37,17 +38,20 @@ namespace Exam
             //}
         }
 
-        public WelcomePage_Student(User user) : base()
+        public WelcomePage_Student(User user)
         {
+            InitializeComponent();
             this.user = user;
+            new StudentWelcomePageController(user, studentWelcomePageUC);
         }
 
+        public event EventHandler<FormEventArgs> ChangeForm;
 
-        private void LoadStudentMockData()
-        {
-            Library.MockData.LoadMocData();
-            this.user = new User();
-            this.user.Exams = Library.MockData.exams;
-        }
+        //private void LoadStudentMockData()
+        //{
+        //    Library.MockData.LoadMocData();
+        //    this.user = new User();
+        //    this.user.Exams = Library.MockData.exams;
+        //}
     }
 }

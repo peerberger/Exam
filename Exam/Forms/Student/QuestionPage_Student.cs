@@ -8,17 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Exam.Controllers;
+using Exam.Forms;
 using Exam.Student;
 using Library;
 using Library.Models;
 
 namespace Exam
 {
-	public partial class QuestionPage_Student : Form
-	{
+	public partial class QuestionPage_Student : Form, IAppsForms
+    {
         public Library.Models.Exam _exam;
         public int questionNumber;
         private QuestionController questionController;
+
+        public event EventHandler<FormEventArgs> ChangeForm;
+
         //private EventHandler nextClicked;
         //public event EventHandler NextClicked
         //{

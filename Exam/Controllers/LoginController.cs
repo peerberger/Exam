@@ -11,6 +11,7 @@ namespace Exam.Controllers
     {
         UserControls.LoginView.ILoginView _view;
         Library.Models.User user = new Library.Models.User();
+        public event EventHandler Login;
 
         public LoginController(UserControls.LoginView.ILoginView view)
         {
@@ -51,9 +52,19 @@ namespace Exam.Controllers
         {
             //Check Id/Password and decide if can login or not
             //Loads User (with exam list) and passes to WelcomePage_Student
+           
             
-            WelcomePage_Student welcomForm = new WelcomePage_Student();
-            welcomForm.Show();
+            LoadStudentMockData();
+
+            Login.Invoke(user, null);
+        }
+
+        private void LoadStudentMockData()
+        {
+            Library.MockData.LoadMocData();
+            this.user = new Library.Models.User();
+            this.user.Exams = Library.MockData.exams;
+            this.user.Role = Library.Models.Users.Student;
         }
     }
 }

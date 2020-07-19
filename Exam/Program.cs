@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exam.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,9 +18,10 @@ namespace Exam
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Application.Run(new QuestionPage_Student());
+            MainAppController mainController = new MainAppController();
+            mainController.ThisForm = new LoginForm();
             
-            
-            Application.Run(new LoginForm());
+            Application.Run(mainController.ThisForm as Form);
 
         }
     }
