@@ -105,17 +105,29 @@
     <Compile Include="UserControls\TimeBarUC.Designer.cs">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Student\WelcomePage_Student.cs">
+    <Compile Include="Forms\WelcomePage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Student\WelcomePage_Student.Designer.cs">
-      <DependentUpon>WelcomePage_Student.cs</DependentUpon>
+    <Compile Include="Forms\WelcomePage.Designer.cs">
+      <DependentUpon>WelcomePage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FinishMessageUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\FinishMessageUC.Designer.cs">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WelcomeStudentViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\WelcomeStudentViewUC.Designer.cs">
+      <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WelcomeTeacherViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\WelcomeTeacherViewUC.Designer.cs">
+      <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -147,11 +159,17 @@
     <EmbeddedResource Include="UserControls\TimeBarUC.resx">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Student\WelcomePage_Student.resx">
-      <DependentUpon>WelcomePage_Student.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\WelcomePage.resx">
+      <DependentUpon>WelcomePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FinishMessageUC.resx">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\WelcomeStudentViewUC.resx">
+      <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\WelcomeTeacherViewUC.resx">
+      <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

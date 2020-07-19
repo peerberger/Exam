@@ -28,21 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.StartButton = new System.Windows.Forms.Button();
 			this.WelcomeLabel = new System.Windows.Forms.Label();
 			this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
+			this.WelcomeStudentView = new Exam.UserControls.WelcomeStudentViewUC();
 			this.TableLayout.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// StartButton
-			// 
-			this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.StartButton.Location = new System.Drawing.Point(435, 205);
-			this.StartButton.Name = "StartButton";
-			this.StartButton.Size = new System.Drawing.Size(229, 126);
-			this.StartButton.TabIndex = 2;
-			this.StartButton.Text = "Start";
-			this.StartButton.UseVisualStyleBackColor = true;
 			// 
 			// WelcomeLabel
 			// 
@@ -63,6 +53,7 @@
 			this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.TableLayout.Controls.Add(this.WelcomeLabel, 0, 0);
+			this.TableLayout.Controls.Add(this.WelcomeStudentView, 0, 1);
 			this.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TableLayout.Location = new System.Drawing.Point(0, 0);
 			this.TableLayout.Name = "TableLayout";
@@ -72,12 +63,19 @@
 			this.TableLayout.Size = new System.Drawing.Size(800, 450);
 			this.TableLayout.TabIndex = 3;
 			// 
+			// WelcomeStudentView
+			// 
+			this.WelcomeStudentView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.WelcomeStudentView.Location = new System.Drawing.Point(3, 128);
+			this.WelcomeStudentView.Name = "WelcomeStudentView";
+			this.WelcomeStudentView.Size = new System.Drawing.Size(794, 319);
+			this.WelcomeStudentView.TabIndex = 3;
+			// 
 			// WelcomePage_Student
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.StartButton);
 			this.Controls.Add(this.TableLayout);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "WelcomePage_Student";
@@ -89,8 +87,8 @@
 		}
 
 		#endregion
-		private System.Windows.Forms.Button StartButton;
 		private System.Windows.Forms.Label WelcomeLabel;
 		private System.Windows.Forms.TableLayoutPanel TableLayout;
+		private UserControls.WelcomeStudentViewUC WelcomeStudentView;
 	}
 }

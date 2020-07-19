@@ -18,13 +18,6 @@ namespace Exam
 		public WelcomePage_Student()
 		{
 			InitializeComponent();
-
-			using (var unitOfWork = new UnitOfWork(new ExamContext()))
-			{
-				unitOfWork.Classrooms.Add(new Classroom { Name = "Science" });
-
-				unitOfWork.Complete();
-			}
 		}
 	}
 }
