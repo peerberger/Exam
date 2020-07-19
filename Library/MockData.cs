@@ -160,7 +160,7 @@ namespace Library
             q32.Answers.Add("double");
             q32.RightAnswer = "0";
             q32.QuestionText = "What varient is either true of false?";
-            q33.Points = 40;
+            q32.Points = 40;
 
             q33.Points = 40;
             q33.QuestionDescription = "Fill in the blank";
