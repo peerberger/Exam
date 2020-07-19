@@ -16,5 +16,11 @@ namespace Exam.Student
 		{
 			InitializeComponent();
 		}
+
+        public GradePage_Student(string grade)
+        {
+			InitializeComponent();
+			GradeLabel.Text = grade;
+        }
 	}
 }

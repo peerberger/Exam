@@ -61,7 +61,7 @@ namespace Library
             q5.QuestionDescription = "Fill in the blank";
             q5.Points = 20;
             q5.QuestionText = "1_1=2";
-            q5.RightAnswer = "5";
+            q5.RightAnswer = "+";
 
             #endregion Exam 1 Questions
 

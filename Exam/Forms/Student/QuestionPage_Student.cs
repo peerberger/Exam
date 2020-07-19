@@ -67,11 +67,12 @@ namespace Exam
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+            PreviousButton.Enabled = true;
             questionController.UpdateIsRightAnswer();
             questionNumber++;
-            this.UpdateQuestionNumberLabel();
             if (questionNumber < _exam.Questions.Count)
             {
+            this.UpdateQuestionNumberLabel();
                 questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
                 if(questionNumber == _exam.Questions.Count-1)
                 {
@@ -88,7 +89,11 @@ namespace Exam
                         _exam.FinalGrade += question.Points;
                     }
                 }
-                MessageBox.Show(_exam.FinalGrade.ToString());
+                // MessageBox.Show(_exam.FinalGrade.ToString());
+                GradePage_Student gradeForm = new GradePage_Student(_exam.FinalGrade.ToString());
+                gradeForm.ShowDialog();
+                _exam.IsAnswered = true;
+                this.Close();
             }
         }
 
@@ -97,14 +102,15 @@ namespace Exam
 
             questionNumber--;
             this.UpdateQuestionNumberLabel();
-            if (questionNumber >= 0)
-            {
                 questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
-            }
-            else
+            if (questionNumber == 0)
             {
-                MessageBox.Show("This is the start");
+                PreviousButton.Enabled = false;
             }
+            //else
+            //{
+            //    //MessageBox.Show("This is the start");
+            //}
         }
         private void UpdateQuestionNumberLabel()
         {

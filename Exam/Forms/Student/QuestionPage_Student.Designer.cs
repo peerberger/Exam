@@ -88,6 +88,7 @@
             // PreviousButton
             // 
             this.PreviousButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PreviousButton.Enabled = false;
             this.PreviousButton.Location = new System.Drawing.Point(10, 392);
             this.PreviousButton.Margin = new System.Windows.Forms.Padding(10);
             this.PreviousButton.Name = "PreviousButton";

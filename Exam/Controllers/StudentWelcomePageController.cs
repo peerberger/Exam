@@ -24,6 +24,11 @@ namespace Exam.Controllers
             _view.StartExam += _view_StartExam;//Signing to Start Button click
         }
 
+        public void ResetView()
+        {
+            SetExamsToView();
+        }
+
         private void _view_StartExam(object sender, EventArgs e)
         {
             //Gets the selected Exam
