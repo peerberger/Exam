@@ -50,5 +50,35 @@ namespace Exam.UserControls
         {
             startExam.Invoke(this, null);
         }
+
+        private void examsGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            var rowsCount = examsGridView.SelectedRows.Count;
+            if (rowsCount == 0 || rowsCount > 1)
+            {
+            return;
+            }
+            var row = examsGridView.SelectedRows[0];
+            if (row == null)
+            {
+            return;
+            }
+            int rowIndex = row.Index;
+            bool isCompleted = IsExamCompleted(rowIndex);
+            if(isCompleted)
+            {
+                startButton.Enabled = false; 
+            }
+            else
+            {
+                startButton.Enabled = true;
+                SelectedExam = rowIndex;
+            }
+        }
+
+        private bool IsExamCompleted(int index)
+        {
+            return _controller.user.Exams[index].IsAnswered;
+        }
     }
 }

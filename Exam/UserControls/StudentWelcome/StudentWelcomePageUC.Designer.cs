@@ -49,8 +49,10 @@
             this.examsGridView.Location = new System.Drawing.Point(24, 38);
             this.examsGridView.Name = "examsGridView";
             this.examsGridView.ReadOnly = true;
+            this.examsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.examsGridView.Size = new System.Drawing.Size(299, 252);
             this.examsGridView.TabIndex = 2;
+            this.examsGridView.SelectionChanged += new System.EventHandler(this.examsGridView_SelectionChanged);
             // 
             // StudentWelcomePageUC
             // 

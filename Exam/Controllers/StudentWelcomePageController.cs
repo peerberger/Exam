@@ -12,7 +12,7 @@ namespace Exam.Controllers
 {
     public class StudentWelcomePageController
     {
-        private User user;
+        public User user;
         private IStudentWelcomePage _view;
 
         public StudentWelcomePageController(User user, IStudentWelcomePage view)

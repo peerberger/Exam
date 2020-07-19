@@ -1,6 +1,7 @@
 ﻿using Exam.Controllers;
 using System.Collections.Generic;
 using Library.Models;
+using System;
 
 namespace Exam.Student
 {
@@ -14,5 +15,7 @@ namespace Exam.Student
 		string GetAnswer();
 		void LoadQuestion(IQuestion question);
 		//	void LoadQuestion();
+
+		event EventHandler QuestionAnswered;
 	}
 }

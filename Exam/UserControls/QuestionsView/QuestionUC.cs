@@ -17,7 +17,15 @@ namespace Exam.Student
     {
         //private IQuestion _question;
         private List<RadioButton> _answers = new List<RadioButton>();
+        private string openQuestionAnswer;
         QuestionController _controller;
+      //  public bool isAnswered;
+        private EventHandler questionAnswered;
+        public event EventHandler QuestionAnswered
+        {
+            add { questionAnswered += value; }
+            remove { questionAnswered -= value; }
+        }
 
         //public Library.Models.MultipleChoiceTextQuestion CurrQuestion
         //{
@@ -38,8 +46,12 @@ namespace Exam.Student
 
             //CurrQuestion = Class1.LoadQ1();
         }
+
+        #region View Initializers
+
         public void LoadQuestion(IQuestion question)
         {
+            _answers.Clear();
             if (question is MultipleChoiceQuestion)
             {
                 MultipleChoiceQuestion multipleQuestion = question as MultipleChoiceQuestion;
@@ -55,6 +67,7 @@ namespace Exam.Student
         {
             AnswersFlowLayout.Controls.Clear();
             TextBox answerTextBox = new TextBox();
+            answerTextBox.TextChanged += AnswerTextBox_TextChanged;
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
 
@@ -84,12 +97,25 @@ namespace Exam.Student
                 _answers.Add(radioButton);
             }
         }
+        #endregion
+
+        #region Events 
 
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
+      //      isAnswered = true;
+            questionAnswered.Invoke(this, null);
+
         }
 
+        private void AnswerTextBox_TextChanged(object sender, EventArgs e)
+        {
+            openQuestionAnswer = (sender as TextBox).Text;
+            questionAnswered.Invoke(this, null);
+        }   
+
+        #endregion
         public string GetAnswer()
         {
             foreach (var radio in _answers)
@@ -99,7 +125,7 @@ namespace Exam.Student
                     return radio.Name;
                 }
             }
-            return null;
+            return openQuestionAnswer;
         }
 
 

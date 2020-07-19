@@ -75,6 +75,7 @@
             // NextButton
             // 
             this.NextButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NextButton.Enabled = false;
             this.NextButton.Location = new System.Drawing.Point(690, 392);
             this.NextButton.Margin = new System.Windows.Forms.Padding(10);
             this.NextButton.Name = "NextButton";

@@ -50,14 +50,20 @@ namespace Exam
         {
             questionController =
                       new QuestionController(this.Question, _exam.Questions[questionNumber]);
+            questionController.QuestionAnswered += QuestionController_QuestionAnswered;
         }
 
-        private Library.Models.Exam LoadExam()
+        private void QuestionController_QuestionAnswered(object sender, EventArgs e)
         {
-           //Getting the selected exam
-            MockData.LoadMocData();
-            return MockData.exams[0];
+            NextButton.Enabled = true;
         }
+
+        //private Library.Models.Exam LoadExam()
+        //{
+        //   //Getting the selected exam
+        //    MockData.LoadMocData();
+        //    return MockData.exams[0];
+        //}
 
         private void NextButton_Click(object sender, EventArgs e)
         {
@@ -71,6 +77,7 @@ namespace Exam
                 {
                     this.NextButton.Text = "Finish";
                 }
+                NextButton.Enabled = false;
             }
             else
             {
