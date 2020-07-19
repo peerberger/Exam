@@ -20,13 +20,14 @@ namespace Exam.Controllers
             {
                 PreviousForm = _thisForm;
                 _thisForm = value;
+               
                 _thisForm.ChangeForm += _thisForm_ChangeForm;
             }
         }
 
         private void _thisForm_ChangeForm(object sender, FormEventArgs e)
         {
-           
+
             if (sender is LoginForm)
             {
                 User user = e.DataForNextForm as User;
@@ -44,21 +45,18 @@ namespace Exam.Controllers
                     ThisForm = newForm;
                 }
             (ThisForm as WelcomePage_Student).Show();
-            (PreviousForm as Form).Hide();
+                (PreviousForm as Form).Hide();
             }
-            if(sender is WelcomePage_Student)
+            if ((sender is WelcomePage_Student))
             {
                 Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
                 ThisForm = new QuestionPage_Student(exam);
                 (ThisForm as QuestionPage_Student).ShowDialog();
+                ThisForm = PreviousForm;
+                (ThisForm as WelcomePage_Student).welcomeController.ResetView();
+
             }
-
-
-
         }
-
-        public event EventHandler<FormEventArgs> OpenNewForm;
-
 
         public MainAppController()
         {

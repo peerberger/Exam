@@ -15,7 +15,7 @@ using Library.Models;
 
 namespace Exam
 {
-	public partial class QuestionPage_Student : Form, IAppsForms
+    public partial class QuestionPage_Student : Form, IAppsForms
     {
         public Library.Models.Exam _exam;
         public int questionNumber;
@@ -24,19 +24,26 @@ namespace Exam
         private EventHandler<FormEventArgs> changeForm;
         public event EventHandler<FormEventArgs> ChangeForm
         {
-            add { changeForm += value; }
+            add
+            {
+                if (changeForm == null)
+                {
+
+                    changeForm += value;
+                }
+            }
             remove { changeForm -= value; }
         }
 
         public QuestionPage_Student(Library.Models.Exam exam)
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             //Library.Repositories.QuestionsXmlRepository questionsXml = new Library.Repositories.QuestionsXmlRepository();
             _exam = exam;
-			questionNumber = 0;
+            questionNumber = 0;
             this.UpdateQuestionNumberLabel();
-            if (_exam.Questions.Count!=0 && _exam.Questions!= null)
+            if (_exam.Questions.Count != 0 && _exam.Questions != null)
             {
                 CreatQuestionController();
             }
@@ -63,9 +70,9 @@ namespace Exam
             questionNumber++;
             if (questionNumber < _exam.Questions.Count)
             {
-            this.UpdateQuestionNumberLabel();
+                this.UpdateQuestionNumberLabel();
                 questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
-                if(questionNumber == _exam.Questions.Count-1)
+                if (questionNumber == _exam.Questions.Count - 1)
                 {
                     this.NextButton.Text = "Finish";
                 }
@@ -93,7 +100,7 @@ namespace Exam
 
             questionNumber--;
             this.UpdateQuestionNumberLabel();
-                questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
+            questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
             if (questionNumber == 0)
             {
                 PreviousButton.Enabled = false;

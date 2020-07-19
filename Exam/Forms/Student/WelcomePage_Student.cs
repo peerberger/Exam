@@ -18,12 +18,18 @@ namespace Exam
 {
     public partial class WelcomePage_Student : Form, IAppsForms
     {
-        private StudentWelcomePageController welcomeController;
-     //   private User user;
+        public StudentWelcomePageController welcomeController;
+        //   private User user;
         private EventHandler<FormEventArgs> changeForm;
         public event EventHandler<FormEventArgs> ChangeForm
         {
-            add { changeForm += value; }
+            add
+            {
+                if (changeForm == null)
+                {
+                    changeForm += value;
+                }
+            }
             remove { changeForm -= value; }
         }
         public WelcomePage_Student()
@@ -40,8 +46,8 @@ namespace Exam
 
         public WelcomePage_Student(User user) : this()
         {
-      //      this.user = user;
-            welcomeController=
+            //      this.user = user;
+            welcomeController =
             new StudentWelcomePageController(user, studentWelcomePageUC);
             welcomeController.StartExam += WelcomeController_StartExam;
         }
