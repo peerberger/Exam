@@ -19,7 +19,11 @@ namespace Exam.UserControls
         public object ExamsDataSource
         {
             get => examsGridView.DataSource;
-            set => examsGridView.DataSource = value;
+            set
+            {
+                examsGridView.DataSource = value;
+                ResizeDataGrid();
+            }
         }
 
         private StudentWelcomePageController _controller;
@@ -56,18 +60,18 @@ namespace Exam.UserControls
             var rowsCount = examsGridView.SelectedRows.Count;
             if (rowsCount == 0 || rowsCount > 1)
             {
-            return;
+                return;
             }
             var row = examsGridView.SelectedRows[0];
             if (row == null)
             {
-            return;
+                return;
             }
             int rowIndex = row.Index;
             bool isCompleted = IsExamCompleted(rowIndex);
-            if(isCompleted)
+            if (isCompleted)
             {
-                startButton.Enabled = false; 
+                startButton.Enabled = false;
             }
             else
             {
@@ -79,6 +83,15 @@ namespace Exam.UserControls
         private bool IsExamCompleted(int index)
         {
             return _controller.user.Exams[index].IsAnswered;
+        }
+
+        private void ResizeDataGrid()
+        {
+            DataGridViewElementStates states = DataGridViewElementStates.None;
+            examsGridView.ScrollBars = ScrollBars.None;
+            var totalHeight = examsGridView.Rows.GetRowsHeight(states) + examsGridView.ColumnHeadersHeight - 6;
+            var totalWidth = examsGridView.Columns.GetColumnsWidth(states) + examsGridView.RowHeadersWidth - 3;
+            examsGridView.ClientSize = new Size(totalWidth, totalHeight);
         }
     }
 }

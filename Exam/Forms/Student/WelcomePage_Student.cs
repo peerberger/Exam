@@ -52,6 +52,7 @@ namespace Exam
             welcomeController.StartExam += WelcomeController_StartExam;
         }
 
+
         private void WelcomeController_StartExam(object sender, EventArgs e)
         {
             changeForm.Invoke(this, new FormEventArgs(sender));

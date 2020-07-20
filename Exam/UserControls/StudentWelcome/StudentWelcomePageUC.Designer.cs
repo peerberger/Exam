@@ -45,12 +45,14 @@
             // 
             // examsGridView
             // 
+            this.examsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.examsGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.examsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.examsGridView.Location = new System.Drawing.Point(24, 38);
             this.examsGridView.Name = "examsGridView";
             this.examsGridView.ReadOnly = true;
             this.examsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.examsGridView.Size = new System.Drawing.Size(299, 252);
+            this.examsGridView.Size = new System.Drawing.Size(207, 199);
             this.examsGridView.TabIndex = 2;
             this.examsGridView.SelectionChanged += new System.EventHandler(this.examsGridView_SelectionChanged);
             // 
