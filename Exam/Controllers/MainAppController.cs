@@ -20,7 +20,7 @@ namespace Exam.Controllers
             {
                 PreviousForm = _thisForm;
                 _thisForm = value;
-               
+
                 _thisForm.ChangeForm += _thisForm_ChangeForm;
             }
         }
@@ -30,6 +30,7 @@ namespace Exam.Controllers
 
             if (sender is LoginForm)
             {
+                var loginForm = sender as LoginForm;
                 User user = e.DataForNextForm as User;
                 if (user.Role == Users.Admin)
                 {
@@ -44,23 +45,23 @@ namespace Exam.Controllers
                     WelcomePage_Student newForm = new WelcomePage_Student(user);
                     ThisForm = newForm;
                 }
-            (ThisForm as WelcomePage_Student).Show();
-                (PreviousForm as Form).Hide();
+                loginForm.Hide();
+                (ThisForm as WelcomePage_Student).ShowDialog();
+                loginForm.Show();
             }
             if ((sender is WelcomePage_Student))
             {
-                var dr =new DialogResult();
+                var dr = new DialogResult();
                 AlertMessage alertForm = new AlertMessage();
                 dr = alertForm.ShowDialog();
-                if(dr == DialogResult.OK)
+                if (dr == DialogResult.OK)
                 {
-                Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
-                ThisForm = new QuestionPage_Student(exam);
-                (ThisForm as QuestionPage_Student).ShowDialog();
-                ThisForm = PreviousForm;
-                (ThisForm as WelcomePage_Student).welcomeController.ResetView();
+                    Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
+                    ThisForm = new QuestionPage_Student(exam);
+                    (ThisForm as QuestionPage_Student).ShowDialog();
+                    ThisForm = PreviousForm;
+                    (ThisForm as WelcomePage_Student).welcomeController.ResetView();
                 }
-
             }
         }
 

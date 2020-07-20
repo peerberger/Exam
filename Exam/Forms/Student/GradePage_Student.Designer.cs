@@ -41,7 +41,7 @@
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.TableLayout.Controls.Add(this.GradeLabel, 1, 1);
+            this.TableLayout.Controls.Add(this.GradeLabel, 0, 1);
             this.TableLayout.Controls.Add(this.GradeMessageLabel, 1, 0);
             this.TableLayout.Controls.Add(this.okButton, 1, 2);
             this.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -58,12 +58,13 @@
             // GradeLabel
             // 
             this.GradeLabel.AutoSize = true;
+            this.TableLayout.SetColumnSpan(this.GradeLabel, 3);
             this.GradeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.GradeLabel.Location = new System.Drawing.Point(101, 88);
+            this.GradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.GradeLabel.Location = new System.Drawing.Point(3, 88);
             this.GradeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.GradeLabel.Name = "GradeLabel";
-            this.GradeLabel.Size = new System.Drawing.Size(92, 79);
+            this.GradeLabel.Size = new System.Drawing.Size(289, 79);
             this.GradeLabel.TabIndex = 1;
             this.GradeLabel.Text = "99";
             this.GradeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
