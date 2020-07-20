@@ -149,9 +149,9 @@ namespace Library
             q31.Answers.Add("10");
             q31.RightAnswer = "2";
             q31.QuestionText = "What is the value of b?" +
-                "\n int a = 10;" +
-                "\n int b =a;" +
-                "a++;";
+                "\r\n int a = 10;" +
+                "\r\n int b =a;" +
+                "\r\n a++;";
             q31.Points = 20;
 
             q32.Answers.Add("bool");

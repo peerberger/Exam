@@ -27,10 +27,8 @@ namespace Exam
         public LoginForm()
         {
             InitializeComponent();
-            LoginUC view = new LoginUC();
-            Controller = new Controllers.LoginController(view);
+            Controller = new Controllers.LoginController(loginUCView);//Setting controller to UC
             Controller.Login += Controller_Login;
-            this.Controls.Add(view);
 
             //using (var unitOfWork = new DAL.Repositories.UnitOfWork(new ExamContext()))
             //{
@@ -38,11 +36,18 @@ namespace Exam
 
             //    unitOfWork.Complete();
             //}
+
+           //Setting the form to center screen
+           //User can't change form size
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void Controller_Login(object sender, EventArgs e)
         {
             changeForm.Invoke(this, new FormEventArgs(sender));
         }
+
     }
 }

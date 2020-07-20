@@ -49,11 +49,17 @@ namespace Exam.Controllers
             }
             if ((sender is WelcomePage_Student))
             {
+                var dr =new DialogResult();
+                AlertMessage alertForm = new AlertMessage();
+                dr = alertForm.ShowDialog();
+                if(dr == DialogResult.OK)
+                {
                 Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
                 ThisForm = new QuestionPage_Student(exam);
                 (ThisForm as QuestionPage_Student).ShowDialog();
                 ThisForm = PreviousForm;
                 (ThisForm as WelcomePage_Student).welcomeController.ResetView();
+                }
 
             }
         }

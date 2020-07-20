@@ -59,7 +59,7 @@
             // 
             this.GradeLabel.AutoSize = true;
             this.GradeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.GradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.GradeLabel.Location = new System.Drawing.Point(101, 88);
             this.GradeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.GradeLabel.Name = "GradeLabel";
@@ -83,6 +83,7 @@
             // okButton
             // 
             this.okButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.okButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.okButton.Location = new System.Drawing.Point(101, 173);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(92, 80);

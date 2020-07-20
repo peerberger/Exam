@@ -127,6 +127,7 @@
             this.Controls.Add(this.TableLayout);
             this.Name = "QuestionPage_Student";
             this.Text = "Exam App";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QuestionPage_Student_FormClosing);
             this.TableLayout.ResumeLayout(false);
             this.TableLayout.PerformLayout();
             this.ResumeLayout(false);
