@@ -27,8 +27,7 @@ namespace Exam.Controllers
 
         private void _thisForm_ChangeForm(object sender, FormEventArgs e)
         {
-
-            if (sender is LoginForm)
+            if (sender is LoginForm)// Login -> Welcome
             {
                 var loginForm = sender as LoginForm;
                 User user = e.DataForNextForm as User;
@@ -46,16 +45,17 @@ namespace Exam.Controllers
                     ThisForm = newForm;
                 }
                 loginForm.Hide();
-                (ThisForm as WelcomePage_Student).ShowDialog();
-                loginForm.Show();
+                (ThisForm as Form).ShowDialog();//Opening Welcome page as dialog
+                loginForm.Show();//Re-opening the login after welcome page closes
             }
-            if ((sender is WelcomePage_Student))
+            if ((sender is WelcomePage_Student))//Welcome-Student -> Alert -> Exam
             {
                 var dr = new DialogResult();
                 AlertMessage alertForm = new AlertMessage();
                 dr = alertForm.ShowDialog();
                 if (dr == DialogResult.OK)
                 {
+                    //Opening the exam - QuestionPage_Student
                     Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
                     ThisForm = new QuestionPage_Student(exam);
                     (ThisForm as QuestionPage_Student).ShowDialog();
@@ -74,8 +74,5 @@ namespace Exam.Controllers
         {
             ThisForm = form;
         }
-
-
-
     }
 }

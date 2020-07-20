@@ -44,6 +44,7 @@ namespace Exam.UserControls
         {
             InitializeComponent();
         }
+        #region Events
 
         public void SetController(StudentWelcomePageController controller)
         {
@@ -68,7 +69,8 @@ namespace Exam.UserControls
                 return;
             }
             int rowIndex = row.Index;
-            bool isCompleted = IsExamCompleted(rowIndex);
+            bool isCompleted = IsExamCompleted(rowIndex);//Checking if the selected exam is completed
+            //If comleted disable the start button
             if (isCompleted)
             {
                 startButton.Enabled = false;
@@ -80,11 +82,16 @@ namespace Exam.UserControls
             }
         }
 
+        #endregion
+
+        #region Methods
+
         private bool IsExamCompleted(int index)
         {
             return _controller.user.Exams[index].IsAnswered;
         }
 
+        //Resizinf the DataGridView around the data
         private void ResizeDataGrid()
         {
             DataGridViewElementStates states = DataGridViewElementStates.None;
@@ -93,5 +100,7 @@ namespace Exam.UserControls
             var totalWidth = examsGridView.Columns.GetColumnsWidth(states) + examsGridView.RowHeadersWidth - 3;
             examsGridView.ClientSize = new Size(totalWidth, totalHeight);
         }
+
+        #endregion
     }
 }

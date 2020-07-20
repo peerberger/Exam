@@ -39,8 +39,6 @@ namespace Exam
         public QuestionPage_Student(Library.Models.Exam exam)
         {
             InitializeComponent();
-
-            //Library.Repositories.QuestionsXmlRepository questionsXml = new Library.Repositories.QuestionsXmlRepository();
             _exam = exam;
             questionNumber = 0;
             this.UpdateQuestionNumberLabel();

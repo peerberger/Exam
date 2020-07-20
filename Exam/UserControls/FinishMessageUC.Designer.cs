@@ -60,7 +60,7 @@
             this.AttentionLabel.AutoSize = true;
             this.TableLayout.SetColumnSpan(this.AttentionLabel, 3);
             this.AttentionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AttentionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.AttentionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.AttentionLabel.Location = new System.Drawing.Point(10, 128);
             this.AttentionLabel.Margin = new System.Windows.Forms.Padding(10);
             this.AttentionLabel.Name = "AttentionLabel";
@@ -74,18 +74,19 @@
             this.IncompleteExamLabel.AutoSize = true;
             this.TableLayout.SetColumnSpan(this.IncompleteExamLabel, 3);
             this.IncompleteExamLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IncompleteExamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.IncompleteExamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.IncompleteExamLabel.Location = new System.Drawing.Point(10, 10);
             this.IncompleteExamLabel.Margin = new System.Windows.Forms.Padding(10);
             this.IncompleteExamLabel.Name = "IncompleteExamLabel";
             this.IncompleteExamLabel.Size = new System.Drawing.Size(738, 98);
             this.IncompleteExamLabel.TabIndex = 0;
-            this.IncompleteExamLabel.Text = "You haven’t answered all the questions!\r\n";
+            this.IncompleteExamLabel.Text = "You have finished the test!";
             this.IncompleteExamLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FinishButton
             // 
             this.FinishButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FinishButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FinishButton.Location = new System.Drawing.Point(313, 246);
             this.FinishButton.Margin = new System.Windows.Forms.Padding(10);
             this.FinishButton.Name = "FinishButton";

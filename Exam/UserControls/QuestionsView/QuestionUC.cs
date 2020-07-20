@@ -15,27 +15,15 @@ namespace Exam.Student
 {
 	public partial class QuestionUC : UserControl, IQuestionView
     {
-        //private IQuestion _question;
         private List<RadioButton> _answers = new List<RadioButton>();
         private string openQuestionAnswer;
         QuestionController _controller;
-      //  public bool isAnswered;
         private EventHandler questionAnswered;
         public event EventHandler QuestionAnswered
         {
             add { questionAnswered += value; }
             remove { questionAnswered -= value; }
         }
-
-        //public Library.Models.MultipleChoiceTextQuestion CurrQuestion
-        //{
-        //    get { return _question; }
-        //    set
-        //    {
-        //        _question = value;
-        //        QuestionTextBox.Text = _question.QuestionText;
-        //    }
-        //}
 
         public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
         public string QuestionDescription { get => descriptionTextBox.Text; set => descriptionTextBox.Text = value; }
@@ -104,7 +92,6 @@ namespace Exam.Student
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
-      //      isAnswered = true;
             questionAnswered.Invoke(this, null);
 
         }
@@ -113,9 +100,12 @@ namespace Exam.Student
         {
             openQuestionAnswer = (sender as TextBox).Text;
             questionAnswered.Invoke(this, null);
-        }   
+        }
 
         #endregion
+
+        #region Methods
+
         public string GetAnswer()
         {
             foreach (var radio in _answers)
@@ -125,20 +115,15 @@ namespace Exam.Student
                     return radio.Name;
                 }
             }
+            //if there are no radio buttons -> this is an open question
             return openQuestionAnswer;
         }
-
-
 
         public void SetController(QuestionController controller)
         {
             this._controller = controller;
         }
 
-
-        //public void LoadQuestion()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        #endregion
     }
 }
