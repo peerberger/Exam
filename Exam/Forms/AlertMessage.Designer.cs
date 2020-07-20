@@ -57,7 +57,7 @@
             // 
             this.okBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.okBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.okBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.okBtn.Location = new System.Drawing.Point(235, 135);
             this.okBtn.Margin = new System.Windows.Forms.Padding(50, 5, 25, 5);
             this.okBtn.Name = "okBtn";
@@ -70,7 +70,7 @@
             // 
             this.cancleBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancleBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cancleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancleBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancleBtn.Location = new System.Drawing.Point(25, 135);
             this.cancleBtn.Margin = new System.Windows.Forms.Padding(25, 5, 50, 5);
             this.cancleBtn.Name = "cancleBtn";
@@ -83,7 +83,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.warningLable, 2);
             this.warningLable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.warningLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warningLable.Location = new System.Drawing.Point(3, 0);
             this.warningLable.Name = "warningLable";
             this.warningLable.Size = new System.Drawing.Size(364, 130);

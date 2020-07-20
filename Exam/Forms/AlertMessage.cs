@@ -15,6 +15,13 @@ namespace Exam.Forms
         public AlertMessage()
         {
             InitializeComponent();
+
+            //Setting the form to center screen
+            //User can't change form size
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
     }
