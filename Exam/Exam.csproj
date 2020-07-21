@@ -76,6 +76,18 @@
     <Compile Include="Forms\Student\QuestionPage_Student.Designer.cs">
       <DependentUpon>QuestionPage_Student.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Teacher\QuestionPage_Teacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Teacher\QuestionPage_Teacher.Designer.cs">
+      <DependentUpon>QuestionPage_Teacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\QuestionBuilderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\QuestionBuilderUC.Designer.cs">
+      <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Class1.cs" />
     <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
     <Compile Include="UserControls\LoginView\ILoginView.cs" />
@@ -132,6 +144,9 @@
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Teacher\QuestionPage_Teacher.resx">
+      <DependentUpon>QuestionPage_Teacher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -149,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Student\StartPage_Student.resx">
       <DependentUpon>StartPage_Student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\QuestionBuilderUC.resx">
+      <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
       <DependentUpon>LoginUC.cs</DependentUpon>
