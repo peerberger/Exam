@@ -14,7 +14,7 @@ namespace Exam.UserControls
     public partial class StudentWelcomePageUC : UserControl, IStudentWelcomePage
     {
 
-
+        private bool firstInitialize;
         public int SelectedExam { get; set; }
         public object ExamsDataSource
         {
@@ -22,7 +22,10 @@ namespace Exam.UserControls
             set
             {
                 examsGridView.DataSource = value;
+                if(value!=null)
+                {
                 ResizeDataGrid();
+                }
             }
         }
 
@@ -43,6 +46,7 @@ namespace Exam.UserControls
         public StudentWelcomePageUC()
         {
             InitializeComponent();
+            firstInitialize = true;
         }
         #region Events
 
@@ -96,8 +100,15 @@ namespace Exam.UserControls
         {
             DataGridViewElementStates states = DataGridViewElementStates.None;
             examsGridView.ScrollBars = ScrollBars.None;
-            var totalHeight = examsGridView.Rows.GetRowsHeight(states) + examsGridView.ColumnHeadersHeight - 6;
-            var totalWidth = examsGridView.Columns.GetColumnsWidth(states) + examsGridView.RowHeadersWidth - 3;
+            
+            var totalHeight = examsGridView.Rows.GetRowsHeight(states) + examsGridView.ColumnHeadersHeight;
+            var totalWidth = examsGridView.Columns.GetColumnsWidth(states) + examsGridView.RowHeadersWidth;
+            if(firstInitialize)
+            {
+                totalHeight -= 8;
+                totalWidth -= 5;
+                firstInitialize = false;
+            }    
             examsGridView.ClientSize = new Size(totalWidth, totalHeight);
         }
 
