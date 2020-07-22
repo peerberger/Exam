@@ -86,6 +86,18 @@
     <Compile Include="Forms\Student\QuestionPage_Student.Designer.cs">
       <DependentUpon>QuestionPage_Student.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Teacher\QuestionPage_Teacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Teacher\QuestionPage_Teacher.Designer.cs">
+      <DependentUpon>QuestionPage_Teacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\QuestionBuilderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\QuestionBuilderUC.Designer.cs">
+      <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Class1.cs" />
     <Compile Include="UserControls\StudentWelcome\IStudentWelcomePage.cs" />
     <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
@@ -122,11 +134,11 @@
     <Compile Include="UserControls\TimeBarUC.Designer.cs">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Student\WelcomePage_Student.cs">
+    <Compile Include="Forms\WelcomePage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Student\WelcomePage_Student.Designer.cs">
-      <DependentUpon>WelcomePage_Student.cs</DependentUpon>
+    <Compile Include="Forms\WelcomePage.Designer.cs">
+      <DependentUpon>WelcomePage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FinishMessageUC.cs">
       <SubType>UserControl</SubType>
@@ -134,11 +146,26 @@
     <Compile Include="UserControls\FinishMessageUC.Designer.cs">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\WelcomeStudentViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\WelcomeStudentViewUC.Designer.cs">
+      <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WelcomeTeacherViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\WelcomeTeacherViewUC.Designer.cs">
+      <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\AlertMessage.resx">
       <DependentUpon>AlertMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Teacher\QuestionPage_Teacher.resx">
+      <DependentUpon>QuestionPage_Teacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,6 +185,9 @@
     <EmbeddedResource Include="Forms\Student\StartPage_Student.resx">
       <DependentUpon>StartPage_Student.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\QuestionBuilderUC.resx">
+      <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
       <DependentUpon>LoginUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,11 +200,17 @@
     <EmbeddedResource Include="UserControls\TimeBarUC.resx">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Student\WelcomePage_Student.resx">
-      <DependentUpon>WelcomePage_Student.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\WelcomePage.resx">
+      <DependentUpon>WelcomePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FinishMessageUC.resx">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\WelcomeStudentViewUC.resx">
+      <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\WelcomeTeacherViewUC.resx">
+      <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

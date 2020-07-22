@@ -35,7 +35,7 @@
 			this.Answer3RadioButton = new System.Windows.Forms.RadioButton();
 			this.Answer4RadioButton = new System.Windows.Forms.RadioButton();
 			this.QuestionTextBox = new System.Windows.Forms.TextBox();
-			this.descriptionTextBox = new System.Windows.Forms.TextBox();
+			this.DescriptionTextBox = new System.Windows.Forms.TextBox();
 			this.TableLayout.SuspendLayout();
 			this.AnswersFlowLayout.SuspendLayout();
 			this.SuspendLayout();
@@ -46,7 +46,7 @@
 			this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.TableLayout.Controls.Add(this.AnswersFlowLayout, 0, 2);
 			this.TableLayout.Controls.Add(this.QuestionTextBox, 0, 1);
-			this.TableLayout.Controls.Add(this.descriptionTextBox, 0, 0);
+			this.TableLayout.Controls.Add(this.DescriptionTextBox, 0, 0);
 			this.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.TableLayout.Location = new System.Drawing.Point(0, 0);
 			this.TableLayout.Margin = new System.Windows.Forms.Padding(0);
@@ -127,13 +127,14 @@
 			this.QuestionTextBox.TabIndex = 3;
 			this.QuestionTextBox.Text = "When and what did who do for how much?";
 			// 
-			// descriptionTextBox
+			// DescriptionTextBox
 			// 
-			this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.descriptionTextBox.Location = new System.Drawing.Point(3, 3);
-			this.descriptionTextBox.Name = "descriptionTextBox";
-			this.descriptionTextBox.Size = new System.Drawing.Size(794, 20);
-			this.descriptionTextBox.TabIndex = 5;
+			this.DescriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.DescriptionTextBox.Location = new System.Drawing.Point(10, 10);
+			this.DescriptionTextBox.Margin = new System.Windows.Forms.Padding(10);
+			this.DescriptionTextBox.Name = "DescriptionTextBox";
+			this.DescriptionTextBox.Size = new System.Drawing.Size(780, 20);
+			this.DescriptionTextBox.TabIndex = 5;
 			// 
 			// QuestionUC
 			// 
@@ -159,6 +160,6 @@
 		private System.Windows.Forms.RadioButton Answer2RadioButton;
 		private System.Windows.Forms.RadioButton Answer3RadioButton;
 		private System.Windows.Forms.RadioButton Answer4RadioButton;
-        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox DescriptionTextBox;
     }
 }

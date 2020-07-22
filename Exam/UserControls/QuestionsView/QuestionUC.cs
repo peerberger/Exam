@@ -26,7 +26,7 @@ namespace Exam.Student
         }
 
         public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
-        public string QuestionDescription { get => descriptionTextBox.Text; set => descriptionTextBox.Text = value; }
+        public string QuestionDescription { get => DescriptionTextBox.Text; set => DescriptionTextBox.Text = value; }
 
         public QuestionUC()
         {
@@ -54,7 +54,7 @@ namespace Exam.Student
         private void SetAnswerPartOfView()
         {
             AnswersFlowLayout.Controls.Clear();
-            TextBox answerTextBox = new TextBox();
+            TextBox answerTextBox = new TextBox() { Margin = new Padding(10)};
             answerTextBox.TextChanged += AnswerTextBox_TextChanged;
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
