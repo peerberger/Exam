@@ -47,7 +47,7 @@ namespace Exam
         public WelcomePage_Student(User user) : this()
         {
             welcomeController =
-            new StudentWelcomePageController(user, studentWelcomePageUC);
+            new StudentWelcomePageController(user, WelcomeStudentView);
             welcomeController.StartExam += WelcomeController_StartExam;
         }
 

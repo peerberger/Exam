@@ -29,8 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.GradesGridView = new System.Windows.Forms.DataGridView();
-			this.Test = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
 			this.StartButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.GradesGridView)).BeginInit();
@@ -40,28 +38,16 @@
 			// GradesGridView
 			// 
 			this.GradesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.GradesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Test,
-            this.Grade});
 			this.GradesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.GradesGridView.Location = new System.Drawing.Point(81, 68);
+			this.GradesGridView.Location = new System.Drawing.Point(81, 57);
 			this.GradesGridView.Margin = new System.Windows.Forms.Padding(10);
 			this.GradesGridView.Name = "GradesGridView";
+			this.GradesGridView.ReadOnly = true;
 			this.TableLayout.SetRowSpan(this.GradesGridView, 3);
-			this.GradesGridView.Size = new System.Drawing.Size(229, 196);
+			this.GradesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.GradesGridView.Size = new System.Drawing.Size(229, 201);
 			this.GradesGridView.TabIndex = 4;
-			// 
-			// Test
-			// 
-			this.Test.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Test.HeaderText = "Test";
-			this.Test.Name = "Test";
-			// 
-			// Grade
-			// 
-			this.Grade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Grade.HeaderText = "Grade";
-			this.Grade.Name = "Grade";
+			this.GradesGridView.SelectionChanged += new System.EventHandler(this.examsGridView_SelectionChanged);
 			// 
 			// TableLayout
 			// 
@@ -91,20 +77,21 @@
 			this.StartButton.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
 			this.StartButton.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-			this.StartButton.Location = new System.Drawing.Point(359, 136);
+			this.StartButton.Location = new System.Drawing.Point(359, 120);
 			this.StartButton.Margin = new System.Windows.Forms.Padding(10);
 			this.StartButton.Name = "StartButton";
-			this.StartButton.Size = new System.Drawing.Size(152, 69);
+			this.StartButton.Size = new System.Drawing.Size(152, 75);
 			this.StartButton.TabIndex = 3;
 			this.StartButton.Text = "Start";
 			this.StartButton.UseVisualStyleBackColor = true;
+			this.StartButton.Click += new System.EventHandler(this.startButton_Click);
 			// 
-			// WelcomeStudentUC
+			// WelcomeStudentViewUC
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.TableLayout);
-			this.Name = "WelcomeStudentUC";
+			this.Name = "WelcomeStudentViewUC";
 			this.Size = new System.Drawing.Size(595, 317);
 			((System.ComponentModel.ISupportInitialize)(this.GradesGridView)).EndInit();
 			this.TableLayout.ResumeLayout(false);
@@ -116,7 +103,5 @@
 		private System.Windows.Forms.DataGridView GradesGridView;
 		private System.Windows.Forms.TableLayoutPanel TableLayout;
 		private System.Windows.Forms.Button StartButton;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Test;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Grade;
 	}
 }

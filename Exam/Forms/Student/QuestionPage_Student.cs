@@ -60,7 +60,7 @@ namespace Exam
         }
         private void UpdateQuestionNumberLabel()
         {
-            this.questionNumberLabel.Text = $"{questionNumber + 1} / {_exam.Questions.Count}";
+            this.QuestionNumberLabel.Text = $"{questionNumber + 1} / {_exam.Questions.Count}";
         }
         private void InitializeFinishUC()
         {
