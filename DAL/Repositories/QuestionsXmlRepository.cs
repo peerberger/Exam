@@ -32,7 +32,7 @@ namespace DAL.Repositories
                         MultipleChoiceTextQuestion multipleChoise = new MultipleChoiceTextQuestion();
                         multipleChoise.QuestionText = question.Element("QuestionText").Value;
                         multipleChoise.Points = double.Parse(question.Element("Points").Value);
-                        multipleChoise.RightAnswer = int.Parse(question.Element("RightAnswer").Value);
+                        multipleChoise.RightAnswer = question.Element("RightAnswer").Value;
                         var answers = question.Element("Answers");
                         foreach (var answer in answers.Elements())
                         {

@@ -12,9 +12,15 @@ namespace Exam.UserControls
 {
 	public partial class FinishMessageUC : UserControl
 	{
+		public event EventHandler ButtonClicked;
 		public FinishMessageUC()
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void FinishButton_Click(object sender, EventArgs e)
+        {
+			ButtonClicked.Invoke(this, null);
+        }
+    }
 }

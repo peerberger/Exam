@@ -8,6 +8,6 @@ namespace Library.Models
 {
     public interface IGenericQuestion<T>:IQuestion
     {
-        T RightAnswer { get; set; }
+      //  T RightAnswer { get; set; }
     }
 }

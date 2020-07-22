@@ -56,27 +56,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AlertMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AlertMessage.Designer.cs">
+      <DependentUpon>AlertMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IAppsForms.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MainAppController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Controllers\StudentWelcomePageController.cs" />
+    <Compile Include="Forms\FormEventArgs.cs" />
+    <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\GradePage_Student.cs">
+    <Compile Include="Forms\Student\GradePage_Student.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student\GradePage_Student.Designer.cs">
+    <Compile Include="Forms\Student\GradePage_Student.Designer.cs">
       <DependentUpon>GradePage_Student.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\QuestionPage_Student.cs">
+    <Compile Include="Forms\Student\QuestionPage_Student.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student\QuestionPage_Student.Designer.cs">
+    <Compile Include="Forms\Student\QuestionPage_Student.Designer.cs">
       <DependentUpon>QuestionPage_Student.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Class1.cs" />
+    <Compile Include="UserControls\StudentWelcome\IStudentWelcomePage.cs" />
     <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
     <Compile Include="UserControls\LoginView\ILoginView.cs" />
     <Compile Include="UserControls\LoginView\LoginUC.cs">
@@ -91,24 +102,30 @@
     <Compile Include="UserControls\QuestionsView\QuestionUC.Designer.cs">
       <DependentUpon>QuestionUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\StartPage_Student.cs">
+    <Compile Include="Forms\Student\StartPage_Student.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student\StartPage_Student.Designer.cs">
+    <Compile Include="Forms\Student\StartPage_Student.Designer.cs">
       <DependentUpon>StartPage_Student.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.Designer.cs">
+      <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TimeBarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\TimeBarUC.Designer.cs">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\WelcomePage_Student.cs">
+    <Compile Include="Forms\Student\WelcomePage_Student.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student\WelcomePage_Student.Designer.cs">
+    <Compile Include="Forms\Student\WelcomePage_Student.Designer.cs">
       <DependentUpon>WelcomePage_Student.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FinishMessageUC.cs">
@@ -117,8 +134,11 @@
     <Compile Include="UserControls\FinishMessageUC.Designer.cs">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AlertMessage.resx">
+      <DependentUpon>AlertMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -129,13 +149,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Student\GradePage_Student.resx">
+    <EmbeddedResource Include="Forms\Student\GradePage_Student.resx">
       <DependentUpon>GradePage_Student.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Student\QuestionPage_Student.resx">
+    <EmbeddedResource Include="Forms\Student\QuestionPage_Student.resx">
       <DependentUpon>QuestionPage_Student.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Student\StartPage_Student.resx">
+    <EmbeddedResource Include="Forms\Student\StartPage_Student.resx">
       <DependentUpon>StartPage_Student.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
@@ -144,10 +164,13 @@
     <EmbeddedResource Include="UserControls\QuestionsView\QuestionUC.resx">
       <DependentUpon>QuestionUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\StudentWelcome\StudentWelcomePageUC.resx">
+      <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TimeBarUC.resx">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Student\WelcomePage_Student.resx">
+    <EmbeddedResource Include="Forms\Student\WelcomePage_Student.resx">
       <DependentUpon>WelcomePage_Student.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FinishMessageUC.resx">
