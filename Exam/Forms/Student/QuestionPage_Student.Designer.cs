@@ -75,6 +75,7 @@
 			// NextButton
 			// 
 			this.NextButton.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.NextButton.Enabled = false;
 			this.NextButton.Location = new System.Drawing.Point(690, 392);
 			this.NextButton.Margin = new System.Windows.Forms.Padding(10);
 			this.NextButton.Name = "NextButton";
@@ -87,6 +88,7 @@
 			// PreviousButton
 			// 
 			this.PreviousButton.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PreviousButton.Enabled = false;
 			this.PreviousButton.Location = new System.Drawing.Point(10, 392);
 			this.PreviousButton.Margin = new System.Windows.Forms.Padding(10);
 			this.PreviousButton.Name = "PreviousButton";
@@ -125,6 +127,7 @@
 			this.Controls.Add(this.TableLayout);
 			this.Name = "QuestionPage_Student";
 			this.Text = "Exam App";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QuestionPage_Student_FormClosing);
 			this.TableLayout.ResumeLayout(false);
 			this.TableLayout.PerformLayout();
 			this.ResumeLayout(false);

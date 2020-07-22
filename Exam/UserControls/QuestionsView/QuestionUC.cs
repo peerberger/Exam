@@ -15,19 +15,15 @@ namespace Exam.Student
 {
 	public partial class QuestionUC : UserControl, IQuestionView
     {
-        //private IQuestion _question;
         private List<RadioButton> _answers = new List<RadioButton>();
+        private string openQuestionAnswer;
         QuestionController _controller;
-
-        //public Library.Models.MultipleChoiceTextQuestion CurrQuestion
-        //{
-        //    get { return _question; }
-        //    set
-        //    {
-        //        _question = value;
-        //        QuestionTextBox.Text = _question.QuestionText;
-        //    }
-        //}
+        private EventHandler questionAnswered;
+        public event EventHandler QuestionAnswered
+        {
+            add { questionAnswered += value; }
+            remove { questionAnswered -= value; }
+        }
 
         public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
         public string QuestionDescription { get => DescriptionTextBox.Text; set => DescriptionTextBox.Text = value; }
@@ -38,8 +34,12 @@ namespace Exam.Student
 
             //CurrQuestion = Class1.LoadQ1();
         }
+
+        #region View Initializers
+
         public void LoadQuestion(IQuestion question)
         {
+            _answers.Clear();
             if (question is MultipleChoiceQuestion)
             {
                 MultipleChoiceQuestion multipleQuestion = question as MultipleChoiceQuestion;
@@ -55,6 +55,7 @@ namespace Exam.Student
         {
             AnswersFlowLayout.Controls.Clear();
             TextBox answerTextBox = new TextBox() { Margin = new Padding(10)};
+            answerTextBox.TextChanged += AnswerTextBox_TextChanged;
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
 
@@ -84,11 +85,26 @@ namespace Exam.Student
                 _answers.Add(radioButton);
             }
         }
+        #endregion
+
+        #region Events 
 
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
+            questionAnswered.Invoke(this, null);
+
         }
+
+        private void AnswerTextBox_TextChanged(object sender, EventArgs e)
+        {
+            openQuestionAnswer = (sender as TextBox).Text;
+            questionAnswered.Invoke(this, null);
+        }
+
+        #endregion
+
+        #region Methods
 
         public string GetAnswer()
         {
@@ -99,20 +115,15 @@ namespace Exam.Student
                     return radio.Name;
                 }
             }
-            return null;
+            //if there are no radio buttons -> this is an open question
+            return openQuestionAnswer;
         }
-
-
 
         public void SetController(QuestionController controller)
         {
             this._controller = controller;
         }
 
-
-        //public void LoadQuestion()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        #endregion
     }
 }

@@ -42,6 +42,11 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.TableLayoutPanel tableLayout;
+        private UserControls.LoginView.LoginUC loginUCView;
+        private System.Windows.Forms.Label welcomeLabel;
+        private System.Windows.Forms.Label label1;
     }
 }
 
