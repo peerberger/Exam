@@ -14,15 +14,25 @@ namespace Exam.Controllers
     {
         private IQuestionView _view;
         private IQuestion _question;
+        public event EventHandler QuestionAnswered;
 
         public QuestionController(IQuestionView view, IQuestion question)
         {
             _question = question;
             _view = view;
             _view.SetController(this);
+            _view.QuestionAnswered += _view_QuestionAnswered;
             LoadQuestionToView();
+
          //   form.NextClicked += Form_NextClicked;
+
         }
+
+        private void _view_QuestionAnswered(object sender, EventArgs e)
+        {
+            QuestionAnswered.Invoke(this, null);
+        }
+
         public void UpdateQuestionView(IQuestion question)
         {
             SetQuestion(question);
