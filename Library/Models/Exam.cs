@@ -19,6 +19,7 @@ namespace Library.Models
         public double? FinalGrade { get; set; }
         //public double FinalGrade { get; set; }
         public bool IsAnswered { get; set; }
+        public string GradesPath { get; set; }
 
         public Exam()
         {
