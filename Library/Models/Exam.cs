@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,8 +17,10 @@ namespace Library.Models
         public bool IsTimed { get; set; }
         public string QuestionsPath { get; set; }
         public List<IQuestion> Questions { get; set; } = new List<IQuestion>();
+        [NotMapped]
         public double? FinalGrade { get; set; }
         //public double FinalGrade { get; set; }
+        [NotMapped]
         public bool IsAnswered { get; set; }
         public string GradesPath { get; set; }
 

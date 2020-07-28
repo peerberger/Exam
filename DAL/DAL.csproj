@@ -80,6 +80,14 @@
     <Compile Include="Migrations\202007221743073_add-GradesPath.designer.cs">
       <DependentUpon>202007221743073_add-GradesPath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007281724455_addCollumns.cs" />
+    <Compile Include="Migrations\202007281724455_addCollumns.designer.cs">
+      <DependentUpon>202007281724455_addCollumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281735293_addNotMapped.cs" />
+    <Compile Include="Migrations\202007281735293_addNotMapped.designer.cs">
+      <DependentUpon>202007281735293_addNotMapped.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IEFRepository.cs" />
@@ -121,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007221743073_add-GradesPath.resx">
       <DependentUpon>202007221743073_add-GradesPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281724455_addCollumns.resx">
+      <DependentUpon>202007281724455_addCollumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281735293_addNotMapped.resx">
+      <DependentUpon>202007281735293_addNotMapped.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
