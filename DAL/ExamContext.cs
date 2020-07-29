@@ -9,10 +9,15 @@ using System.Threading.Tasks;
 namespace DAL
 {
     public class ExamContext : DbContext
-    {
+	{
+		//Saar
 		//base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Saar\Documents\GitHub\Exam\db\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
-        public ExamContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
-        {
+        
+		//Pe'er
+		 //base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
+		
+		public ExamContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Saar\Documents\GitHub\Exam\db\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
+		{
 
         }
 
