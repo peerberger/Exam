@@ -49,10 +49,30 @@ namespace Library.Models
             }
         }
 
+        
+
         private void LoadDemoXML(Exam exam)
         {
             exam.GradesPath = @"C:\Users\Saar\Documents\GitHub\Exam\Exam\bin\Debug\ExamsGrades\TestExam_10.xml";
             exam.QuestionsPath = @"C:\Users\Saar\Documents\Exam - copy\Exam\bin\Debug\ExamsQuestions\SimpleMathTest_0.xml";
+        }
+
+        public void UpdateExamGradeXML(Exam exam)
+        { 
+            string filePath = exam.GradesPath;
+        //    if (!File.Exists(filePath))
+       //    {
+         //       Add(entityToUpdate);
+         //   }
+         //   else
+         //   {
+                XDocument xmlDoc = XDocument.Load(filePath);
+                XElement xStudent = new XElement("Student");
+                xStudent.Add(new XElement("ID", this.Id));
+                xStudent.Add(new XElement("Grade", exam.FinalGrade));
+                xmlDoc.Element(xmlDoc.Root.Name.LocalName).Add(xStudent);
+                xmlDoc.Save(filePath);
+       //     }
         }
     }
 }

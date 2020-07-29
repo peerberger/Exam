@@ -12,6 +12,7 @@ namespace Exam.Controllers
 {
     public class MainAppController
     {
+        private User user;
         private IAppsForms _thisForm;
         public IAppsForms PreviousForm { get; set; }
         public IAppsForms ThisForm
@@ -31,7 +32,7 @@ namespace Exam.Controllers
             if (sender is LoginForm)// Login -> Welcome
             {
                 var loginForm = sender as LoginForm;
-                User user = e.DataForNextForm as User;
+                user = e.DataForNextForm as User;
                 if (user.Role == Users.Admin)
                 {
                     //Open Admin Page
@@ -61,6 +62,7 @@ namespace Exam.Controllers
                     Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
                     ThisForm = new QuestionPage_Student(exam);
                     (ThisForm as QuestionPage_Student).ShowDialog();
+                    user.UpdateExamGradeXML(exam);
                     ThisForm = PreviousForm;
                     (ThisForm as WelcomePage_Student).welcomeController.ResetView();
                 }
