@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL.Repositories;
 using Exam.UserControls;
 using Library;
 using Library.Models;
@@ -36,7 +37,7 @@ namespace Exam.Controllers
             //Loads questions to the exam
             //Passes exam to QuestionPage_Student
             //QuestionPage_Student questionfrm = new QuestionPage_Student(user.Exams[_view.SelectedExam]);
-            //questionfrm.Show();
+            //questionfrm.Show();          
 
             StartExam.Invoke(user.Exams[_view.SelectedExam], null);
         }
@@ -44,18 +45,32 @@ namespace Exam.Controllers
         //Setting the exam into a Title/Grade list and passes to view
         private void SetExamsToView()
         {
-            var list =new List<Tuple<string, string>>().Select(t=> new { Exam = t.Item1, Grade = t.Item2 }).ToList();
+            var list = new List<Tuple<string, string>>().Select(t => new { Exam = t.Item1, Grade = t.Item2 }).ToList();
+            foreach (var classroom in user.Classrooms)
+            {
+                using (var unit = new UnitOfWork(new DAL.ExamContext()))
+                {
+                    List<Library.Models.Exam> examsToAdd
+                        = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
+                    foreach (var ex in examsToAdd)
+                    {
+                        user.Exams.Add(ex);
+                    }
+                    unit.Complete();
+                }
+            }
             foreach (Library.Models.Exam exam in user.Exams)
             {
-                if(exam.IsAnswered)
+                if (exam.IsAnswered)
                 {
-                   list.Add(new {Exam =  exam.Title.ToString(),Grade = exam.FinalGrade.ToString()});
+                    list.Add(new { Exam = exam.Title.ToString(), Grade = exam.FinalGrade.ToString() });
                 }
                 else
                 {
-                   list.Add(new {Exam =  exam.Title.ToString(),Grade = "Unanswered"});
+                    list.Add(new { Exam = exam.Title.ToString(), Grade = "Unanswered" });
                 }
             }
+
             _view.ExamsDataSource = list;
         }
     }

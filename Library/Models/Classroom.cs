@@ -10,7 +10,7 @@ namespace Library.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Exam> Exams { get; set; }
+        public List<Exam> Exams { get; set; } = new List<Exam>();
         // for 'many to many' joining table
         public virtual ICollection<User> Users { get; set; }
     }

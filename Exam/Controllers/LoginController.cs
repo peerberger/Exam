@@ -62,17 +62,26 @@ namespace Exam.Controllers
             using (var unit = new UnitOfWork(new DAL.ExamContext()))
             {
                 user = unit.Users.GetById(enteredId);
+                if (user != null)
+                {
+                    if (enteredPass == user.Password)
+                    {
+                        user.Classrooms.ToList<Classroom>();
+                    }
+                    else
+                    {
+                        _view.CouldNotLogin("Incorect Password");
+                        return;
+                    }
+                }
+                else
+                {
+                    _view.CouldNotLogin("User Not Found");
+                    return;
+                }
                 unit.Complete();
             }
-            if (user != null)
-            {
-                if (enteredPass == user.Password)
-                    Login.Invoke(user, null);
-                else
-                    _view.CouldNotLogin("Incorect Password");
-            }
-            else
-                _view.CouldNotLogin("User Not Found");
+            Login.Invoke(user, null);
         }
 
         //private void LoadStudentMockData()
