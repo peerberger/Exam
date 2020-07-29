@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Repositories;
 using Library;
+using Library.Models;
 
 namespace Exam.Controllers
 {
@@ -47,24 +49,38 @@ namespace Exam.Controllers
             return idEntered;
         }
 
-        
+
         public void PreformLogin()
         {
             //Check Id/Password and decide if can login or not
             //Loads User (with exam list) and passes to WelcomePage_Student
-           
-            
-            LoadStudentMockData();
 
-            Login.Invoke(user, null);
+            User user = new User();
+            string enteredId = _view.Id;
+            string enteredPass = _view.Password;
+
+            using (var unit = new UnitOfWork(new DAL.ExamContext()))
+            {
+                user = unit.Users.GetById(enteredId);
+                unit.Complete();
+            }
+            if (user != null)
+            {
+                if (enteredPass == user.Password)
+                    Login.Invoke(user, null);
+                else
+                    _view.CouldNotLogin("Incorect Password");
+            }
+            else
+                _view.CouldNotLogin("User Not Found");
         }
 
-        private void LoadStudentMockData()
-        {
-            Library.MockData.LoadMocData();
-            this.user = new Library.Models.User();
-            this.user.Exams = Library.MockData.exams;
-            this.user.Role = Library.Models.Users.Student;
-        }
+        //private void LoadStudentMockData()
+        //{
+        //    Library.MockData.LoadMocData();
+        //    this.user = new Library.Models.User();
+        //    this.user.Exams = Library.MockData.exams;
+        //    this.user.Role = Library.Models.Users.Student;
+        //}
     }
 }

@@ -10,6 +10,7 @@ namespace Library.Models
 {
     public class Exam
     {
+        private string _gradesPath;
         public int Id { get; set; }
         public string Title { get; set; }
         public int ClassroomId { get; set; }
@@ -19,10 +20,14 @@ namespace Library.Models
         public List<IQuestion> Questions { get; set; } = new List<IQuestion>();
         [NotMapped]
         public double? FinalGrade { get; set; }
-        //public double FinalGrade { get; set; }
+        
         [NotMapped]
         public bool IsAnswered { get; set; }
-        public string GradesPath { get; set; }
+        public string GradesPath { 
+            get {return _gradesPath; } 
+            set {_gradesPath = value;
+                GetGrade();
+            } }
 
         public Exam()
         {
@@ -41,6 +46,11 @@ namespace Library.Models
         }
 
         public void GetQuestions()
+        {
+
+        }
+
+        private void GetGrade()
         {
 
         }

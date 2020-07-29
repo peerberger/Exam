@@ -13,5 +13,6 @@ namespace Exam.UserControls.LoginView
         string Password { get; set; }
         event EventHandler IdTextChanged;
         event EventHandler LoginClicked;
+        void CouldNotLogin(string alert);
     }
 }
