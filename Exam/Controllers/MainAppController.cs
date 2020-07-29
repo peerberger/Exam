@@ -43,7 +43,7 @@ namespace Exam.Controllers
                 }
                 else if (user.Role == Users.Student)
                 {
-                    SetExamsToUser(user);
+                    SetExamsToUser();
                     WelcomePage_Student newForm = new WelcomePage_Student(user);
                     ThisForm = newForm;
                 }
@@ -79,7 +79,7 @@ namespace Exam.Controllers
             ThisForm = form;
         }
 
-        private void SetExamsToUser(User user)
+        private void SetExamsToUser()
         {
             foreach (var classroom in user.Classrooms)
             {
