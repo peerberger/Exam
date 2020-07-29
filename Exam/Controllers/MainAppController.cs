@@ -1,4 +1,5 @@
-﻿using Exam.Forms;
+﻿using DAL.Repositories;
+using Exam.Forms;
 using Library.Models;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,7 @@ namespace Exam.Controllers
                 }
                 else if (user.Role == Users.Student)
                 {
+                    SetExamsToUser(user);
                     WelcomePage_Student newForm = new WelcomePage_Student(user);
                     ThisForm = newForm;
                 }
@@ -74,5 +76,23 @@ namespace Exam.Controllers
         {
             ThisForm = form;
         }
+
+        private void SetExamsToUser(User user)
+        {
+            foreach (var classroom in user.Classrooms)
+            {
+                using (var unit = new UnitOfWork(new DAL.ExamContext()))
+                {
+                    List<Library.Models.Exam> examsToAdd
+                        = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
+                    foreach (var ex in examsToAdd)
+                    {
+                        user.AddToExams(ex);
+                    }
+                    unit.Complete();
+                }
+            }
+        }
+
     }
 }

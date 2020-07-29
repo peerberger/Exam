@@ -20,6 +20,7 @@ namespace Exam.Controllers
         public StudentWelcomePageController(User user, IStudentWelcomePage view)
         {
             this.user = user;
+           
             _view = view;
             _view.SetController(this);
             SetExamsToView();
@@ -46,19 +47,7 @@ namespace Exam.Controllers
         private void SetExamsToView()
         {
             var list = new List<Tuple<string, string>>().Select(t => new { Exam = t.Item1, Grade = t.Item2 }).ToList();
-            foreach (var classroom in user.Classrooms)
-            {
-                using (var unit = new UnitOfWork(new DAL.ExamContext()))
-                {
-                    List<Library.Models.Exam> examsToAdd
-                        = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
-                    foreach (var ex in examsToAdd)
-                    {
-                        user.Exams.Add(ex);
-                    }
-                    unit.Complete();
-                }
-            }
+
             foreach (Library.Models.Exam exam in user.Exams)
             {
                 if (exam.IsAnswered)

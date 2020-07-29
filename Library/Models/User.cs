@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Library.Models
 {
@@ -18,5 +21,38 @@ namespace Library.Models
         public List<Exam> Exams { get; set; } = new List<Exam>();
         // for 'many to many' joining table
         public virtual ICollection<Classroom> Classrooms { get; set; }
+
+        public void AddToExams(Exam exam)
+        {
+            Exams.Add(exam);
+            if (this.Role == Users.Student)
+            {
+                UpdateExamStatus(exam);
+            }
+        }
+
+        private void UpdateExamStatus(Exam exam)
+        {
+            LoadDemoXML(exam);
+            var examXMLStr = File.ReadAllText(exam.GradesPath);
+            var examXML = XElement.Parse(examXMLStr);
+            var studentElement = examXML.Elements("Student").
+                Where(x => x.Element("ID").Value.Equals(Id)).ToList();
+            if (studentElement.Count != 0)
+            {
+                exam.FinalGrade = double.Parse(studentElement[0].Element("Grade").Value);
+                exam.IsAnswered = true;
+            }
+            else
+            {
+                exam.LoadQuestions();
+            }
+        }
+
+        private void LoadDemoXML(Exam exam)
+        {
+            exam.GradesPath = @"C:\Users\Saar\Documents\GitHub\Exam\Exam\bin\Debug\ExamsGrades\TestExam_10.xml";
+            exam.QuestionsPath = @"C:\Users\Saar\Documents\Exam - copy\Exam\bin\Debug\ExamsQuestions\SimpleMathTest_0.xml";
+        }
     }
 }
