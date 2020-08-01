@@ -77,6 +77,7 @@ namespace Exam
 
         private void GradeExam()
         {
+            _exam.FinalGrade = 0;
             foreach (var question in _exam.Questions)
             {
                 if (question.IsCorrect)

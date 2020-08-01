@@ -62,6 +62,11 @@ namespace Exam.UserControls.LoginView
             this._controller = controller;
         }
 
+        public void CouldNotLogin(string alert)
+        {
+            MessageBox.Show(alert, "Could Not Login");
+        }
+
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             idTextChanged.Invoke(this, null);// Raising event for the controller

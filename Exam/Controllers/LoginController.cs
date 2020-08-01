@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Repositories;
 using Library;
+using Library.Models;
 
 namespace Exam.Controllers
 {
@@ -47,24 +49,47 @@ namespace Exam.Controllers
             return idEntered;
         }
 
-        
+
         public void PreformLogin()
         {
             //Check Id/Password and decide if can login or not
             //Loads User (with exam list) and passes to WelcomePage_Student
-           
-            
-            LoadStudentMockData();
 
+            User user = new User();
+            string enteredId = _view.Id;
+            string enteredPass = _view.Password;
+
+            using (var unit = new UnitOfWork(new DAL.ExamContext()))
+            {
+                user = unit.Users.GetById(enteredId);
+                if (user != null)
+                {
+                    if (enteredPass == user.Password)
+                    {
+                        user.Classrooms.ToList<Classroom>();
+                    }
+                    else
+                    {
+                        _view.CouldNotLogin("Incorect Password");
+                        return;
+                    }
+                }
+                else
+                {
+                    _view.CouldNotLogin("User Not Found");
+                    return;
+                }
+                unit.Complete();
+            }
             Login.Invoke(user, null);
         }
 
-        private void LoadStudentMockData()
-        {
-            Library.MockData.LoadMocData();
-            this.user = new Library.Models.User();
-            this.user.Exams = Library.MockData.exams;
-            this.user.Role = Library.Models.Users.Student;
-        }
+        //private void LoadStudentMockData()
+        //{
+        //    Library.MockData.LoadMocData();
+        //    this.user = new Library.Models.User();
+        //    this.user.Exams = Library.MockData.exams;
+        //    this.user.Role = Library.Models.Users.Student;
+        //}
     }
 }
