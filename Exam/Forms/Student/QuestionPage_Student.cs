@@ -70,14 +70,15 @@ namespace Exam
 
         private void CreateTimerController()
         {
-            timerController = new TimerController(3660, timeBarView);
+            timerController = new TimerController(5, timeBarView); // NEEDS CHANGING TO EXAM TIME
             timerController.TimeOver += TimerController_TimeOver;
         }
 
         private void TimerController_TimeOver(object sender, EventArgs e)
         {
             //Time Over - End Test
-            MessageBox.Show("timeOver");
+            MessageBox.Show("Exam time ran out!\r\nPlease click OK to continue.","Time Over");
+            GradeExam();
         }
 
         private void CreatQuestionController()
@@ -113,7 +114,6 @@ namespace Exam
                     _exam.FinalGrade += question.Points;
                 }
             }
-            //MessageBox.Show(_exam.FinalGrade.ToString());
             GradePage_Student gradeForm = new GradePage_Student(_exam.FinalGrade.ToString());
             gradeForm.ShowDialog();
             _exam.IsAnswered = true;
