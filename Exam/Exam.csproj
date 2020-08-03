@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Forms\AlertMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,10 +129,11 @@
     <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.Designer.cs">
       <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TimeBarUC.cs">
+    <Compile Include="UserControls\TimerView\ITimerView.cs" />
+    <Compile Include="UserControls\TimerView\TimeBarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\TimeBarUC.Designer.cs">
+    <Compile Include="UserControls\TimerView\TimeBarUC.Designer.cs">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\WelcomePage.cs">
@@ -197,7 +199,7 @@
     <EmbeddedResource Include="UserControls\StudentWelcome\StudentWelcomePageUC.resx">
       <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TimeBarUC.resx">
+    <EmbeddedResource Include="UserControls\TimerView\TimeBarUC.resx">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WelcomePage.resx">
