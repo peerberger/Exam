@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL.Repositories;
 using Library.Models;
+using Exam.Forms;
+using System.IO;
 
 namespace Exam
 {
@@ -18,13 +20,29 @@ namespace Exam
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new QuestionPage_Student());
-            MainAppController mainController = new MainAppController();
-            mainController.ThisForm = new LoginForm();
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //// Application.Run(new QuestionPage_Student());
+            //MainAppController mainController = new MainAppController();
+            //mainController.ThisForm = new LoginForm();
 
-            Application.Run(mainController.ThisForm as Form);
+            //Application.Run(mainController.ThisForm as Form);
+
+            Application.Run(new QuestionPage_Teacher());
+
+            //using (var unit = new UnitOfWork(new DAL.ExamContext()))
+            //{
+            //    //unit.Users.Add(new User { Id="11", });
+            //    //unit.Exams.Add(new Library.Models.Exam { Title="Cardi B", ClassroomId=1005, IsTimed=false, QuestionsPath="path" });
+
+            //    var classes = unit.Users.GetById("123").Classrooms;
+
+            //    classes.Add(unit.Classrooms.GetById(1004));
+            //    //classes.Add(unit.Classrooms.GetById(1005));
+
+            //    unit.Complete();
+            //}
+
 
             //using (var unit = new UnitOfWork(new DAL.ExamContext()))
             //{
