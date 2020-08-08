@@ -66,38 +66,6 @@ namespace Exam.UserControls
 				AnswersFlowLayout.Controls.Add(answerOption);
 			}
 		}
-
-		public bool IsReset()
-		{
-			bool isReset = true;
-
-			if (DescriptionComboBox.SelectedIndex != 0)
-			{
-				isReset = false;
-			}
-			else if (QuestionTextBox.Text != string.Empty)
-			{
-				isReset = false;
-			}
-			else if (RightAnswerTextBox.Text != string.Empty)
-			{
-				isReset = false;
-			}
-			else if (AnswerTextBox.Text != string.Empty)
-			{
-				isReset = false;
-			}
-			else if (MultipleOptionsRadioButton.Checked != true)
-			{
-				isReset = false;
-			}
-			else if (AnswersFlowLayout.Controls.Count != 0)
-			{
-				isReset = false;
-			}
-
-			return isReset;
-		}
 		#endregion
 
 
