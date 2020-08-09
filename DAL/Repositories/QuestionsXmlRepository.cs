@@ -129,6 +129,7 @@ namespace DAL.Repositories
             }
             var filePath = $"{dirPath}\\ExamsQuestions\\{fileName}";
             xEntity.Save(filePath);
+            entityToUpdate.QuestionsPath = fileName;
 
 
             GetById(entityToUpdate.Id);

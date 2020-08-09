@@ -53,7 +53,8 @@ namespace Library.Models
 
         private void LoadDemoXML(Exam exam)
         {
-            exam.GradesPath = @"C:\Users\Saar\Documents\GitHub\Exam\Exam\bin\Debug\ExamsGrades\TestExam_10.xml";
+            string dirpath = Directory.GetCurrentDirectory();
+            exam.GradesPath = $"{dirpath}\\ExamsGrades\\TestExam_10.xml";
             exam.QuestionsPath = @"C:\Users\Saar\Documents\Exam - copy\Exam\bin\Debug\ExamsQuestions\SimpleMathTest_0.xml";
         }
 

@@ -21,7 +21,8 @@ namespace Exam
         public Library.Models.Exam _exam;
         public int questionNumber;
         private QuestionController questionController;
-
+        private TimerController timerController;
+        private TimeBarUC timeBarView;
         private EventHandler<FormEventArgs> changeForm;
         public event EventHandler<FormEventArgs> ChangeForm
         {
@@ -45,12 +46,40 @@ namespace Exam
             if (_exam.Questions.Count != 0 && _exam.Questions != null)
             {
                 CreatQuestionController();
+                if (!_exam.IsTimed)
+                {
+                    CreateTimeBar();
+                }
             }
 
         }
 
         #region Methods    
+        private void CreateTimeBar()
+        {
+            timeBarView = new TimeBarUC();
+            this.TableLayout.Controls.Add(timeBarView, 0, 0);
+            this.TableLayout.SetColumnSpan(timeBarView, 3);
+            timeBarView.Dock = System.Windows.Forms.DockStyle.Fill;
+            timeBarView.Location = new System.Drawing.Point(3, 3);
+            timeBarView.Name = "timeBar";
+            timeBarView.Size = new System.Drawing.Size(794, 39);
+            timeBarView.TabIndex = 7;
+            CreateTimerController();
+        }
 
+        private void CreateTimerController()
+        {
+            timerController = new TimerController(5, timeBarView); // NEEDS CHANGING TO EXAM TIME
+            timerController.TimeOver += TimerController_TimeOver;
+        }
+
+        private void TimerController_TimeOver(object sender, EventArgs e)
+        {
+            //Time Over - End Test
+            MessageBox.Show("Exam time ran out!\r\nPlease click OK to continue.","Time Over");
+            GradeExam();
+        }
 
         private void CreatQuestionController()
         {
@@ -85,7 +114,6 @@ namespace Exam
                     _exam.FinalGrade += question.Points;
                 }
             }
-            //MessageBox.Show(_exam.FinalGrade.ToString());
             GradePage_Student gradeForm = new GradePage_Student(_exam.FinalGrade.ToString());
             gradeForm.ShowDialog();
             _exam.IsAnswered = true;

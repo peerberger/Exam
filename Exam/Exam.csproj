@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\QuestionBuilderController.cs" />
+    <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Forms\AlertMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,14 +105,13 @@
     <Compile Include="UserControls\AnswerOptionUC.Designer.cs">
       <DependentUpon>AnswerOptionUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\QuestionBuilderView\QuestionBuilderUC.cs">
+    <Compile Include="UserControls\QuestionBuilderUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\QuestionBuilderView\QuestionBuilderUC.Designer.cs">
+    <Compile Include="UserControls\QuestionBuilderUC.Designer.cs">
       <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Class1.cs" />
-    <Compile Include="UserControls\QuestionBuilderView\IQuestionBuilderView.cs" />
     <Compile Include="UserControls\StudentWelcome\IStudentWelcomePage.cs" />
     <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
     <Compile Include="UserControls\LoginView\ILoginView.cs" />
@@ -142,10 +141,11 @@
     <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.Designer.cs">
       <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TimeBarUC.cs">
+    <Compile Include="UserControls\TimerView\ITimerView.cs" />
+    <Compile Include="UserControls\TimerView\TimeBarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\TimeBarUC.Designer.cs">
+    <Compile Include="UserControls\TimerView\TimeBarUC.Designer.cs">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\WelcomePage.cs">
@@ -205,7 +205,7 @@
     <EmbeddedResource Include="UserControls\AnswerOptionUC.resx">
       <DependentUpon>AnswerOptionUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\QuestionBuilderView\QuestionBuilderUC.resx">
+    <EmbeddedResource Include="UserControls\QuestionBuilderUC.resx">
       <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
@@ -217,7 +217,7 @@
     <EmbeddedResource Include="UserControls\StudentWelcome\StudentWelcomePageUC.resx">
       <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TimeBarUC.resx">
+    <EmbeddedResource Include="UserControls\TimerView\TimeBarUC.resx">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WelcomePage.resx">

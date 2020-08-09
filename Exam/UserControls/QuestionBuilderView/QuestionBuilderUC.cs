@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Exam.UserControls.QuestionBuilderView;
 
 namespace Exam.UserControls
 {
@@ -66,11 +65,6 @@ namespace Exam.UserControls
 				AnswerOptionUC answerOption = new AnswerOptionUC { AnswerText = answer, Margin = new Padding(10) };
 				AnswersFlowLayout.Controls.Add(answerOption);
 			}
-		}
-
-		void SetController()
-		{
-
 		}
 		#endregion
 

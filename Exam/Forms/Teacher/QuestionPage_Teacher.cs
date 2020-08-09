@@ -35,7 +35,7 @@ namespace Exam.Forms.Student
 					PreviousButton.Enabled = true;
 				}
 
-				QuestionNumberLabel.Text = $"{value + 1} / {exam.Questions.Count + 1}";
+				QuestionNumberLabel.Text = $"{value + 1} / {exam.Questions.Count}";
 
 				currQuestionIndex = value;
 			}
@@ -47,9 +47,11 @@ namespace Exam.Forms.Student
 			InitializeComponent();
 
 			LoadClassroomsComboBox("1");
+
+			exam.Questions.Add(new Question());
 		}
 
-		#region Saar's methods
+		#region Saar's
 		private void FinishButton_Click(object sender, EventArgs e)
 		{
 			CreateXMLFiles();
@@ -140,26 +142,34 @@ namespace Exam.Forms.Student
 		}
 		#endregion
 
-		#region Peer's methods
+		#region Peer's
 		private void NextButton_Click(object sender, EventArgs e)
 		{
-			if (CurrQuestionIndex == exam.Questions.Count)
+			if (CurrQuestionIndex == exam.Questions.Count - 1)
 			{
-				exam.Questions.Add(new Question());
 				UpdateCurrQuestion();
+				QuestionBuilder.Reset();
+
+				exam.Questions.Add(new Question());
+
 				CurrQuestionIndex++;
 			}
 			else
 			{
+				UpdateCurrQuestion();
+
 				CurrQuestionIndex++;
-				LoadQuestion();
+				LoadCurrQuestion();
+
+				if (CurrQuestionIndex == exam.Questions.Count - 1)
+				{
+					NextButton.Text = "New Question";
+				}
 			}
 		}
 
 		private void UpdateCurrQuestion()
 		{
-			//IQuestion question = exam.Questions[exam.Questions.Count - 1];
-
 			if (QuestionBuilder.QuestionTypeMultiple)
 			{
 				exam.Questions[CurrQuestionIndex] = new MultipleChoiceTextQuestion();
@@ -173,36 +183,23 @@ namespace Exam.Forms.Student
 			exam.Questions[CurrQuestionIndex].QuestionDescription = QuestionBuilder.Description;
 			exam.Questions[CurrQuestionIndex].QuestionText = QuestionBuilder.QuestionText;
 			exam.Questions[CurrQuestionIndex].RightAnswer = QuestionBuilder.RightAnswer;
-
-			//exam.Questions.Add(question);
-
-			QuestionBuilder.Reset();
 		}
 
 		private void PreviousButton_Click(object sender, EventArgs e)
 		{
-			if (CurrQuestionIndex == exam.Questions.Count)
-			{
-				exam.Questions.Add(new Question());
-
-				//if (!QuestionBuilder.IsReset())
-				//{
-				//	UpdateCurrQuestion();
-				//}
-
-			}
-
 			UpdateCurrQuestion();
 
-			CurrQuestionIndex--;
+			if (CurrQuestionIndex == exam.Questions.Count - 1)
+			{
+				NextButton.Text = "Next";
+			}
 
-			LoadQuestion();
+			CurrQuestionIndex--;
+			LoadCurrQuestion();
 		}
 
-		private void LoadQuestion()
+		private void LoadCurrQuestion()
 		{
-			QuestionBuilder.Reset();
-
 			var currQuestion = exam.Questions[CurrQuestionIndex] as IQuestion;
 
 			if (currQuestion is MultipleChoiceTextQuestion)
