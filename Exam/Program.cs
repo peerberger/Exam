@@ -30,46 +30,11 @@ namespace Exam
 
             Application.Run(new Form1());
 
-            //using (var unit = new UnitOfWork(new DAL.ExamContext()))
-            //{
-            //    //unit.Users.Add(new User { Id="11", });
-            //    //unit.Exams.Add(new Library.Models.Exam { Title="Cardi B", ClassroomId=1005, IsTimed=false, QuestionsPath="path" });
+            // convert the questionBuilder into MVC
+            // merge all the forms of the app together - via MainController
+            // write xml code in the ExamBuilder and the WelcomePage (both teacher and student)
 
-            //    var classes = unit.Users.GetById("123").Classrooms;
-
-            //    classes.Add(unit.Classrooms.GetById(1004));
-            //    //classes.Add(unit.Classrooms.GetById(1005));
-
-            //    unit.Complete();
-            //}
-
-
-            //using (var unit = new UnitOfWork(new DAL.ExamContext()))
-            //{
-            //	//var u = unit.Users.GetById("123");
-            //	//var exams = new List<Library.Models.Exam>();
-            //	//foreach (var classroom in u.Classrooms)
-            //	//{
-            //	//    foreach (var item in classroom.Exams)
-            //	//    {
-            //	//        exams.Add(item);
-            //	//    }
-            //	//}
-            //	//unit.Users.Remove(u);
-            //	//var clas = unit.Classrooms.GetById(1);
-            //	// u.Classrooms.Add(clas);
-            //	//unit.Complete();
-
-
-            //	//enter id + password > get user from DB
-            //	//Get user -> Get classrooms -> get exams
-
-            //	var exam = unit.Exams.GetById(1);
-            //	var classrooms = unit.Users.GetById("321321321").Classrooms;
-
-            //	unit.Complete();
-
-            //  }
+            // add image
         }
     }
 }
