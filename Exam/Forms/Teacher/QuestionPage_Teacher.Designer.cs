@@ -38,8 +38,8 @@
 			this.QuestionNumberLabel = new System.Windows.Forms.Label();
 			this.FinishButton = new System.Windows.Forms.Button();
 			this.PreviousButton = new System.Windows.Forms.Button();
-			this.OpenImageFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.QuestionBuilder = new Exam.UserControls.QuestionBuilderUC();
+			this.OpenImageFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.TableLayout.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -144,7 +144,7 @@
 			this.NextButton.Name = "NextButton";
 			this.NextButton.Size = new System.Drawing.Size(100, 50);
 			this.NextButton.TabIndex = 13;
-			this.NextButton.Text = "Next";
+			this.NextButton.Text = "New Question";
 			this.NextButton.UseVisualStyleBackColor = true;
 			this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
 			// 
@@ -185,19 +185,24 @@
 			this.PreviousButton.UseVisualStyleBackColor = true;
 			this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
 			// 
-			// OpenImageFileDialog
-			// 
-			this.OpenImageFileDialog.FileName = "openFileDialog1";
-			// 
 			// QuestionBuilder
 			// 
 			this.TableLayout.SetColumnSpan(this.QuestionBuilder, 3);
+			this.QuestionBuilder.Description = "Choose the right answer!";
 			this.QuestionBuilder.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.QuestionBuilder.Location = new System.Drawing.Point(3, 3);
 			this.QuestionBuilder.Name = "QuestionBuilder";
+			this.QuestionBuilder.QuestionText = "When and what did who do for how much?";
+			this.QuestionBuilder.QuestionTypeMultiple = true;
+			this.QuestionBuilder.QuestionTypeOpen = false;
+			this.QuestionBuilder.RightAnswer = "Write the right answer here...";
 			this.TableLayout.SetRowSpan(this.QuestionBuilder, 6);
 			this.QuestionBuilder.Size = new System.Drawing.Size(674, 374);
 			this.QuestionBuilder.TabIndex = 14;
+			// 
+			// OpenImageFileDialog
+			// 
+			this.OpenImageFileDialog.FileName = "openFileDialog1";
 			// 
 			// QuestionPage_Teacher
 			// 
