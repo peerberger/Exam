@@ -28,7 +28,7 @@ namespace Exam
 
             //Application.Run(mainController.ThisForm as Form);
 
-            Application.Run(new QuestionPage_Teacher());
+            Application.Run(new Form1());
 
             //using (var unit = new UnitOfWork(new DAL.ExamContext()))
             //{

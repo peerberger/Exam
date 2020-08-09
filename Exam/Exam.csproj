@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\QuestionBuilderController.cs" />
     <Compile Include="Forms\AlertMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,13 +105,14 @@
     <Compile Include="UserControls\AnswerOptionUC.Designer.cs">
       <DependentUpon>AnswerOptionUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\QuestionBuilderUC.cs">
+    <Compile Include="UserControls\QuestionBuilderView\QuestionBuilderUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\QuestionBuilderUC.Designer.cs">
+    <Compile Include="UserControls\QuestionBuilderView\QuestionBuilderUC.Designer.cs">
       <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Class1.cs" />
+    <Compile Include="UserControls\QuestionBuilderView\IQuestionBuilderView.cs" />
     <Compile Include="UserControls\StudentWelcome\IStudentWelcomePage.cs" />
     <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
     <Compile Include="UserControls\LoginView\ILoginView.cs" />
@@ -203,7 +205,7 @@
     <EmbeddedResource Include="UserControls\AnswerOptionUC.resx">
       <DependentUpon>AnswerOptionUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\QuestionBuilderUC.resx">
+    <EmbeddedResource Include="UserControls\QuestionBuilderView\QuestionBuilderUC.resx">
       <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
