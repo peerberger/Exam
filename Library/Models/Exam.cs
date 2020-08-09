@@ -23,6 +23,7 @@ namespace Library.Models
 		[NotMapped]
 		public bool IsAnswered { get; set; }
 		public string GradesPath { get; set; }
+		public int? Time { get; set; }
 
 		public Exam()
 		{
