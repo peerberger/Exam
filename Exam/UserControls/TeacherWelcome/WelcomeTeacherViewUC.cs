@@ -29,8 +29,12 @@ namespace Exam.UserControls
 			get => ClassroomsComboBox.DataSource;
 			set => ClassroomsComboBox.DataSource = value;
 		}
-        public object StudentsDataSource { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-       
+        public object StudentsDataSource
+		{
+			get => GradesGridView.DataSource;
+			set => GradesGridView.DataSource = value;
+		}
+
 		public int SelectedExam
 		{
 			get => ExamsComboBox.SelectedIndex;
@@ -102,7 +106,7 @@ namespace Exam.UserControls
 		private void ClassroomsComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			//LoadExamsComboBox(SelectedClassroomId);
-			SelectedClass = ClassroomsComboBox.SelectedIndex;
+			//SelectedClass = ClassroomsComboBox.SelectedIndex;
 			selectedClassChanged.Invoke(this,null);
 
 		}
