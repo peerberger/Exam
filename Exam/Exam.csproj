@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TeacherWelcomePageController.cs" />
     <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Forms\AlertMessage.cs">
       <SubType>Form</SubType>
@@ -142,6 +143,7 @@
     <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.Designer.cs">
       <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TeacherWelcome\ITeacherWelcomeView.cs" />
     <Compile Include="UserControls\TimerView\ITimerView.cs" />
     <Compile Include="UserControls\TimerView\TimeBarUC.cs">
       <SubType>UserControl</SubType>
@@ -167,10 +169,10 @@
     <Compile Include="UserControls\WelcomeStudentViewUC.Designer.cs">
       <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\WelcomeTeacherViewUC.cs">
+    <Compile Include="UserControls\TeacherWelcome\WelcomeTeacherViewUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\WelcomeTeacherViewUC.Designer.cs">
+    <Compile Include="UserControls\TeacherWelcome\WelcomeTeacherViewUC.Designer.cs">
       <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\AlertMessage.resx">
@@ -230,7 +232,7 @@
     <EmbeddedResource Include="UserControls\WelcomeStudentViewUC.resx">
       <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\WelcomeTeacherViewUC.resx">
+    <EmbeddedResource Include="UserControls\TeacherWelcome\WelcomeTeacherViewUC.resx">
       <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

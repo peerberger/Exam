@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DAL.Repositories;
+using Library.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,23 @@ namespace Exam.Forms
 {
 	public partial class Form1 : Form
 	{
+		Controllers.TeacherWelcomePageController controller;
+		User user;
 		public Form1()
 		{
 			InitializeComponent();
+			GetUser();
+			controller = new Controllers.TeacherWelcomePageController(user, welcomeTeacherViewUC1);//Setting controller to UC
 		}
-	}
+
+        private void GetUser()
+        {
+			using (var unit = new UnitOfWork(new DAL.ExamContext()))
+			{
+				user = unit.Users.GetById("321321321");
+				user.Classrooms.ToList<Classroom>();
+				unit.Complete();
+			}
+		}
+    }
 }
