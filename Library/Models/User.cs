@@ -22,19 +22,23 @@ namespace Library.Models
         // for 'many to many' joining table
         public virtual ICollection<Classroom> Classrooms { get; set; }
 
-        public void AddToExams(Exam exam)
+        public void UpdateExamsStatus()
         {
-            Exams.Add(exam);
             if (this.Role == Users.Student)
             {
+                foreach (var exam in Exams)
+                {
                 UpdateExamStatus(exam);
+                }
             }
         }
 
         private void UpdateExamStatus(Exam exam)
         {
             LoadDemoXML(exam);
-            var examXMLStr = File.ReadAllText(exam.GradesPath);
+            string dirpath = Directory.GetCurrentDirectory();
+            string filePath = dirpath + "\\" + exam.GradesPath;
+            var examXMLStr = File.ReadAllText(filePath);
             var examXML = XElement.Parse(examXMLStr);
             var studentElement = examXML.Elements("Student").
                 Where(x => x.Element("ID").Value.Equals(Id)).ToList();
@@ -53,14 +57,16 @@ namespace Library.Models
 
         private void LoadDemoXML(Exam exam)
         {
-            string dirpath = Directory.GetCurrentDirectory();
-            exam.GradesPath = $"{dirpath}\\ExamsGrades\\TestExam_10.xml";
+            //string dirpath = Directory.GetCurrentDirectory();
+            exam.GradesPath = $"ExamsGrades\\TestExam_10.xml";
             exam.QuestionsPath = @"C:\Users\Saar\Documents\Exam - copy\Exam\bin\Debug\ExamsQuestions\SimpleMathTest_0.xml";
         }
 
         public void UpdateExamGradeXML(Exam exam)
-        { 
-            string filePath = exam.GradesPath;
+        {
+            string dirpath = Directory.GetCurrentDirectory();
+            
+            string filePath = dirpath+"\\"+exam.GradesPath;
         //    if (!File.Exists(filePath))
        //    {
          //       Add(entityToUpdate);

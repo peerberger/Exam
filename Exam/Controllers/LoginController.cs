@@ -53,7 +53,7 @@ namespace Exam.Controllers
         public void PreformLogin()
         {
             //Check Id/Password and decide if can login or not
-            //Loads User (with exam list) and passes to WelcomePage_Student
+            //Loads User (with exam list) and passes to WelcomePage
 
             User user = new User();
             string enteredId = _view.Id;
@@ -67,6 +67,15 @@ namespace Exam.Controllers
                     if (enteredPass == user.Password)
                     {
                         user.Classrooms.ToList<Classroom>();
+                        foreach (var classroom in user.Classrooms)
+                        {
+                            unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
+                            if(user.Role == Users.Teacher)
+                            {
+                                classroom.Users.ToList();
+                            }
+                        }
+                        user.UpdateExamsStatus();
                     }
                     else
                     {
@@ -80,6 +89,14 @@ namespace Exam.Controllers
                     return;
                 }
                 unit.Complete();
+
+            }
+            if (user.Role == Users.Teacher)
+            {
+                foreach (var classroom in user.Classrooms)
+                {
+                classroom.Users.Remove(user);
+                }
             }
             Login.Invoke(user, null);
         }

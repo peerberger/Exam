@@ -11,7 +11,7 @@ using Exam.Controllers;
 
 namespace Exam.UserControls
 {
-    public partial class StudentWelcomePageUC : UserControl, IStudentWelcomePage
+    public partial class StudentWelcomePageUC : WelcomeView, IStudentWelcomePage
     {
 
         private bool firstInitialize;

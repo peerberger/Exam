@@ -33,25 +33,13 @@ namespace Exam.Controllers
             {
                 var loginForm = sender as LoginForm;
                 user = e.DataForNextForm as User;
-                if (user.Role == Users.Admin)
-                {
-                    //Open Admin Page
-                }
-                else if (user.Role == Users.Teacher)
-                {
-                    //Open Teacher Page
-                }
-                else if (user.Role == Users.Student)
-                {
-                    SetExamsToUser();
-                    WelcomePage_Student newForm = new WelcomePage_Student(user);
-                    ThisForm = newForm;
-                }
+                WelcomePage newForm = new WelcomePage(user);
+                ThisForm = newForm;
                 loginForm.Hide();
                 (ThisForm as Form).ShowDialog();//Opening Welcome page as dialog
                 loginForm.Show();//Re-opening the login after welcome page closes
             }
-            if ((sender is WelcomePage_Student))//Welcome-Student -> Alert -> Exam
+            if ((sender is WelcomePage) && user.Role == Users.Student)//Welcome-Student -> Alert -> Exam
             {
                 var dr = new DialogResult();
                 AlertMessage alertForm = new AlertMessage();
@@ -64,8 +52,12 @@ namespace Exam.Controllers
                     (ThisForm as QuestionPage_Student).ShowDialog();
                     user.UpdateExamGradeXML(exam);
                     ThisForm = PreviousForm;
-                    (ThisForm as WelcomePage_Student).welcomeController.ResetView();
+                    (ThisForm as WelcomePage).welcomeController.ResetView();
                 }
+            }
+            else if ((sender is WelcomePage) && user.Role == Users.Teacher)//Welcome-Teacher -> Build Exam
+            {
+
             }
         }
 
@@ -79,22 +71,22 @@ namespace Exam.Controllers
             ThisForm = form;
         }
 
-        private void SetExamsToUser()
-        {
-            foreach (var classroom in user.Classrooms)
-            {
-                using (var unit = new UnitOfWork(new DAL.ExamContext()))
-                {
-                    List<Library.Models.Exam> examsToAdd
-                        = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
-                    foreach (var ex in examsToAdd)
-                    {
-                        user.AddToExams(ex);
-                    }
-                    unit.Complete();
-                }
-            }
-        }
+        //private void SetExamsToUser()
+        //{
+        //    foreach (var classroom in user.Classrooms)
+        //    {
+        //        using (var unit = new UnitOfWork(new DAL.ExamContext()))
+        //        {
+        //            List<Library.Models.Exam> examsToAdd
+        //                = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
+        //            foreach (var ex in examsToAdd)
+        //            {
+        //                user.AddToExams(ex);
+        //            }
+        //            unit.Complete();
+        //        }
+        //    }
+        //}
 
     }
 }

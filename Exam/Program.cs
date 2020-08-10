@@ -20,15 +20,15 @@ namespace Exam
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //// Application.Run(new QuestionPage_Student());
-            //MainAppController mainController = new MainAppController();
-            //mainController.ThisForm = new LoginForm();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            // Application.Run(new QuestionPage_Student());
+            MainAppController mainController = new MainAppController();
+            mainController.ThisForm = new LoginForm();
 
-            //Application.Run(mainController.ThisForm as Form);
+            Application.Run(mainController.ThisForm as Form);
 
-            Application.Run(new Form1());
+            // Application.Run(new Form1());
 
             // convert the questionBuilder into MVC
             // merge all the forms of the app together - via MainController

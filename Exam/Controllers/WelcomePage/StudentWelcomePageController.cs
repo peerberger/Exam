@@ -11,7 +11,7 @@ using Library.Models;
 
 namespace Exam.Controllers
 {
-    public class StudentWelcomePageController
+    public class StudentWelcomePageController : IWelcomePageController
     {
         public User user;
         private IStudentWelcomePage _view;

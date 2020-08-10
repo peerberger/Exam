@@ -15,7 +15,7 @@ using Exam.Controllers;
 
 namespace Exam.UserControls
 {
-	public partial class WelcomeTeacherViewUC : UserControl, ITeacherWelcomeView
+	public partial class WelcomeTeacherViewUC : WelcomeView, ITeacherWelcomeView
 	{
 		private TeacherWelcomePageController _controller;
 

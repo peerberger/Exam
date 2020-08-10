@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace Exam.Controllers
 {
-    public class TeacherWelcomePageController
+    public class TeacherWelcomePageController : IWelcomePageController
     {
         private Classroom selectedClass;
         public User user;
@@ -44,24 +44,40 @@ namespace Exam.Controllers
 
         private void _view_SelectedExamChanged(object sender, EventArgs e)
         {
-            int selectedExam = _view.SelectedExam;
             UpdateStudentsGradesList();
         }
 
         private void UpdateStudentsGradesList()
         {
-            GetMockGrades();
+            List<string> grades = GetGrades();
+
+            var list = new List<Tuple<string, string>>().Select
+                (t => new { Student = t.Item1, Grade = t.Item2 }).ToList();
+            int index = 0;
+
+            foreach (var student in selectedClass.Users)
+            {
+                list.Add(new { Student = student.Name, Grade = grades[index] });
+                index++;
+            }
+            list = list.OrderBy(x => x.Student).ToList();
+            _view.StudentsDataSource = list;
         }
 
-        private void GetMockGrades()
+        private List<string> GetGrades()
         {
+            //Getting Grades XML
             List<string> grades = new List<string>();
+            var exam = selectedClass.Exams[_view.SelectedExam];
             string dirpath = Directory.GetCurrentDirectory();
-            string gradesPath = $"{dirpath}\\ExamsGrades\\TestExam_10.xml";
+            string gradesPath = $"{dirpath}\\{exam.GradesPath}";
+
+            //Reading From XML
             var examXMLStr = File.ReadAllText(gradesPath);
             var examXML = XElement.Parse(examXMLStr);
             foreach (User student in selectedClass.Users)
             {
+                //Getting grade of each student
                 var studentElement = examXML.Elements("Student").
                     Where(x => x.Element("ID").Value.Equals(student.Id)).ToList();
                 if (studentElement.Count != 0)
@@ -74,36 +90,19 @@ namespace Exam.Controllers
                     grades.Add("Unanswered");
                 }
             }
-            TestShowStudents(grades);
-        }
-
-        private void TestShowStudents(List<string> grades)
-        {
-            var list = new List<Tuple<string, string>>().Select(t => new { Student = t.Item1, Grade = t.Item2 }).ToList();
-            int selectedClassroom = _view.SelectedClass;
-            selectedClass = user.Classrooms.ElementAt(selectedClassroom);
-            int index = 0;
-
-            foreach (var student in selectedClass.Users)
-            {
-                list.Add(new { Student = student.Name, Grade = grades[index] });
-                index++;
-            }
-
-            _view.StudentsDataSource = list;
+            return grades;
         }
 
         private void _view_SelectedClassChanged(object sender, EventArgs e)
         {
             int selectedClassroom = _view.SelectedClass;
-            UpdateExamListView(selectedClassroom);
+            selectedClass = user.Classrooms.ElementAt(selectedClassroom);
+            UpdateExamListView();
         }
 
-        private void UpdateExamListView(int selectedClassroom)
+        private void UpdateExamListView()
         {
             List<string> examsList = new List<string>();
-            // List<Classroom> classrooms = user.Classrooms as List<Classroom>;
-            selectedClass = user.Classrooms.ElementAt(selectedClassroom);
             foreach (Library.Models.Exam exam in selectedClass.Exams)
             {
                 examsList.Add(exam.Title);
@@ -114,7 +113,12 @@ namespace Exam.Controllers
 
         private void _view_BuildExam(object sender, EventArgs e)
         {
-            BuildExam.Invoke(this, null);
+            BuildExam.Invoke(user, null);
+        }
+
+        public void ResetView()
+        {
+            throw new NotImplementedException();
         }
     }
 }
