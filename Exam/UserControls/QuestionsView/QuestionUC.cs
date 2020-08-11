@@ -71,7 +71,7 @@ namespace Exam.Student
             AnswersFlowLayout.Controls.Clear();
 
             // inserting the current answers
-            int answerId = 0;
+            ShuffleList(answers);
             foreach (string answer in answers)
             {
                 RadioButton radioButton = new RadioButton();
@@ -79,15 +79,10 @@ namespace Exam.Student
 
                 radioButton.Margin = new Padding(10);
                 radioButton.Text = answer;
-                radioButton.Name = answerId.ToString();
 
                 _answers.Add(radioButton);
-                answerId++;
-            }
-            ShuffleList(_answers);
-            foreach (var radioAnswer in _answers)
-            {
-                this.AnswersFlowLayout.Controls.Add(radioAnswer);
+
+                this.AnswersFlowLayout.Controls.Add(radioButton);
 
             }
         }
@@ -129,7 +124,7 @@ namespace Exam.Student
             {
                 if (radio != null && radio.Checked)
                 {
-                    return radio.Name;
+                    return radio.Text;
                 }
             }
             //if there are no radio buttons -> this is an open question

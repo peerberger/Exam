@@ -86,7 +86,6 @@ namespace Exam.Controllers
                                 classroom.Users.ToList();
                             }
                         }
-                        user.UpdateExamsStatus();
                     }
                     else
                     {
@@ -108,6 +107,10 @@ namespace Exam.Controllers
                 {
                     classroom.Users.Remove(user);
                 }
+            }
+            else if (user.Role == Users.Student)
+            {
+                user.UpdateExamsStatus();
             }
             Login.Invoke(user, null);
         }

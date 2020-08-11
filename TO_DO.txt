@@ -12,4 +12,14 @@ Exam Student side -
 
 DataBase - 
 -Find a way to remove User_id from Exams - Causes bugs(!!!!!)
+---Causes Exams load twice for that user
+-Add Exam Time -> Change time controller creation with exam time
+---> QuestionPage_Student.cs - line 74
 
+XML Stuff -
+-Add alert to whenever reading XML file fails
+-Try combining all XML Methods to one class --- DRY
+
+
+WelcomePage -
+-Add Logout button

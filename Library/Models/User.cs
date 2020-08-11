@@ -24,36 +24,34 @@ namespace Library.Models
 
         public void UpdateExamsStatus()
         {
-            if (this.Role == Users.Student)
-            {
                 foreach (var exam in Exams)
                 {
-                UpdateExamStatus(exam);
+                    UpdateExamStatus(exam);
                 }
-            }
         }
 
         private void UpdateExamStatus(Exam exam)
         {
-            LoadDemoXML(exam);
-            string dirpath = Directory.GetCurrentDirectory();
-            string filePath = dirpath + "\\" + exam.GradesPath;
-            var examXMLStr = File.ReadAllText(filePath);
-            var examXML = XElement.Parse(examXMLStr);
-            var studentElement = examXML.Elements("Student").
-                Where(x => x.Element("ID").Value.Equals(Id)).ToList();
-            if (studentElement.Count != 0)
+            //LoadDemoXML(exam);
+            try
             {
-                exam.FinalGrade = double.Parse(studentElement[0].Element("Grade").Value);
-                exam.IsAnswered = true;
+
+                string dirpath = Directory.GetCurrentDirectory();
+                string filePath = dirpath + "\\" + exam.GradesPath;
+                var examXMLStr = File.ReadAllText(filePath);
+                var examXML = XElement.Parse(examXMLStr);
+                var studentElement = examXML.Elements("Student").
+                    Where(x => x.Element("ID").Value.Equals(Id)).ToList();
+                if (studentElement.Count != 0)
+                {
+                    exam.FinalGrade = double.Parse(studentElement[0].Element("Grade").Value);
+                    exam.IsAnswered = true;
+                }
             }
-            else
-            {
-                exam.LoadQuestions();
-            }
+            catch { }
         }
 
-        
+
 
         private void LoadDemoXML(Exam exam)
         {
@@ -65,21 +63,21 @@ namespace Library.Models
         public void UpdateExamGradeXML(Exam exam)
         {
             string dirpath = Directory.GetCurrentDirectory();
-            
-            string filePath = dirpath+"\\"+exam.GradesPath;
-        //    if (!File.Exists(filePath))
-       //    {
-         //       Add(entityToUpdate);
-         //   }
-         //   else
-         //   {
-                XDocument xmlDoc = XDocument.Load(filePath);
-                XElement xStudent = new XElement("Student");
-                xStudent.Add(new XElement("ID", this.Id));
-                xStudent.Add(new XElement("Grade", exam.FinalGrade));
-                xmlDoc.Element(xmlDoc.Root.Name.LocalName).Add(xStudent);
-                xmlDoc.Save(filePath);
-       //     }
+
+            string filePath = dirpath + "\\" + exam.GradesPath;
+            //    if (!File.Exists(filePath))
+            //    {
+            //       Add(entityToUpdate);
+            //   }
+            //   else
+            //   {
+            XDocument xmlDoc = XDocument.Load(filePath);
+            XElement xStudent = new XElement("Student");
+            xStudent.Add(new XElement("ID", this.Id));
+            xStudent.Add(new XElement("Grade", exam.FinalGrade));
+            xmlDoc.Element(xmlDoc.Root.Name.LocalName).Add(xStudent);
+            xmlDoc.Save(filePath);
+            //     }
         }
     }
 }
