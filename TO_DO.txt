@@ -16,6 +16,9 @@ DataBase -
 -Add Exam Time -> Change time controller creation with exam time
 ---> QuestionPage_Student.cs - line 74
 
+-Create MockData Database that is shared by us both and can be transfered to gad
+----Keep in mind the location and figure a way to set it static
+
 XML Stuff -
 -Add alert to whenever reading XML file fails
 -Try combining all XML Methods to one class --- DRY
