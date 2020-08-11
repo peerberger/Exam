@@ -7,16 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Exam.UserControls.QuestionBuilderView;
+using Exam.Controllers;
 
 namespace Exam.UserControls
 {
-	public partial class QuestionBuilderUC : UserControl
+	public partial class QuestionBuilderUC : UserControl, IQuestionBuilderView
 	{
-		public bool QuestionTypeMultiple { get => MultipleOptionsRadioButton.Checked; set => MultipleOptionsRadioButton.Checked = value; }
-		public bool QuestionTypeOpen { get => OpenTextRadioButton.Checked; set => OpenTextRadioButton.Checked = value; }
-		public string Description { get => DescriptionComboBox.SelectedItem.ToString(); set => DescriptionComboBox.Text = value; }
-		public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
-		public string RightAnswer { get => RightAnswerTextBox.Text; set => RightAnswerTextBox.Text = value; }
+		public bool QuestionTypeMultiple 
+		{ get => MultipleOptionsRadioButton.Checked; set => MultipleOptionsRadioButton.Checked = value; }
+		public bool QuestionTypeOpen
+		{ get => OpenTextRadioButton.Checked; set => OpenTextRadioButton.Checked = value; }
+		public string Description 
+		{ get => DescriptionComboBox.SelectedItem.ToString(); set => DescriptionComboBox.Text = value; }
+		public string QuestionText 
+		{ get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
+		public string RightAnswer 
+		{ get => RightAnswerTextBox.Text; set => RightAnswerTextBox.Text = value; }
 		public List<string> Answers
 		{
 			get
@@ -33,7 +40,7 @@ namespace Exam.UserControls
 		}
 
 
-		public QuestionBuilderUC()
+        public QuestionBuilderUC()
 		{
 			InitializeComponent();
 
@@ -97,7 +104,12 @@ namespace Exam.UserControls
 				AnswerTextBox.Visible = false;
 				AddOptionButton.Visible = false;
 			}
-		} 
-		#endregion
-	}
+		}
+
+        public void SetController(QuestionBuilderController controller)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+    }
 }

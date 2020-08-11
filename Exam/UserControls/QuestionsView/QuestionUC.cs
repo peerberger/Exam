@@ -13,8 +13,9 @@ using Library.Models;
 
 namespace Exam.Student
 {
-	public partial class QuestionUC : UserControl, IQuestionView
+    public partial class QuestionUC : UserControl, IQuestionView
     {
+        private Random rng = new Random();
         private List<RadioButton> _answers = new List<RadioButton>();
         private string openQuestionAnswer;
         QuestionController _controller;
@@ -54,7 +55,7 @@ namespace Exam.Student
         private void SetAnswerPartOfView()
         {
             AnswersFlowLayout.Controls.Clear();
-            TextBox answerTextBox = new TextBox() { Margin = new Padding(10)};
+            TextBox answerTextBox = new TextBox() { Margin = new Padding(10) };
             answerTextBox.TextChanged += AnswerTextBox_TextChanged;
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
@@ -80,15 +81,31 @@ namespace Exam.Student
                 radioButton.Text = answer;
                 radioButton.Name = answerId.ToString();
 
-                this.AnswersFlowLayout.Controls.Add(radioButton);
-                answerId++;
                 _answers.Add(radioButton);
+                answerId++;
+            }
+            ShuffleList(_answers);
+            foreach (var radioAnswer in _answers)
+            {
+                this.AnswersFlowLayout.Controls.Add(radioAnswer);
+
             }
         }
         #endregion
 
         #region Events 
-
+        private void ShuffleList<T>(IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }    
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;

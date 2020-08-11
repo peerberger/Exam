@@ -16,6 +16,7 @@ using Library.Models;
 
 namespace Exam
 {
+
     public partial class QuestionPage_Student : Form, IAppsForms
     {
         public Library.Models.Exam _exam;
@@ -185,6 +186,11 @@ namespace Exam
             e.Cancel = true;
             }
         }
+
         #endregion
+        public void FormShowDialog()
+        {
+            this.ShowDialog();
+        }
     }
 }

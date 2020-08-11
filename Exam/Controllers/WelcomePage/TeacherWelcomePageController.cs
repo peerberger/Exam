@@ -114,6 +114,7 @@ namespace Exam.Controllers
         private void _view_BuildExam(object sender, EventArgs e)
         {
             BuildExam.Invoke(user, null);
+            UpdateExamListView();
         }
 
         public void ResetView()

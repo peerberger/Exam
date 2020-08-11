@@ -1,0 +1,15 @@
+Question Builder - 
+-Validate Exam Title -  DONE
+-Alert message upon closing - "Exam won't be save" - DONE
+-Multiple Questions - The answer in the "Right Answer" segment to be added to Answers
+-Finish Test button also saves viewed question if not null
+-Validate The question (all fields entered)
+-Finish test button on non complete question alert
+
+Exam Student side - 
+-Randomize Answers in multiple question - DONE
+
+
+DataBase - 
+-Find a way to remove User_id from Exams - Causes bugs(!!!!!)
+

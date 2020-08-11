@@ -60,6 +60,9 @@ namespace Exam.Forms
             }
         }
 
-
+        public void FormShowDialog()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

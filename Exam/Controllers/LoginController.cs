@@ -49,6 +49,11 @@ namespace Exam.Controllers
             return idEntered;
         }
 
+        internal void ClearFields()
+        {
+            _view.Id = "";
+            _view.Password = "";
+        }
 
         public void PreformLogin()
         {
@@ -69,8 +74,14 @@ namespace Exam.Controllers
                         user.Classrooms.ToList<Classroom>();
                         foreach (var classroom in user.Classrooms)
                         {
-                            unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
-                            if(user.Role == Users.Teacher)
+                            //user.Exams.AddRange(unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList());
+
+                            var examList = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
+                            foreach (var exam in examList)
+                            {
+                                user.Exams.Add(exam);
+                            }
+                            if (user.Role == Users.Teacher)
                             {
                                 classroom.Users.ToList();
                             }
@@ -95,7 +106,7 @@ namespace Exam.Controllers
             {
                 foreach (var classroom in user.Classrooms)
                 {
-                classroom.Users.Remove(user);
+                    classroom.Users.Remove(user);
                 }
             }
             Login.Invoke(user, null);

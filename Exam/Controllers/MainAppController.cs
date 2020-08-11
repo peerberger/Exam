@@ -1,5 +1,6 @@
 ﻿using DAL.Repositories;
 using Exam.Forms;
+using Exam.Forms.Student;
 using Library.Models;
 using System;
 using System.Collections.Generic;
@@ -38,18 +39,20 @@ namespace Exam.Controllers
                 loginForm.Hide();
                 (ThisForm as Form).ShowDialog();//Opening Welcome page as dialog
                 loginForm.Show();//Re-opening the login after welcome page closes
+                loginForm.ClearFields();
             }
             if ((sender is WelcomePage) && user.Role == Users.Student)//Welcome-Student -> Alert -> Exam
             {
                 var dr = new DialogResult();
-                AlertMessage alertForm = new AlertMessage();
+                string alertString = "By clicking OK you will start the test.You Will not be able to go back without finishing.";
+                AlertMessage alertForm = new AlertMessage(alertString);
                 dr = alertForm.ShowDialog();
                 if (dr == DialogResult.OK)
                 {
                     //Opening the exam - QuestionPage_Student
                     Library.Models.Exam exam = e.DataForNextForm as Library.Models.Exam;
                     ThisForm = new QuestionPage_Student(exam);
-                    (ThisForm as QuestionPage_Student).ShowDialog();
+                    ThisForm.FormShowDialog();
                     user.UpdateExamGradeXML(exam);
                     ThisForm = PreviousForm;
                     (ThisForm as WelcomePage).welcomeController.ResetView();
@@ -57,7 +60,9 @@ namespace Exam.Controllers
             }
             else if ((sender is WelcomePage) && user.Role == Users.Teacher)//Welcome-Teacher -> Build Exam
             {
-
+                User teacher = e.DataForNextForm as User;
+                ThisForm = new QuestionPage_Teacher(teacher);
+                ThisForm.FormShowDialog();
             }
         }
 

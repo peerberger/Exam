@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\QuestionBuilderController.cs" />
     <Compile Include="Controllers\WelcomePage\TeacherWelcomePageController.cs" />
     <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Forms\AlertMessage.cs">

@@ -76,12 +76,17 @@ namespace Exam
 
         private void Controller_BuildExam(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            changeForm.Invoke(this, new FormEventArgs(sender));
         }
 
         private void WelcomeController_StartExam(object sender, EventArgs e)
         {
             changeForm.Invoke(this, new FormEventArgs(sender));
+        }
+
+        public void FormShowDialog()
+        {
+            this.ShowDialog();
         }
     }
 }
