@@ -88,8 +88,6 @@
             this.warningLable.Name = "warningLable";
             this.warningLable.Size = new System.Drawing.Size(364, 130);
             this.warningLable.TabIndex = 2;
-            this.warningLable.Text = "By clicking OK you will start the test. You Will not be able to go back without f" +
-    "inishing.";
             this.warningLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AlertMessage

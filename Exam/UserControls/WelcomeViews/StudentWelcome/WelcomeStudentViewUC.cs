@@ -11,20 +11,19 @@ using Exam.Controllers;
 
 namespace Exam.UserControls
 {
-    public partial class StudentWelcomePageUC : UserControl, IStudentWelcomePage
-    {
-
+	public partial class WelcomeStudentViewUC : WelcomeView, IStudentWelcomePage
+	{
         private bool firstInitialize;
         public int SelectedExam { get; set; }
         public object ExamsDataSource
         {
-            get => examsGridView.DataSource;
+            get => GradesGridView.DataSource;
             set
             {
-                examsGridView.DataSource = value;
-                if(value!=null)
+                GradesGridView.DataSource = value;
+                if (value != null)
                 {
-                ResizeDataGrid();
+                    ResizeDataGrid();
                 }
             }
         }
@@ -43,7 +42,7 @@ namespace Exam.UserControls
             }
         }
 
-        public StudentWelcomePageUC()
+        public WelcomeStudentViewUC()
         {
             InitializeComponent();
             firstInitialize = true;
@@ -62,12 +61,12 @@ namespace Exam.UserControls
 
         private void examsGridView_SelectionChanged(object sender, EventArgs e)
         {
-            var rowsCount = examsGridView.SelectedRows.Count;
+            var rowsCount = GradesGridView.SelectedRows.Count;
             if (rowsCount == 0 || rowsCount > 1)
             {
                 return;
             }
-            var row = examsGridView.SelectedRows[0];
+            var row = GradesGridView.SelectedRows[0];
             if (row == null)
             {
                 return;
@@ -77,11 +76,11 @@ namespace Exam.UserControls
             //If comleted disable the start button
             if (isCompleted)
             {
-                startButton.Enabled = false;
+                StartButton.Enabled = false;
             }
             else
             {
-                startButton.Enabled = true;
+                StartButton.Enabled = true;
                 SelectedExam = rowIndex;
             }
         }
@@ -99,17 +98,17 @@ namespace Exam.UserControls
         private void ResizeDataGrid()
         {
             DataGridViewElementStates states = DataGridViewElementStates.None;
-            examsGridView.ScrollBars = ScrollBars.None;
-            
-            var totalHeight = examsGridView.Rows.GetRowsHeight(states) + examsGridView.ColumnHeadersHeight;
-            var totalWidth = examsGridView.Columns.GetColumnsWidth(states) + examsGridView.RowHeadersWidth;
-            if(firstInitialize)
+            GradesGridView.ScrollBars = ScrollBars.None;
+
+            var totalHeight = GradesGridView.Rows.GetRowsHeight(states) + GradesGridView.ColumnHeadersHeight;
+            var totalWidth = GradesGridView.Columns.GetColumnsWidth(states) + GradesGridView.RowHeadersWidth;
+            if (firstInitialize)
             {
                 totalHeight -= 8;
                 totalWidth -= 5;
                 firstInitialize = false;
-            }    
-            examsGridView.ClientSize = new Size(totalWidth, totalHeight);
+            }
+            GradesGridView.ClientSize = new Size(totalWidth, totalHeight);
         }
 
         #endregion

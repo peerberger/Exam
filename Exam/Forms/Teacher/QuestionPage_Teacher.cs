@@ -1,4 +1,5 @@
 ﻿using DAL.Repositories;
+using Exam.Controllers;
 using Exam.UserControls;
 using Library.Models;
 using Library.Models.Questions;
@@ -16,230 +17,304 @@ using System.Xml.Linq;
 
 namespace Exam.Forms.Student
 {
-	public partial class QuestionPage_Teacher : Form
-	{
-		private Library.Models.Exam exam = new Library.Models.Exam();
-		private int currQuestionIndex = 0;
+    //TODO
+    //The Correct Answer isn't added to the options
+    public partial class QuestionPage_Teacher : Form, IAppsForms
+    {
+        private bool isFinished = false;
 
-		public int CurrQuestionIndex
-		{
-			get { return currQuestionIndex; }
-			set
-			{
-				if (value == 0)
-				{
-					PreviousButton.Enabled = false;
-				}
-				else
-				{
-					PreviousButton.Enabled = true;
-				}
+        private QuestionBuilderController controller;
+        int selectedClassroom;
+        private User user;
+        private Library.Models.Exam exam = new Library.Models.Exam();
+        private int currQuestionIndex = 0;
+        private EventHandler<FormEventArgs> changeForm;
+        public event EventHandler<FormEventArgs> ChangeForm
+        {
+            add { changeForm += value; }
+            remove { changeForm -= value; }
+        }
 
-				QuestionNumberLabel.Text = $"{value + 1} / {exam.Questions.Count}";
+        public int CurrQuestionIndex
+        {
+            get { return currQuestionIndex; }
+            set
+            {
+                if (value == 0)
+                {
+                    PreviousButton.Enabled = false;
+                }
+                else
+                {
+                    PreviousButton.Enabled = true;
+                }
 
-				currQuestionIndex = value;
-			}
-		}
+                QuestionNumberLabel.Text = $"{value + 1} / {exam.Questions.Count}";
 
-
-		public QuestionPage_Teacher()
-		{
-			InitializeComponent();
-
-			LoadClassroomsComboBox("1");
-
-			exam.Questions.Add(new Question());
-		}
-
-		#region Saar's
-		private void FinishButton_Click(object sender, EventArgs e)
-		{
-			CreateXMLFiles();
-
-			// SAVE TO SQL
-		}
-
-		public void CreateXMLFiles()
-		{
-			CreateGradesFile();
-			CreateQuestionsFile();
-		}
-		public void CreateGradesFile()
-		{
-			string titleNoSpace = exam.Title;
-			foreach (var c in titleNoSpace)
-			{
-				titleNoSpace = titleNoSpace.Replace(" ", string.Empty);
-			}
-			string fileName = ($"{titleNoSpace}_{exam.Id}.xml");
-			var filePath = SetFilePath(fileName, "ExamsGrades");
-
-			XElement xEntity = new XElement($"{titleNoSpace}_{exam.Id}");
-			xEntity.Save(filePath);
-			exam.GradesPath = filePath;
-		}
-
-		public void CreateQuestionsFile()
-		{
-			string titleNoSpace = exam.Title;
-			foreach (var c in titleNoSpace)
-			{
-				titleNoSpace = titleNoSpace.Replace(" ", string.Empty);
-			}
-			XElement xEntity = new XElement($"{titleNoSpace}_{exam.Id}");
-			XElement xQuestions = new XElement("Questions");
-			foreach (var question in exam.Questions)
-			{
-				if (question is MultipleChoiceTextQuestion)
-				{
-					MultipleChoiceTextQuestion multipleText = question as MultipleChoiceTextQuestion;
-					XElement xAnswers = new XElement("Answers");
-					int i = 0;
-					foreach (string answer in multipleText.Answers)
-					{
-						xAnswers.Add(new XElement($"Answer_{i}", answer));
-						i++;
-					}
-					XElement xQuestion = new XElement("MultipleChoiseTextQuestion", new object[]{
-					   new XElement("QuestionDescription",multipleText.QuestionDescription),
-					   new XElement("QuestionText",multipleText.QuestionText),
-					   xAnswers,
-					   new XElement("RightAnswer",multipleText.RightAnswer),
-					   new XElement("Points",multipleText.Points)
-					});
-					xQuestions.Add(xQuestion);
-				}
-				else if (question is OpenQuestion)
-				{
-					OpenQuestion openQuestion = question as OpenQuestion;
-					XElement xQuestion = new XElement("OpenQuestion", new object[]{
-					   new XElement("QuestionDescription",openQuestion.QuestionDescription),
-					   new XElement("QuestionText",openQuestion.QuestionText),
-					   new XElement("RightAnswer",openQuestion.RightAnswer),
-					   new XElement("Points",openQuestion.Points)
-					});
-					xQuestions.Add(xQuestion);
-				}
-			}
-			xEntity.Add(xQuestions);
-			var dirPath = Directory.GetCurrentDirectory();
-			string fileName = ($"{titleNoSpace}_{exam.Id}.xml");
-			var filePath = SetFilePath(fileName, "ExamsQuestions");
-			xEntity.Save(filePath);
-			exam.QuestionsPath = filePath;
-		}
+                currQuestionIndex = value;
+            }
+        }
 
 
-		private string SetFilePath(string fileName, string dirName)
-		{
-			var dirPath = Directory.GetCurrentDirectory();
-			if (!Directory.Exists($"{dirPath}\\"))
-			{
-				Directory.CreateDirectory($"{dirPath}\\{dirName}");
-			}
-			var filePath = $"{dirPath}\\{dirName}\\{fileName}";
-			return filePath;
-		}
-		#endregion
+        public QuestionPage_Teacher()
+        {
+            InitializeComponent();
+            this.FormClosing += QuestionPage_Teacher_FormClosing;
 
-		#region Peer's
-		private void NextButton_Click(object sender, EventArgs e)
-		{
-			if (CurrQuestionIndex == exam.Questions.Count - 1)
-			{
-				UpdateCurrQuestion();
-				QuestionBuilder.Reset();
+        }
 
-				exam.Questions.Add(new Question());
+        private void QuestionPage_Teacher_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isFinished)
+            {
+                var dr = new DialogResult();
+                string alertString = "By clicking OK you will exit the test builder.\r\n " +
+                                             "Your test will not be saved!";
+                AlertMessage alertForm = new AlertMessage(alertString);
+                dr = alertForm.ShowDialog();
+                if (dr == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
 
-				CurrQuestionIndex++;
-			}
-			else
-			{
-				UpdateCurrQuestion();
+        public QuestionPage_Teacher(User user) : this()
+        {
+            this.user = user;
+            controller = new QuestionBuilderController(user, QuestionBuilder);
+            LoadClassroomsComboBox();
 
-				CurrQuestionIndex++;
-				LoadCurrQuestion();
+            exam.Questions.Add(new Question());
+        }
 
-				if (CurrQuestionIndex == exam.Questions.Count - 1)
-				{
-					NextButton.Text = "New Question";
-				}
-			}
-		}
+        #region Saar's
+        private void FinishButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TitleTextBox.Text))
+            {
+                if (char.IsLetter(TitleTextBox.Text[0]))
+                {
 
-		private void UpdateCurrQuestion()
-		{
-			if (QuestionBuilder.QuestionTypeMultiple)
-			{
-				exam.Questions[CurrQuestionIndex] = new MultipleChoiceTextQuestion();
-				(exam.Questions[CurrQuestionIndex] as MultipleChoiceTextQuestion).Answers = QuestionBuilder.Answers;
-			}
-			else
-			{
-				exam.Questions[CurrQuestionIndex] = new OpenQuestion();
-			}
+                    using (var unit = new UnitOfWork(new DAL.ExamContext()))
+                    {
+                        unit.Exams.Add(this.exam);
+                        unit.Complete();
+                        CreateXMLFiles();
+                        //unit.Exams.Add(this.exam);
+                        unit.Complete();
+                    }
+                    // SAVE TO SQL
+                    user.Classrooms.ElementAt(selectedClassroom).Exams.Add(exam);
+                    isFinished = true;
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Exam title must begin with a letter");
+            }
+            else
+                MessageBox.Show("Please Enter Exam Title");
 
-			exam.Questions[CurrQuestionIndex].QuestionDescription = QuestionBuilder.Description;
-			exam.Questions[CurrQuestionIndex].QuestionText = QuestionBuilder.QuestionText;
-			exam.Questions[CurrQuestionIndex].RightAnswer = QuestionBuilder.RightAnswer;
-		}
+        }
+        #region XML Methods
 
-		private void PreviousButton_Click(object sender, EventArgs e)
-		{
-			UpdateCurrQuestion();
+        public void CreateXMLFiles()
+        {
+            CreateGradesFile();
+            CreateQuestionsFile();
+        }
+        public void CreateGradesFile()
+        {
+            string titleNoSpace = exam.Title;
+            foreach (var c in titleNoSpace)
+            {
+                titleNoSpace = titleNoSpace.Replace(" ", string.Empty);
+            }
+            string fileName = ($"{titleNoSpace}_{exam.Id}.xml");
+            string dirName = "ExamsGrades";
+            var filePath = SetFilePath(fileName, dirName);
 
-			if (CurrQuestionIndex == exam.Questions.Count - 1)
-			{
-				NextButton.Text = "Next";
-			}
+            XElement xEntity = new XElement($"{titleNoSpace}_{exam.Id}");
+            xEntity.Save(filePath);
+            exam.GradesPath = $"{dirName}\\{fileName}";
+        }
 
-			CurrQuestionIndex--;
-			LoadCurrQuestion();
-		}
+        public void CreateQuestionsFile()
+        {
+            string titleNoSpace = exam.Title;
+            foreach (var c in titleNoSpace)
+            {
+                titleNoSpace = titleNoSpace.Replace(" ", string.Empty);
+            }
+            XElement xEntity = new XElement($"{titleNoSpace}_{exam.Id}");
+            XElement xQuestions = new XElement("Questions");
+            foreach (var question in exam.Questions)
+            {
+                if (question is MultipleChoiceTextQuestion)
+                {
+                    MultipleChoiceTextQuestion multipleText = question as MultipleChoiceTextQuestion;
+                    XElement xAnswers = new XElement("Answers");
+                    int i = 0;
+                    foreach (string answer in multipleText.Answers)
+                    {
+                        xAnswers.Add(new XElement($"Answer_{i}", answer));
+                        i++;
+                    }
+                    XElement xQuestion = new XElement("MultipleChoiseTextQuestion", new object[]{
+                       new XElement("QuestionDescription",multipleText.QuestionDescription),
+                       new XElement("QuestionText",multipleText.QuestionText),
+                       xAnswers,
+                       new XElement("RightAnswer",multipleText.RightAnswer),
+                       new XElement("Points",multipleText.Points)
+                    });
+                    xQuestions.Add(xQuestion);
+                }
+                else if (question is OpenQuestion)
+                {
+                    OpenQuestion openQuestion = question as OpenQuestion;
+                    XElement xQuestion = new XElement("OpenQuestion", new object[]{
+                       new XElement("QuestionDescription",openQuestion.QuestionDescription),
+                       new XElement("QuestionText",openQuestion.QuestionText),
+                       new XElement("RightAnswer",openQuestion.RightAnswer),
+                       new XElement("Points",openQuestion.Points)
+                    });
+                    xQuestions.Add(xQuestion);
+                }
+            }
+            xEntity.Add(xQuestions);
+            //var dirPath = Directory.GetCurrentDirectory();
+            string fileName = ($"{titleNoSpace}_{exam.Id}.xml");
+            string dirName = "ExamsQuestions";
+            var filePath = SetFilePath(fileName, dirName);
+            xEntity.Save(filePath);
+            exam.QuestionsPath = $"{dirName}\\{fileName}";
+        }
 
-		private void LoadCurrQuestion()
-		{
-			var currQuestion = exam.Questions[CurrQuestionIndex] as IQuestion;
 
-			if (currQuestion is MultipleChoiceTextQuestion)
-			{
-				QuestionBuilder.PopulateAnswers((currQuestion as MultipleChoiceTextQuestion).Answers);
-				QuestionBuilder.QuestionTypeMultiple = true;
-			}
-			else
-			{
-				QuestionBuilder.QuestionTypeOpen = true;
-			}
+        private string SetFilePath(string fileName, string dirName)
+        {
+            var dirPath = Directory.GetCurrentDirectory();
+            if (!Directory.Exists($"{dirPath}\\{dirName}"))
+            {
+                Directory.CreateDirectory($"{dirPath}\\{dirName}");
+            }
+            var filePath = $"{dirPath}\\{dirName}\\{fileName}";
+            return filePath;
+        }
+        #endregion
 
-			QuestionBuilder.Description = currQuestion.QuestionDescription;
-			QuestionBuilder.QuestionText = currQuestion.QuestionText;
-			QuestionBuilder.RightAnswer = currQuestion.RightAnswer;
-		}
+        #endregion
 
-		private void LoadClassroomsComboBox(string teacherId)
-		{
-			using (var unit = new UnitOfWork(new DAL.ExamContext()))
-			{
-				List<Classroom> classrooms = unit.Users.GetById(teacherId).Classrooms.ToList();
-				ClassroomsComboBox.ValueMember = "Id";
-				ClassroomsComboBox.DisplayMember = "Name";
-				ClassroomsComboBox.DataSource = classrooms;
+        #region Peer's
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            if (CurrQuestionIndex == exam.Questions.Count - 1)
+            {
+                UpdateCurrQuestion();
+                QuestionBuilder.Reset();
 
-				unit.Complete();
-			}
-		}
+                exam.Questions.Add(new Question());
 
-		private void TitleTextBox_TextChanged(object sender, EventArgs e)
-		{
-			exam.Title = TitleTextBox.Text;
-		}
+                CurrQuestionIndex++;
+            }
+            else
+            {
+                UpdateCurrQuestion();
 
-		private void ClassroomsComboBox_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			exam.ClassroomId = (int)ClassroomsComboBox.SelectedValue;
-		}
-		#endregion
+                CurrQuestionIndex++;
+                LoadCurrQuestion();
 
-	}
+                if (CurrQuestionIndex == exam.Questions.Count - 1)
+                {
+                    NextButton.Text = "New Question";
+                }
+            }
+        }
+
+        private void UpdateCurrQuestion()
+        {
+            if (QuestionBuilder.QuestionTypeMultiple)
+            {
+                exam.Questions[CurrQuestionIndex] = new MultipleChoiceTextQuestion();
+                (exam.Questions[CurrQuestionIndex] as MultipleChoiceTextQuestion).Answers = QuestionBuilder.Answers;
+            }
+            else
+            {
+                exam.Questions[CurrQuestionIndex] = new OpenQuestion();
+            }
+
+            exam.Questions[CurrQuestionIndex].QuestionDescription = QuestionBuilder.Description;
+            exam.Questions[CurrQuestionIndex].QuestionText = QuestionBuilder.QuestionText;
+            exam.Questions[CurrQuestionIndex].RightAnswer = QuestionBuilder.RightAnswer;
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            UpdateCurrQuestion();
+
+            if (CurrQuestionIndex == exam.Questions.Count - 1)
+            {
+                NextButton.Text = "Next";
+            }
+
+            CurrQuestionIndex--;
+            LoadCurrQuestion();
+        }
+
+        private void LoadCurrQuestion()
+        {
+            var currQuestion = exam.Questions[CurrQuestionIndex] as IQuestion;
+
+            if (currQuestion is MultipleChoiceTextQuestion)
+            {
+                QuestionBuilder.PopulateAnswers((currQuestion as MultipleChoiceTextQuestion).Answers);
+                QuestionBuilder.QuestionTypeMultiple = true;
+            }
+            else
+            {
+                QuestionBuilder.QuestionTypeOpen = true;
+            }
+
+            QuestionBuilder.Description = currQuestion.QuestionDescription;
+            QuestionBuilder.QuestionText = currQuestion.QuestionText;
+            QuestionBuilder.RightAnswer = currQuestion.RightAnswer;
+        }
+
+        private void LoadClassroomsComboBox()
+        {
+            //using (var unit = new UnitOfWork(new DAL.ExamContext()))
+            //{
+            //	List<Classroom> classrooms = unit.Users.GetById(teacherId).Classrooms.ToList();
+
+            //	unit.Complete();
+            //}
+            List<string> classroomsList = new List<string>();
+            foreach (Classroom classroom in user.Classrooms)
+            {
+                classroomsList.Add(classroom.Name);
+            }
+            ClassroomsComboBox.DataSource = classroomsList;
+            //ClassroomsComboBox.ValueMember = "Id";
+            //	ClassroomsComboBox.DisplayMember = "Name";
+            //	ClassroomsComboBox.DataSource = user.Classrooms;
+        }
+
+        private void TitleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            exam.Title = TitleTextBox.Text;
+        }
+
+        private void ClassroomsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedClassroom = ClassroomsComboBox.SelectedIndex;
+            exam.ClassroomId = user.Classrooms.ElementAt(selectedClassroom).Id;
+        }
+
+        #endregion
+
+        public void FormShowDialog()
+        {
+            this.ShowDialog();
+        }
+    }
 }

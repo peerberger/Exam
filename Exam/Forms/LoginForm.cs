@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
@@ -44,10 +45,19 @@ namespace Exam
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        internal void ClearFields()
+        {
+            Controller.ClearFields();
+        }
+
         private void Controller_Login(object sender, EventArgs e)
         {
             changeForm.Invoke(this, new FormEventArgs(sender));
         }
 
+        public void FormShowDialog()
+        {
+            this.ShowDialog();
+        }
     }
 }

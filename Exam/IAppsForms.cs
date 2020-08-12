@@ -10,5 +10,6 @@ namespace Exam
     public  interface IAppsForms 
     {
         event EventHandler<Forms.FormEventArgs> ChangeForm;
+        void FormShowDialog();
     }
 }

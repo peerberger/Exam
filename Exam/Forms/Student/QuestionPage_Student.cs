@@ -16,6 +16,7 @@ using Library.Models;
 
 namespace Exam
 {
+
     public partial class QuestionPage_Student : Form, IAppsForms
     {
         public Library.Models.Exam _exam;
@@ -41,12 +42,13 @@ namespace Exam
         {
             InitializeComponent();
             _exam = exam;
+            _exam.LoadQuestions();
             questionNumber = 0;
             this.UpdateQuestionNumberLabel();
             if (_exam.Questions.Count != 0 && _exam.Questions != null)
             {
                 CreatQuestionController();
-                if (!_exam.IsTimed)
+                if (_exam.IsTimed)
                 {
                     CreateTimeBar();
                 }
@@ -185,6 +187,11 @@ namespace Exam
             e.Cancel = true;
             }
         }
+
         #endregion
+        public void FormShowDialog()
+        {
+            this.ShowDialog();
+        }
     }
 }

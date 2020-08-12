@@ -12,10 +12,10 @@ namespace Exam.Forms
 {
     public partial class AlertMessage : Form
     {
-        public AlertMessage()
+        public AlertMessage(string alert)
         {
             InitializeComponent();
-
+            this.warningLable.Text = alert;
             //Setting the form to center screen
             //User can't change form size
             this.FormBorderStyle = FormBorderStyle.FixedDialog;

@@ -16,6 +16,8 @@ namespace Exam.UserControls.QuestionBuilderView
 		string RightAnswer { get; set; }
 		List<string> Answers { get; }
 
+
+
 		void SetController(QuestionBuilderController controller);
 
 	}
