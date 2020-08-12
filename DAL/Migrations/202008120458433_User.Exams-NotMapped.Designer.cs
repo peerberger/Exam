@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class DropUserIDFromExam : IMigrationMetadata
+    public sealed partial class UserExamsNotMapped : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DropUserIDFromExam));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserExamsNotMapped));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008111712068_Drop-UserID-From-Exam"; }
+            get { return "202008120458433_User.Exams-NotMapped"; }
         }
         
         string IMigrationMetadata.Source

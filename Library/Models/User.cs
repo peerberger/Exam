@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -18,6 +19,7 @@ namespace Library.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public Users Role { get; set; }
+        [NotMapped]
         public List<Exam> Exams { get; set; } = new List<Exam>();
         // for 'many to many' joining table
         public virtual ICollection<Classroom> Classrooms { get; set; }

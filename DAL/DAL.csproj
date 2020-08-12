@@ -92,9 +92,13 @@
     <Compile Include="Migrations\202008091821419_Add-Exam.Time.designer.cs">
       <DependentUpon>202008091821419_Add-Exam.Time.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008111712068_Drop-UserID-From-Exam.cs" />
-    <Compile Include="Migrations\202008111712068_Drop-UserID-From-Exam.designer.cs">
-      <DependentUpon>202008111712068_Drop-UserID-From-Exam.cs</DependentUpon>
+    <Compile Include="Migrations\202008120458433_User.Exams-NotMapped.cs" />
+    <Compile Include="Migrations\202008120458433_User.Exams-NotMapped.designer.cs">
+      <DependentUpon>202008120458433_User.Exams-NotMapped.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008120531461_Drop-Exam.ForMigration.cs" />
+    <Compile Include="Migrations\202008120531461_Drop-Exam.ForMigration.designer.cs">
+      <DependentUpon>202008120531461_Drop-Exam.ForMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,8 +151,11 @@
     <EmbeddedResource Include="Migrations\202008091821419_Add-Exam.Time.resx">
       <DependentUpon>202008091821419_Add-Exam.Time.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008111712068_Drop-UserID-From-Exam.resx">
-      <DependentUpon>202008111712068_Drop-UserID-From-Exam.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202008120458433_User.Exams-NotMapped.resx">
+      <DependentUpon>202008120458433_User.Exams-NotMapped.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008120531461_Drop-Exam.ForMigration.resx">
+      <DependentUpon>202008120531461_Drop-Exam.ForMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
