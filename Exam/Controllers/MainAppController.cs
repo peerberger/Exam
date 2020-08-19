@@ -89,7 +89,7 @@ namespace Exam.Controllers
                         = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
                     foreach (var ex in examsToAdd)
                     {
-                        user.AddToExams(ex);
+                        //user.AddToExams(ex);
                     }
                     unit.Complete();
                 }

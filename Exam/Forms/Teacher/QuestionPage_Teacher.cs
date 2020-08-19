@@ -46,7 +46,7 @@ namespace Exam.Forms.Student
 		{
 			InitializeComponent();
 
-			LoadClassroomsComboBox("1");
+			LoadClassroomsComboBox("000000001");
 
 			exam.Questions.Add(new Question());
 		}
