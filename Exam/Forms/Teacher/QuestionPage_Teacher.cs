@@ -60,7 +60,7 @@ namespace Exam.Forms.Student
         {
             InitializeComponent();
             this.FormClosing += QuestionPage_Teacher_FormClosing;
-
+            exam.Questions.Add(new Question());
         }
 
         private void QuestionPage_Teacher_FormClosing(object sender, FormClosingEventArgs e)
@@ -84,8 +84,6 @@ namespace Exam.Forms.Student
             this.user = user;
             controller = new QuestionBuilderController(user, QuestionBuilder);
             LoadClassroomsComboBox();
-
-            exam.Questions.Add(new Question());
         }
 
         #region Saar's
@@ -246,6 +244,7 @@ namespace Exam.Forms.Student
             exam.Questions[CurrQuestionIndex].QuestionDescription = QuestionBuilder.Description;
             exam.Questions[CurrQuestionIndex].QuestionText = QuestionBuilder.QuestionText;
             exam.Questions[CurrQuestionIndex].RightAnswer = QuestionBuilder.RightAnswer;
+            exam.Questions[CurrQuestionIndex].QuestionImage = QuestionBuilder.QuestionImage;
         }
 
         private void PreviousButton_Click(object sender, EventArgs e)
@@ -278,6 +277,7 @@ namespace Exam.Forms.Student
             QuestionBuilder.Description = currQuestion.QuestionDescription;
             QuestionBuilder.QuestionText = currQuestion.QuestionText;
             QuestionBuilder.RightAnswer = currQuestion.RightAnswer;
+            QuestionBuilder.QuestionImage = currQuestion.QuestionImage;
         }
 
         private void LoadClassroomsComboBox()

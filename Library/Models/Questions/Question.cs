@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace Library.Models.Questions
         public double Points { get; set; }
         public bool IsAnswered { get; set; }
         public bool IsCorrect { get; set; }
+        public Image QuestionImage { get; set; }
     }
 }
