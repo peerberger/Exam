@@ -90,6 +90,8 @@ namespace Exam.Forms.Student
 		#region Saar's
 		private void FinishButton_Click(object sender, EventArgs e)
 		{
+			UpdateCurrQuestion();
+
 			if (!string.IsNullOrWhiteSpace(TitleTextBox.Text))
 			{
 				if (char.IsLetter(TitleTextBox.Text[0]))
