@@ -101,6 +101,13 @@ namespace Exam.Forms.Student
                         CreateXMLFiles();
                         //unit.Exams.Add(this.exam);
                         unit.Complete();
+
+                        //foreach (var question in exam.Questions)
+                        //{
+                        //    unit.QImages.Add(new QImage { question.QuestionImage
+                        //}
+
+
                     }
                     // SAVE TO SQL
                     user.Classrooms.ElementAt(selectedClassroom).Exams.Add(exam);
@@ -114,8 +121,8 @@ namespace Exam.Forms.Student
                 MessageBox.Show("Please Enter Exam Title");
 
         }
-        #region XML Methods
 
+        #region XML Methods
         public void CreateXMLFiles()
         {
             CreateGradesFile();
