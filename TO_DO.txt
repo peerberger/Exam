@@ -2,9 +2,12 @@ Question Builder -
 -Validate Exam Title -  DONE
 -Alert message upon closing - "Exam won't be save" - DONE
 -Multiple Questions - The answer in the "Right Answer" segment to be added to Answers
--Finish Test button also saves viewed question if not null
+-Finish Test button also saves viewed question if not null - SEMI DONE(??) on branch Images
+															(i mean, it hasn't been saving the last
+															 question at all, so i fixed that)
 -Validate The question (all fields entered)
 -Finish test button on non complete question alert
+-BUG: When moving foreward and backward, some answers glitch into other questions
 
 Exam Student side - 
 -Randomize Answers in multiple question - DONE
