@@ -22,6 +22,7 @@ namespace DAL.Repositories
 			Exams = new EFRepository<Exam>(_context);
 			Users = new EFRepository<User>(_context);
 			Classrooms = new EFRepository<Classroom>(_context);
+			QImages = new EFRepository<QImage>(_context);
 		}
 
 		public int Complete()
