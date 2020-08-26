@@ -55,6 +55,7 @@
     <Compile Include="MockData.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\QuestionImage.cs" />
     <Compile Include="Models\Questions\IGenericQuestion.cs" />
     <Compile Include="Models\Questions\IQuestion.cs" />
     <Compile Include="Models\Questions\MultipleChoiceImageQuestion.cs" />

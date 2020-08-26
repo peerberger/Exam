@@ -192,6 +192,7 @@
 			this.QuestionBuilder.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.QuestionBuilder.Location = new System.Drawing.Point(3, 3);
 			this.QuestionBuilder.Name = "QuestionBuilder";
+			this.QuestionBuilder.QuestionImage = null;
 			this.QuestionBuilder.QuestionText = "When and what did who do for how much?";
 			this.QuestionBuilder.QuestionTypeMultiple = true;
 			this.QuestionBuilder.QuestionTypeOpen = false;

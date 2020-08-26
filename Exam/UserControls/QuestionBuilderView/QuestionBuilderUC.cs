@@ -110,10 +110,10 @@ namespace Exam.UserControls
 			}
 		}
 
-        public void SetController(QuestionBuilderController controller)
-        {
-            throw new NotImplementedException();
-        }
+		public void SetController(QuestionBuilderController controller)
+		{
+			throw new NotImplementedException();
+		}
 
 		private void AddImageButton_Click(object sender, EventArgs e)
 		{
