@@ -1,6 +1,4 @@
 Question Builder - 
--Validate Exam Title -  DONE
--Alert message upon closing - "Exam won't be save" - DONE
 -Multiple Questions - The answer in the "Right Answer" segment to be added to Answers
 -Finish Test button also saves viewed question if not null - SEMI DONE(??) on branch Images
 															(i mean, it hasn't been saving the last
@@ -8,16 +6,9 @@ Question Builder -
 -Validate The question (all fields entered)
 -Finish test button on non complete question alert
 -BUG: When moving foreward and backward, some answers glitch into other questions
-
-Exam Student side - 
--Randomize Answers in multiple question - DONE
+-- right answer to be added to options automatically
 
 
-DataBase - 
--Find a way to remove User_id from Exams - Causes bugs(!!!!!)
----Causes Exams load twice for that user
--Add Exam Time -> Change time controller creation with exam time
----> QuestionPage_Student.cs - line 74
 
 -Create MockData Database that is shared by us both and can be transfered to gad
 ----Keep in mind the location and figure a way to set it static
@@ -29,3 +20,14 @@ XML Stuff -
 
 WelcomePage -
 -Add Logout button
+
+
+Link between image and and question
+-Image has exam_id and image_id
+-image_id = question index
+---> add image_id elemnt to XML file -> if element exists -> get image
+Convert image from DB to model
+Integrate into Exam
+
+
+
