@@ -16,7 +16,7 @@ namespace DAL
 		//Pe'er
 		//base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
 		
-		public ExamContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Saar\Documents\GitHub\Exam\db\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
+		public ExamContext() : base(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\DAL.ExamContext.mdf;Integrated Security=True;Connect Timeout=30")
 		{
 
         }
@@ -24,8 +24,9 @@ namespace DAL
         public DbSet<Exam> Exams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
+        public DbSet<QImage> QImages { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>()
 						.HasMany<Classroom>(u => u.Classrooms)
