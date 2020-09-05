@@ -38,9 +38,12 @@ namespace Exam.UserControls
 				return answers;
 			}
 		}
+		public Image QuestionImage
+		{ get => QuestionPictureBox.Image; set => QuestionPictureBox.Image = value; }
 
 
-        public QuestionBuilderUC()
+
+		public QuestionBuilderUC()
 		{
 			InitializeComponent();
 
@@ -63,6 +66,7 @@ namespace Exam.UserControls
 			AnswerTextBox.Text = string.Empty;
 			MultipleOptionsRadioButton.Checked = true;
 			AnswersFlowLayout.Controls.Clear();
+			QuestionPictureBox.Image = null;
 		}
 
 		public void PopulateAnswers(List<string> answers)
@@ -106,10 +110,20 @@ namespace Exam.UserControls
 			}
 		}
 
-        public void SetController(QuestionBuilderController controller)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-    }
+		public void SetController(QuestionBuilderController controller)
+		{
+			throw new NotImplementedException();
+		}
+
+		private void AddImageButton_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+			if (fileDialog.ShowDialog() == DialogResult.OK)
+			{
+				QuestionPictureBox.Image = new Bitmap(fileDialog.FileName);
+			}
+		}
+		#endregion
+	}
 }

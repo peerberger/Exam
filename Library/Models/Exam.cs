@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Drawing;
+using Library.Models.Questions;
 
 namespace Library.Models
 {
@@ -25,7 +27,7 @@ namespace Library.Models
         public bool IsAnswered { get; set; }
         public string GradesPath { get; set; }
         public int? Time { get; set; }
-        
+
 
         public Exam()
         {

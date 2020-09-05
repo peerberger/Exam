@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace Library.Models
         bool IsAnswered { get; set; }
         bool IsCorrect { get; set; }
         string RightAnswer { get; set; }
+        Image QuestionImage { get; set; }
     }
 }
