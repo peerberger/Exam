@@ -1,4 +1,5 @@
 ﻿using DAL.Repositories;
+using Exam.Controllers;
 using Exam.UserControls;
 using Library.Models;
 using Library.Models.Questions;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,10 +18,23 @@ using System.Xml.Linq;
 
 namespace Exam.Forms.Student
 {
-	public partial class QuestionPage_Teacher : Form
+	//TODO
+	//The Correct Answer isn't added to the options
+	public partial class QuestionPage_Teacher : Form, IAppsForms
 	{
+		private bool isFinished = false;
+
+		private QuestionBuilderController controller;
+		int selectedClassroom;
+		private User user;
 		private Library.Models.Exam exam = new Library.Models.Exam();
 		private int currQuestionIndex = 0;
+		private EventHandler<FormEventArgs> changeForm;
+		public event EventHandler<FormEventArgs> ChangeForm
+		{
+			add { changeForm += value; }
+			remove { changeForm -= value; }
+		}
 
 		public int CurrQuestionIndex
 		{
@@ -45,20 +60,77 @@ namespace Exam.Forms.Student
 		public QuestionPage_Teacher()
 		{
 			InitializeComponent();
-
-			LoadClassroomsComboBox("000000001");
-
+			this.FormClosing += QuestionPage_Teacher_FormClosing;
 			exam.Questions.Add(new Question());
+		}
+
+		//LoadClassroomsComboBox("000000001");
+		
+		private void QuestionPage_Teacher_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (!isFinished)
+			{
+				var dr = new DialogResult();
+				string alertString = "By clicking OK you will exit the test builder.\r\n " +
+											 "Your test will not be saved!";
+				AlertMessage alertForm = new AlertMessage(alertString);
+				dr = alertForm.ShowDialog();
+				if (dr == DialogResult.Cancel)
+				{
+					e.Cancel = true;
+				}
+			}
+		}
+
+		public QuestionPage_Teacher(User user) : this()
+		{
+			this.user = user;
+			controller = new QuestionBuilderController(user, QuestionBuilder);
+			LoadClassroomsComboBox(); // needs id parameter
 		}
 
 		#region Saar's
 		private void FinishButton_Click(object sender, EventArgs e)
 		{
-			CreateXMLFiles();
+			UpdateCurrQuestion();
 
-			// SAVE TO SQL
+			if (!string.IsNullOrWhiteSpace(TitleTextBox.Text))
+			{
+				if (char.IsLetter(TitleTextBox.Text[0]))
+				{
+
+					using (var unit = new UnitOfWork(new DAL.ExamContext()))
+					{
+						unit.Exams.Add(this.exam);
+						unit.Complete();
+						CreateXMLFiles();
+						//unit.Exams.Add(this.exam);
+						unit.Complete();
+
+						for (int i = 0; i < exam.Questions.Count; i++)
+						{
+							if (exam.Questions[i].QuestionImage != null)
+							{
+								unit.QImages.Add(new QImage { Id = i, ExamId = exam.Id, QuestionImage = ImageToByteArray(exam.Questions[i].QuestionImage) }); 
+							}
+						}
+
+						unit.Complete();
+					}
+					// SAVE TO SQL
+					user.Classrooms.ElementAt(selectedClassroom).Exams.Add(exam);
+					isFinished = true;
+					this.Close();
+				}
+				else
+					MessageBox.Show("Exam title must begin with a letter");
+			}
+			else
+				MessageBox.Show("Please Enter Exam Title");
+
 		}
 
+		#region XML Methods
 		public void CreateXMLFiles()
 		{
 			CreateGradesFile();
@@ -72,11 +144,12 @@ namespace Exam.Forms.Student
 				titleNoSpace = titleNoSpace.Replace(" ", string.Empty);
 			}
 			string fileName = ($"{titleNoSpace}_{exam.Id}.xml");
-			var filePath = SetFilePath(fileName, "ExamsGrades");
+			string dirName = "ExamsGrades";
+			var filePath = SetFilePath(fileName, dirName);
 
 			XElement xEntity = new XElement($"{titleNoSpace}_{exam.Id}");
 			xEntity.Save(filePath);
-			exam.GradesPath = filePath;
+			exam.GradesPath = $"{dirName}\\{fileName}";
 		}
 
 		public void CreateQuestionsFile()
@@ -122,24 +195,27 @@ namespace Exam.Forms.Student
 				}
 			}
 			xEntity.Add(xQuestions);
-			var dirPath = Directory.GetCurrentDirectory();
+			//var dirPath = Directory.GetCurrentDirectory();
 			string fileName = ($"{titleNoSpace}_{exam.Id}.xml");
-			var filePath = SetFilePath(fileName, "ExamsQuestions");
+			string dirName = "ExamsQuestions";
+			var filePath = SetFilePath(fileName, dirName);
 			xEntity.Save(filePath);
-			exam.QuestionsPath = filePath;
+			exam.QuestionsPath = $"{dirName}\\{fileName}";
 		}
 
 
 		private string SetFilePath(string fileName, string dirName)
 		{
 			var dirPath = Directory.GetCurrentDirectory();
-			if (!Directory.Exists($"{dirPath}\\"))
+			if (!Directory.Exists($"{dirPath}\\{dirName}"))
 			{
 				Directory.CreateDirectory($"{dirPath}\\{dirName}");
 			}
 			var filePath = $"{dirPath}\\{dirName}\\{fileName}";
 			return filePath;
 		}
+		#endregion
+
 		#endregion
 
 		#region Peer's
@@ -183,6 +259,7 @@ namespace Exam.Forms.Student
 			exam.Questions[CurrQuestionIndex].QuestionDescription = QuestionBuilder.Description;
 			exam.Questions[CurrQuestionIndex].QuestionText = QuestionBuilder.QuestionText;
 			exam.Questions[CurrQuestionIndex].RightAnswer = QuestionBuilder.RightAnswer;
+			exam.Questions[CurrQuestionIndex].QuestionImage = QuestionBuilder.QuestionImage;
 		}
 
 		private void PreviousButton_Click(object sender, EventArgs e)
@@ -215,19 +292,26 @@ namespace Exam.Forms.Student
 			QuestionBuilder.Description = currQuestion.QuestionDescription;
 			QuestionBuilder.QuestionText = currQuestion.QuestionText;
 			QuestionBuilder.RightAnswer = currQuestion.RightAnswer;
+			QuestionBuilder.QuestionImage = currQuestion.QuestionImage;
 		}
 
-		private void LoadClassroomsComboBox(string teacherId)
+		private void LoadClassroomsComboBox()
 		{
-			using (var unit = new UnitOfWork(new DAL.ExamContext()))
-			{
-				List<Classroom> classrooms = unit.Users.GetById(teacherId).Classrooms.ToList();
-				ClassroomsComboBox.ValueMember = "Id";
-				ClassroomsComboBox.DisplayMember = "Name";
-				ClassroomsComboBox.DataSource = classrooms;
+			//using (var unit = new UnitOfWork(new DAL.ExamContext()))
+			//{
+			//	List<Classroom> classrooms = unit.Users.GetById(teacherId).Classrooms.ToList();
 
-				unit.Complete();
+			//	unit.Complete();
+			//}
+			List<string> classroomsList = new List<string>();
+			foreach (Classroom classroom in user.Classrooms)
+			{
+				classroomsList.Add(classroom.Name);
 			}
+			ClassroomsComboBox.DataSource = classroomsList;
+			//ClassroomsComboBox.ValueMember = "Id";
+			//	ClassroomsComboBox.DisplayMember = "Name";
+			//	ClassroomsComboBox.DataSource = user.Classrooms;
 		}
 
 		private void TitleTextBox_TextChanged(object sender, EventArgs e)
@@ -237,9 +321,36 @@ namespace Exam.Forms.Student
 
 		private void ClassroomsComboBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			exam.ClassroomId = (int)ClassroomsComboBox.SelectedValue;
+			selectedClassroom = ClassroomsComboBox.SelectedIndex;
+			exam.ClassroomId = user.Classrooms.ElementAt(selectedClassroom).Id;
+		}
+
+		// from https://stackoverflow.com/questions/25400555/save-and-retrieve-image-binary-from-sql-server-using-entity-framework-6
+		public byte[] ImageToByteArray(Image imageIn)
+		{
+			using (var ms = new MemoryStream())
+			{
+				imageIn.Save(ms, ImageFormat.Gif);
+
+				return ms.ToArray();
+			}
+		}
+
+		// from https://stackoverflow.com/questions/25400555/save-and-retrieve-image-binary-from-sql-server-using-entity-framework-6
+		public Image ByteArrayToImage(byte[] byteArrayIn)
+		{
+			using (var ms = new MemoryStream(byteArrayIn))
+			{
+				var returnImage = Image.FromStream(ms);
+
+				return returnImage;
+			}
 		}
 		#endregion
 
+		public void FormShowDialog()
+		{
+			this.ShowDialog();
+		}
 	}
 }

@@ -24,8 +24,9 @@ namespace DAL
         public DbSet<Exam> Exams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
+        public DbSet<QImage> QImages { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>()
 						.HasMany<Classroom>(u => u.Classrooms)

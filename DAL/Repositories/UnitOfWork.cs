@@ -14,6 +14,7 @@ namespace DAL.Repositories
 		public EFRepository<Exam> Exams { get; private set; }
 		public EFRepository<User> Users { get; private set; }
 		public EFRepository<Classroom> Classrooms { get; private set; }
+		public EFRepository<QImage> QImages { get; private set; }
 
 		public UnitOfWork(ExamContext context)
 		{
@@ -21,6 +22,7 @@ namespace DAL.Repositories
 			Exams = new EFRepository<Exam>(_context);
 			Users = new EFRepository<User>(_context);
 			Classrooms = new EFRepository<Classroom>(_context);
+			QImages = new EFRepository<QImage>(_context);
 		}
 
 		public int Complete()

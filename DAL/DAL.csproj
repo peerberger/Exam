@@ -89,16 +89,24 @@
       <DependentUpon>202007281735293_addNotMapped.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202008091821419_Add-Exam.Time.cs" />
-    <Compile Include="Migrations\202008091821419_Add-Exam.Time.Designer.cs">
+    <Compile Include="Migrations\202008091821419_Add-Exam.Time.designer.cs">
       <DependentUpon>202008091821419_Add-Exam.Time.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202008120458433_User.Exams-NotMapped.cs" />
-    <Compile Include="Migrations\202008120458433_User.Exams-NotMapped.Designer.cs">
+    <Compile Include="Migrations\202008120458433_User.Exams-NotMapped.designer.cs">
       <DependentUpon>202008120458433_User.Exams-NotMapped.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202008120531461_Drop-Exam.ForMigration.cs" />
-    <Compile Include="Migrations\202008120531461_Drop-Exam.ForMigration.Designer.cs">
+    <Compile Include="Migrations\202008120531461_Drop-Exam.ForMigration.designer.cs">
       <DependentUpon>202008120531461_Drop-Exam.ForMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008261602124_Add-QImages-Table.cs" />
+    <Compile Include="Migrations\202008261602124_Add-QImages-Table.designer.cs">
+      <DependentUpon>202008261602124_Add-QImages-Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008261740120_Mod-QImages-CompositeKeys.cs" />
+    <Compile Include="Migrations\202008261740120_Mod-QImages-CompositeKeys.designer.cs">
+      <DependentUpon>202008261740120_Mod-QImages-CompositeKeys.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008120531461_Drop-Exam.ForMigration.resx">
       <DependentUpon>202008120531461_Drop-Exam.ForMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008261602124_Add-QImages-Table.resx">
+      <DependentUpon>202008261602124_Add-QImages-Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008261740120_Mod-QImages-CompositeKeys.resx">
+      <DependentUpon>202008261740120_Mod-QImages-CompositeKeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

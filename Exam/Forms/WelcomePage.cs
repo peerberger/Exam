@@ -16,9 +16,9 @@ using System.Windows.Forms;
 
 namespace Exam
 {
-    public partial class WelcomePage_Student : Form, IAppsForms
+    public partial class WelcomePage : Form, IAppsForms
     {
-        public StudentWelcomePageController welcomeController;
+        public IWelcomePageController welcomeController;
         private EventHandler<FormEventArgs> changeForm;
         public event EventHandler<FormEventArgs> ChangeForm
         {
@@ -32,7 +32,7 @@ namespace Exam
             remove { changeForm -= value; }
         }
 
-        public WelcomePage_Student()
+        public WelcomePage()
         {
             InitializeComponent();
 
@@ -44,16 +44,50 @@ namespace Exam
             //}
         }
 
-        public WelcomePage_Student(User user) : this()
+        public WelcomePage(User user) : this()
         {
-            welcomeController =
-            new StudentWelcomePageController(user, WelcomeStudentView);
-            welcomeController.StartExam += WelcomeController_StartExam;
+            if(user.Role == Users.Teacher)
+            {
+                //Setting controller to UC
+                WelcomeTeacherViewUC view = new WelcomeTeacherViewUC();
+                SetViewToForm(view);
+                TeacherWelcomePageController controller = new Controllers.TeacherWelcomePageController(user, view);
+                controller.BuildExam += Controller_BuildExam;
+            }
+            else if (user.Role == Users.Student)
+            {
+                WelcomeStudentViewUC view = new WelcomeStudentViewUC();
+                SetViewToForm(view);
+                StudentWelcomePageController controller = new StudentWelcomePageController(user, view);
+                controller.StartExam += WelcomeController_StartExam;
+                welcomeController = controller;
+            }
+
+        }
+
+        private void SetViewToForm(WelcomeView view)
+        {
+            view.Location = new System.Drawing.Point(3, 128);
+            view.Name = "WelcomeSView";
+            view.Size = new System.Drawing.Size(794, 319);
+            view.TabIndex = 3;
+            this.TableLayout.Controls.Add(view, 0, 1);
+        }
+
+        private void Controller_BuildExam(object sender, EventArgs e)
+        {
+            changeForm.Invoke(this, new FormEventArgs(sender));
         }
 
         private void WelcomeController_StartExam(object sender, EventArgs e)
         {
             changeForm.Invoke(this, new FormEventArgs(sender));
         }
+
+        public void FormShowDialog()
+        {
+            this.ShowDialog();
+        }
     }
 }
+

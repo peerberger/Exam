@@ -38,8 +38,8 @@
 			this.QuestionNumberLabel = new System.Windows.Forms.Label();
 			this.FinishButton = new System.Windows.Forms.Button();
 			this.PreviousButton = new System.Windows.Forms.Button();
-			this.QuestionBuilder = new Exam.UserControls.QuestionBuilderUC();
 			this.OpenImageFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.QuestionBuilder = new Exam.UserControls.QuestionBuilderUC();
 			this.TableLayout.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -185,6 +185,10 @@
 			this.PreviousButton.UseVisualStyleBackColor = true;
 			this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
 			// 
+			// OpenImageFileDialog
+			// 
+			this.OpenImageFileDialog.FileName = "openFileDialog1";
+			// 
 			// QuestionBuilder
 			// 
 			this.TableLayout.SetColumnSpan(this.QuestionBuilder, 3);
@@ -192,6 +196,7 @@
 			this.QuestionBuilder.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.QuestionBuilder.Location = new System.Drawing.Point(3, 3);
 			this.QuestionBuilder.Name = "QuestionBuilder";
+			this.QuestionBuilder.QuestionImage = null;
 			this.QuestionBuilder.QuestionText = "When and what did who do for how much?";
 			this.QuestionBuilder.QuestionTypeMultiple = true;
 			this.QuestionBuilder.QuestionTypeOpen = false;
@@ -199,10 +204,6 @@
 			this.TableLayout.SetRowSpan(this.QuestionBuilder, 6);
 			this.QuestionBuilder.Size = new System.Drawing.Size(674, 374);
 			this.QuestionBuilder.TabIndex = 14;
-			// 
-			// OpenImageFileDialog
-			// 
-			this.OpenImageFileDialog.FileName = "openFileDialog1";
 			// 
 			// QuestionPage_Teacher
 			// 
