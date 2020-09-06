@@ -64,6 +64,8 @@ namespace Exam.Forms.Student
 			exam.Questions.Add(new Question());
 		}
 
+		//LoadClassroomsComboBox("000000001");
+		
 		private void QuestionPage_Teacher_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (!isFinished)
@@ -84,7 +86,7 @@ namespace Exam.Forms.Student
 		{
 			this.user = user;
 			controller = new QuestionBuilderController(user, QuestionBuilder);
-			LoadClassroomsComboBox();
+			LoadClassroomsComboBox(); // needs id parameter
 		}
 
 		#region Saar's
