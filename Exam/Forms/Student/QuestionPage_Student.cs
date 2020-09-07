@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL;
 using Exam.Controllers;
 using Exam.Forms;
 using Exam.Student;
@@ -42,7 +43,7 @@ namespace Exam
         {
             InitializeComponent();
             _exam = exam;
-            _exam.LoadQuestions();
+            XmlHandler.LoadExamQuestions(_exam);
             questionNumber = 0;
             this.UpdateQuestionNumberLabel();
             if (_exam.Questions.Count != 0 && _exam.Questions != null)
