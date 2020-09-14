@@ -34,9 +34,9 @@ Student Question Page/Exam in progress -
 Link between image and and question - DONE
 -Image has exam_id and image_id
 -image_id = question index
----> add image_id elemnt to XML file -> if element exists -> get image
-Convert image from DB to model
+---> add image_id elemnt to XML file -> if element exists -> get image - DONE - Needs Cheking
+Convert image from DB to model - DONE converted to Image - figure how to show it
 Integrate into Exam
 
 
-
+Check if QuestionXMLRepository is Needed

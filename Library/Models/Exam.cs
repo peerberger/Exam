@@ -27,7 +27,7 @@ namespace Library.Models
         public bool IsAnswered { get; set; }
         public string GradesPath { get; set; }
         public int? Time { get; set; }
-        
+
 
         public Exam()
         {
@@ -45,50 +45,15 @@ namespace Library.Models
 
         }
 
-        public void LoadQuestions()
+       
+        private Image ByteArrayToImage(byte[] byteArrayIn)
         {
-
-            string dirpath = Directory.GetCurrentDirectory();
-            string filePath = dirpath + "\\" + this.QuestionsPath;
-            try
+            using (var ms = new MemoryStream(byteArrayIn))
             {
+                var returnImage = Image.FromStream(ms);
 
-                var xml = XDocument.Load(filePath);
-                XElement elementXml = XElement.Parse(xml.ToString());
-                //   exam.Title = elementXml.Name.ToString().Replace("_", " ");
-                var questionsElement = elementXml.Elements();
-                foreach (var question in questionsElement.Elements())
-                {
-                    if (question.Name == "MultipleChoiseTextQuestion")
-                    {
-
-                        MultipleChoiceTextQuestion multipleChoise = new MultipleChoiceTextQuestion();
-                        multipleChoise.QuestionText = question.Element("QuestionText").Value;
-                        multipleChoise.Points = double.Parse(question.Element("Points").Value);
-                        multipleChoise.RightAnswer = question.Element("RightAnswer").Value;
-                        var answers = question.Element("Answers");
-                        foreach (var answer in answers.Elements())
-                        {
-                            multipleChoise.Answers.Add(answer.Value);
-                        }
-                        this.Questions.Add(multipleChoise);
-                    }
-                    else if (question.Name == "OpenQuestion")
-                    {
-                        OpenQuestion openQuestion = new OpenQuestion();
-                        openQuestion.QuestionText = question.Element("QuestionText").Value;
-                        openQuestion.Points = double.Parse(question.Element("Points").Value);
-                        openQuestion.RightAnswer = question.Element("RightAnswer").Value;
-                        openQuestion.QuestionDescription = question.Element("QuestionDescription").Value;
-                        this.Questions.Add(openQuestion);
-                    }
-                }
+                return returnImage;
             }
-            catch
-            {
-
-            }
-
         }
 
 

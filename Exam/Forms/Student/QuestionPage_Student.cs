@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL;
 using Exam.Controllers;
 using Exam.Forms;
 using Exam.Student;
@@ -21,6 +22,7 @@ namespace Exam
     {
         public Library.Models.Exam _exam;
         public int questionNumber;
+        private bool imgShowen;
         private QuestionController questionController;
         private TimerController timerController;
         private TimeBarUC timeBarView;
@@ -42,7 +44,7 @@ namespace Exam
         {
             InitializeComponent();
             _exam = exam;
-            _exam.LoadQuestions();
+            XmlHandler.LoadExamQuestions(_exam);
             questionNumber = 0;
             this.UpdateQuestionNumberLabel();
             if (_exam.Questions.Count != 0 && _exam.Questions != null)
@@ -79,7 +81,7 @@ namespace Exam
         private void TimerController_TimeOver(object sender, EventArgs e)
         {
             //Time Over - End Test
-            MessageBox.Show("Exam time ran out!\r\nPlease click OK to continue.","Time Over");
+            MessageBox.Show("Exam time ran out!\r\nPlease click OK to continue.", "Time Over");
             GradeExam();
         }
 
@@ -134,18 +136,30 @@ namespace Exam
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            NextButton.Enabled = false;
             PreviousButton.Enabled = true;
             questionController.UpdateIsRightAnswer();
-            questionNumber++;
+            if (!imgShowen)
+            {
+                questionNumber++;
+            }
+            NextButton.Enabled = false;
             if (questionNumber < _exam.Questions.Count)
             {
                 this.UpdateQuestionNumberLabel();
+                if (_exam.Questions[questionNumber].QuestionImage != null && !imgShowen)
+                {
+                    NextButton.Enabled = true;
+                    imgShowen = true;
+                    questionController.ShowImage(_exam.Questions[questionNumber]);
+                    return;
+                }
+
                 questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
                 if (questionNumber == _exam.Questions.Count - 1)
                 {
                     this.NextButton.Text = "Finish";
                 }
+                imgShowen = false;
             }
             else
             {
@@ -154,6 +168,7 @@ namespace Exam
                 InitializeFinishUC();
 
             }
+
         }
         private void FinishMessage_ButtonClicked(object sender, EventArgs e)
         {
@@ -162,13 +177,26 @@ namespace Exam
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
-
-            questionNumber--;
-            this.UpdateQuestionNumberLabel();
-            questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
-            if (questionNumber == 0)
+            if (NextButton.Text == "Finish")
             {
-                PreviousButton.Enabled = false;
+                NextButton.Text = "Next";
+            }
+            if (_exam.Questions[questionNumber].QuestionImage != null && !imgShowen)
+            {
+                imgShowen = true;
+                questionController.ShowImage(_exam.Questions[questionNumber]);
+                NextButton.Enabled = true;
+            }
+            else
+            {
+
+                questionNumber--;
+                this.UpdateQuestionNumberLabel();
+                questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
+                if (questionNumber == 0)
+                {
+                    PreviousButton.Enabled = false;
+                }
             }
             //else
             //{
@@ -181,10 +209,10 @@ namespace Exam
         private void QuestionPage_Student_FormClosing(object sender, FormClosingEventArgs e)
         {
             var formSender = sender as QuestionPage_Student;
-             if(!  formSender._exam.IsAnswered)
+            if (!formSender._exam.IsAnswered)
             {
-            MessageBox.Show("You can't quit a test \r\nonce you've started", "Test In Progress");
-            e.Cancel = true;
+                MessageBox.Show("You can't quit a test \r\nonce you've started", "Test In Progress");
+                e.Cancel = true;
             }
         }
 
