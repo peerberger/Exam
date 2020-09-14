@@ -42,6 +42,7 @@ namespace DAL
             int index = 0;
             foreach (var question in exam.Questions)
             {
+                
                 if (question is MultipleChoiceTextQuestion)
                 {
                     MultipleChoiceTextQuestion multipleText = question as MultipleChoiceTextQuestion;
@@ -61,7 +62,7 @@ namespace DAL
                     });
                     if (multipleText.QuestionImage != null)
                     {
-                        xQuestion.Add("Image_Id", index);
+                        xQuestion.Add(new XElement("Image_Id", index));
                     }
                     xQuestions.Add(xQuestion);
                 }
@@ -76,7 +77,7 @@ namespace DAL
                     });
                     if (openQuestion.QuestionImage != null)
                     {
-                        xQuestion.Add("Image_Id", index);
+                        xQuestion.Add(new XElement("Image_Id", index));
                     }
                     xQuestions.Add(xQuestion);
                 }

@@ -64,5 +64,10 @@ namespace Exam.Controllers
                 }
             }
         }
+
+        public void ShowImage(IQuestion question)
+        {
+            _view.LoadImage(question.QuestionImage);
+        }
     }
 }

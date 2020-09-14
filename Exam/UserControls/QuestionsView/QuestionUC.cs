@@ -19,6 +19,7 @@ namespace Exam.Student
         private Random rng = new Random();
         private List<RadioButton> _answers = new List<RadioButton>();
         private string openQuestionAnswer;
+        private PictureBox Img;
         QuestionController _controller;
         private EventHandler questionAnswered;
         public event EventHandler QuestionAnswered
@@ -41,6 +42,15 @@ namespace Exam.Student
 
         public void LoadQuestion(IQuestion question)
         {
+            var pictureBoxArr = this.Controls.Find("pictureBox", true);
+            if(pictureBoxArr.Length > 0)
+            {
+                this.TableLayout.Controls.Remove(pictureBoxArr[0]);
+                this.DescriptionTextBox.Visible = true;
+                this.QuestionTextBox.Visible = true;
+                this.AnswersFlowLayout.Visible = true;
+
+            }
             _answers.Clear();
             if (question is MultipleChoiceQuestion)
             {
@@ -86,6 +96,20 @@ namespace Exam.Student
                 this.AnswersFlowLayout.Controls.Add(radioButton);
 
             }
+        }
+
+        public void LoadImage(Image img)
+        {
+            this.DescriptionTextBox.Visible = false;
+            this.QuestionTextBox.Visible = false;
+            this.AnswersFlowLayout.Visible = false;
+            Img = new PictureBox();
+            Img.Image = img;
+            Img.Name = "pictureBox";
+            Img.Dock = DockStyle.Fill;
+            this.Img.SizeMode = PictureBoxSizeMode.Zoom;
+            this.TableLayout.Controls.Add(Img);
+            this.TableLayout.SetRowSpan(Img, 3);
         }
         #endregion
 

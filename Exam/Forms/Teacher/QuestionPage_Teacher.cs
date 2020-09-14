@@ -71,11 +71,11 @@ namespace Exam.Forms.Student
 		{
 			if (!isFinished)
 			{
-				var dr = new DialogResult();
+				//var dr = new DialogResult();
 				string alertString = "By clicking OK you will exit the test builder.\r\n " +
 											 "Your test will not be saved!";
 				AlertMessage alertForm = new AlertMessage(alertString);
-				dr = alertForm.ShowDialog();
+				DialogResult dr = alertForm.ShowDialog();
 				if (dr == DialogResult.Cancel)
 				{
 					e.Cancel = true;
