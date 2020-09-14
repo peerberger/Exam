@@ -7,6 +7,8 @@ Question Builder -
 -Finish test button on non complete question alert
 -BUG: When moving foreward and backward, some answers glitch into other questions
 -- right answer to be added to options automatically
+-Points per question? Validation of total points? what do we want to do?
+-Exam time isn't changeable
 
 
 
@@ -15,14 +17,21 @@ Question Builder -
 
 XML Stuff -
 -Add alert to whenever reading XML file fails
--Try combining all XML Methods to one class --- DRY
 
 
 WelcomePage -
 -Add Logout button
 
+Student Welcome Page -
+-Exams List box resize + add scrolling option
 
-Link between image and and question
+Student Question Page/Exam in progress -
+- going previous and next deletes the selected answer. -> retrieve selected answer and show in UC
+
+
+
+
+Link between image and and question - DONE
 -Image has exam_id and image_id
 -image_id = question index
 ---> add image_id elemnt to XML file -> if element exists -> get image
