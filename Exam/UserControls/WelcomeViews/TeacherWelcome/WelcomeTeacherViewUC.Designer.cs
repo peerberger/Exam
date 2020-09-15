@@ -111,12 +111,16 @@
             // 
             // GradesGridView
             // 
+            this.GradesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.GradesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TableLayout.SetColumnSpan(this.GradesGridView, 2);
             this.GradesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GradesGridView.Location = new System.Drawing.Point(76, 118);
+            this.GradesGridView.MultiSelect = false;
             this.GradesGridView.Name = "GradesGridView";
             this.TableLayout.SetRowSpan(this.GradesGridView, 2);
+            this.GradesGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.GradesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GradesGridView.Size = new System.Drawing.Size(250, 159);
             this.GradesGridView.TabIndex = 7;
             // 

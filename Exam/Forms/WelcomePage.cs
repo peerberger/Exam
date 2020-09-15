@@ -88,6 +88,11 @@ namespace Exam
         {
             this.ShowDialog();
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

@@ -20,9 +20,9 @@ XML Stuff -
 
 
 WelcomePage -
--Add Logout button
+-Add Logout button - DONE
 
-Student Welcome Page -
+Student Welcome Page - DONE
 -Exams List box resize + add scrolling option
 
 Student exam start - show the time of the test (startpage) if timed
