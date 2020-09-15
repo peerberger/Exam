@@ -18,6 +18,7 @@ namespace Exam.Student
 		//	void LoadQuestion();
 		void LoadImage(Image img);
 		event EventHandler QuestionAnswered;
+		string UserAnswer { get; set; }
 
 	}
 }

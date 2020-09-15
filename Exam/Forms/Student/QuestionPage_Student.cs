@@ -20,6 +20,7 @@ namespace Exam
 
     public partial class QuestionPage_Student : Form, IAppsForms
     {
+        private FinishMessageUC finishMessage;
         public Library.Models.Exam _exam;
         public int questionNumber;
         private bool imgShowen;
@@ -43,6 +44,7 @@ namespace Exam
         public QuestionPage_Student(Library.Models.Exam exam)
         {
             InitializeComponent();
+            InitializeFinishUC();
             _exam = exam;
             XmlHandler.LoadExamQuestions(_exam);
             questionNumber = 0;
@@ -97,7 +99,7 @@ namespace Exam
         }
         private void InitializeFinishUC()
         {
-            var finishMessage = new FinishMessageUC();
+            finishMessage = new FinishMessageUC();
             this.TableLayout.Controls.Add(finishMessage, 0, 1);
 
             this.TableLayout.SetColumnSpan(finishMessage, 3);
@@ -105,6 +107,7 @@ namespace Exam
             finishMessage.Location = new System.Drawing.Point(3, 48);
             finishMessage.Name = "finishMessage";
             finishMessage.ButtonClicked += FinishMessage_ButtonClicked;
+            finishMessage.Visible = false;
         }
 
 
@@ -137,7 +140,7 @@ namespace Exam
         private void NextButton_Click(object sender, EventArgs e)
         {
             PreviousButton.Enabled = true;
-            questionController.UpdateIsRightAnswer();
+            questionController.UpdateAnswer();
             if (!imgShowen)
             {
                 questionNumber++;
@@ -163,9 +166,9 @@ namespace Exam
             }
             else
             {
-                this.TableLayout.Controls.Remove(Question);
-                this.Question.Dispose();
-                InitializeFinishUC();
+                //  this.TableLayout.Controls.Remove(Question);
+                this.Question.Visible = false;
+                finishMessage.Visible = true;
 
             }
 
@@ -177,31 +180,43 @@ namespace Exam
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
-            if (NextButton.Text == "Finish")
+            questionController.UpdateAnswer();
+            if (finishMessage.Visible)
             {
-                NextButton.Text = "Next";
-            }
-            if (_exam.Questions[questionNumber].QuestionImage != null && !imgShowen)
-            {
-                imgShowen = true;
-                questionController.ShowImage(_exam.Questions[questionNumber]);
-                NextButton.Enabled = true;
+                finishMessage.Visible = false;
+                this.Question.Visible = true;
+                questionNumber--;
             }
             else
             {
-
-                questionNumber--;
-                this.UpdateQuestionNumberLabel();
-                questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
-                if (questionNumber == 0)
+                if (NextButton.Text == "Finish")
                 {
-                    PreviousButton.Enabled = false;
+                    NextButton.Text = "Next";
                 }
+                if (_exam.Questions[questionNumber].QuestionImage != null && !imgShowen)
+                {
+                    imgShowen = true;
+                    questionController.ShowImage(_exam.Questions[questionNumber]);
+                    NextButton.Enabled = true;
+                }
+                else
+                {
+
+                    questionNumber--;
+                    this.UpdateQuestionNumberLabel();
+                    questionController.UpdateQuestionView(_exam.Questions[questionNumber]);
+                    if (questionNumber == 0)
+                    {
+                        PreviousButton.Enabled = false;
+                    }
+                    imgShowen = false;
+
+                }
+                //else
+                //{
+                //    //MessageBox.Show("This is the start");
+                //}
             }
-            //else
-            //{
-            //    //MessageBox.Show("This is the start");
-            //}
         }
 
 

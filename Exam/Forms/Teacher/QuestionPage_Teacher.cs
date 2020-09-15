@@ -100,7 +100,7 @@ namespace Exam.Forms.Student
 				if (char.IsLetter(TitleTextBox.Text[0]))
 				{
 
-					using (var unit = new UnitOfWork(new DAL.ExamContext()))
+					using (var unit = new UnitOfWork(new ExamContext()))
 					{
 						unit.Exams.Add(this.exam);
 						unit.Complete();

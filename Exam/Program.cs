@@ -9,6 +9,7 @@ using DAL.Repositories;
 using Library.Models;
 using Exam.Forms;
 using System.IO;
+using DAL;
 
 namespace Exam
 {
@@ -45,7 +46,7 @@ namespace Exam
 
 		static void RepopulateUsers()
 		{
-			using (var unit = new UnitOfWork(new DAL.ExamContext()))
+			using (var unit = new UnitOfWork(new ExamContext()))
 			{
 				var users = unit.Users.GetAll();
 				unit.Users.RemoveRange(users);
@@ -76,7 +77,7 @@ namespace Exam
 
 		static void RepopulateClassrooms()
 		{
-			using (var unit = new UnitOfWork(new DAL.ExamContext()))
+			using (var unit = new UnitOfWork(new ExamContext()))
 			{
 				var classrooms = unit.Classrooms.GetAll();
 				unit.Classrooms.RemoveRange(classrooms);
@@ -96,7 +97,7 @@ namespace Exam
 
 		static void AssignUsersToClassooms()
 		{
-			using (var unit = new UnitOfWork(new DAL.ExamContext()))
+			using (var unit = new UnitOfWork(new ExamContext()))
 			{
 				List<User> teachers = unit.Users.Find(u => u.Role == Users.Teacher).ToList();
 				List<User> students = unit.Users.Find(u => u.Role == Users.Student).ToList();

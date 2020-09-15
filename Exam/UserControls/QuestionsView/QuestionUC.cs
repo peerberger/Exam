@@ -30,7 +30,7 @@ namespace Exam.Student
 
         public string QuestionText { get => QuestionTextBox.Text; set => QuestionTextBox.Text = value; }
         public string QuestionDescription { get => DescriptionTextBox.Text; set => DescriptionTextBox.Text = value; }
-
+        public string UserAnswer { get; set; }
         public QuestionUC()
         {
             InitializeComponent();
@@ -68,6 +68,7 @@ namespace Exam.Student
             AnswersFlowLayout.Controls.Clear();
             TextBox answerTextBox = new TextBox() { Margin = new Padding(10) };
             answerTextBox.TextChanged += AnswerTextBox_TextChanged;
+            answerTextBox.Text = UserAnswer;
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
 
@@ -90,6 +91,10 @@ namespace Exam.Student
 
                 radioButton.Margin = new Padding(10);
                 radioButton.Text = answer;
+                if (answer == UserAnswer)
+                {
+                    radioButton.Checked = true;
+                }
 
                 _answers.Add(radioButton);
 
@@ -111,9 +116,6 @@ namespace Exam.Student
             this.TableLayout.Controls.Add(Img);
             this.TableLayout.SetRowSpan(Img, 3);
         }
-        #endregion
-
-        #region Events 
         private void ShuffleList<T>(IList<T> list)
         {
             int n = list.Count;
@@ -126,16 +128,20 @@ namespace Exam.Student
                 list[n] = value;
             }
         }    
+        #endregion
+
+        #region Events 
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
+            UserAnswer = radioButton.Text;
             questionAnswered.Invoke(this, null);
 
         }
 
         private void AnswerTextBox_TextChanged(object sender, EventArgs e)
         {
-            openQuestionAnswer = (sender as TextBox).Text;
+            UserAnswer = (sender as TextBox).Text;
             questionAnswered.Invoke(this, null);
         }
 

@@ -15,6 +15,7 @@ namespace Library.Models
         bool IsAnswered { get; set; }
         bool IsCorrect { get; set; }
         string RightAnswer { get; set; }
+        string UserAnswer { get; set; }
         Image QuestionImage { get; set; }
     }
 }

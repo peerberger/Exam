@@ -27,6 +27,7 @@ namespace Exam.Controllers
 
         private void _view_QuestionAnswered(object sender, EventArgs e)
         {
+            _question.UserAnswer = _view.UserAnswer;
             QuestionAnswered.Invoke(this, null);
         }
 
@@ -48,17 +49,26 @@ namespace Exam.Controllers
 
         private void LoadQuestionToView()
         {
+            if (_question.IsAnswered)
+            {
+                _view.UserAnswer = _question.UserAnswer;
+            }
+            else
+            {
+                _view.UserAnswer = "";
+            }
             _view.QuestionDescription = _question.QuestionDescription;
             _view.QuestionText = _question.QuestionText;
             _view.LoadQuestion(_question);
         }
-        public void UpdateIsRightAnswer()
+        public void UpdateAnswer()
         {
-            string userAnswer = _view.GetAnswer();
-            if (userAnswer != null)
+            _question.UserAnswer = _view.UserAnswer;
+
+            if (_question.UserAnswer != null)
             {
                 _question.IsAnswered = true;
-                if (userAnswer == _question.RightAnswer)
+                if (_question.UserAnswer == _question.RightAnswer)
                 {
                     _question.IsCorrect = true;
                 }

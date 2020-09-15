@@ -16,6 +16,6 @@ namespace Library.Models.Questions
 		public bool IsAnswered { get; set; }
 		public bool IsCorrect { get; set; }
 		public Image QuestionImage { get; set; }
-
+		public string UserAnswer { get; set; }
 	}
 }
