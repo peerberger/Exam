@@ -13,19 +13,11 @@ namespace Exam.UserControls
 {
 	public partial class WelcomeStudentViewUC : WelcomeView, IStudentWelcomePage
 	{
-        private bool firstInitialize;
         public int SelectedExam { get; set; }
         public object ExamsDataSource
         {
             get => GradesGridView.DataSource;
-            set
-            {
-                GradesGridView.DataSource = value;
-                if (value != null)
-                {
-                    ResizeDataGrid();
-                }
-            }
+            set { GradesGridView.DataSource = value; }
         }
 
         private StudentWelcomePageController _controller;
@@ -45,7 +37,6 @@ namespace Exam.UserControls
         public WelcomeStudentViewUC()
         {
             InitializeComponent();
-            firstInitialize = true;
         }
         #region Events
 
@@ -94,22 +85,7 @@ namespace Exam.UserControls
             return _controller.user.Exams[index].IsAnswered;
         }
 
-        //Resizinf the DataGridView around the data
-        private void ResizeDataGrid()
-        {
-            DataGridViewElementStates states = DataGridViewElementStates.None;
-            GradesGridView.ScrollBars = ScrollBars.None;
-
-            var totalHeight = GradesGridView.Rows.GetRowsHeight(states) + GradesGridView.ColumnHeadersHeight;
-            var totalWidth = GradesGridView.Columns.GetColumnsWidth(states) + GradesGridView.RowHeadersWidth;
-            if (firstInitialize)
-            {
-                totalHeight -= 8;
-                totalWidth -= 5;
-                firstInitialize = false;
-            }
-            GradesGridView.ClientSize = new Size(totalWidth, totalHeight);
-        }
+       
 
         #endregion
     }

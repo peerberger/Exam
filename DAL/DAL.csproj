@@ -114,8 +114,6 @@
     <Compile Include="Repositories\IEFRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
-    <Compile Include="Repositories\IXmlRepository.cs" />
-    <Compile Include="Repositories\QuestionsXmlRepository.cs" />
     <Compile Include="Repositories\EFRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="XmlHandler.cs" />

@@ -123,6 +123,7 @@
             this.QuestionTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.QuestionTextBox.Multiline = true;
             this.QuestionTextBox.Name = "QuestionTextBox";
+            this.QuestionTextBox.ReadOnly = true;
             this.QuestionTextBox.Size = new System.Drawing.Size(780, 76);
             this.QuestionTextBox.TabIndex = 3;
             this.QuestionTextBox.Text = "When and what did who do for how much?";
@@ -133,6 +134,7 @@
             this.DescriptionTextBox.Location = new System.Drawing.Point(10, 10);
             this.DescriptionTextBox.Margin = new System.Windows.Forms.Padding(10);
             this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.ReadOnly = true;
             this.DescriptionTextBox.Size = new System.Drawing.Size(780, 20);
             this.DescriptionTextBox.TabIndex = 5;
             // 

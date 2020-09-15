@@ -25,7 +25,9 @@ WelcomePage -
 Student Welcome Page -
 -Exams List box resize + add scrolling option
 
-Student Question Page/Exam in progress -
+Student exam start - show the time of the test (startpage) if timed
+
+Student Question Page/Exam in progress - DONE
 - going previous and next deletes the selected answer. -> retrieve selected answer and show in UC
 
 
@@ -39,4 +41,4 @@ Convert image from DB to model - DONE converted to Image - figure how to show it
 Integrate into Exam
 
 
-Check if QuestionXMLRepository is Needed
+Check if QuestionXMLRepository is Needed - DONE - Unneeded, deleted
