@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.Models;
+using Library.Models.Questions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +10,12 @@ namespace Library
 {
     public static class MockData
     {
-        public static List<Models.Classroom> classrooms = new List<Models.Classroom>();
-        public static List<Models.Exam> exams = new List<Models.Exam>();
+        public static List<Classroom> classrooms = new List<Classroom>();
+        public static List<Exam> exams = new List<Exam>();
 
         public static void LoadMocData()
         {
-            Models.Classroom class1 = new Models.Classroom();
+            Classroom class1 = new Classroom();
             class1.Id = 0;
             class1.Name = "Math";
 
@@ -22,11 +24,11 @@ namespace Library
 
             #region Exam 1 Questions
 
-            Models.MultipleChoiceTextQuestion q1 = new Models.MultipleChoiceTextQuestion();
-            Models.MultipleChoiceTextQuestion q2 = new Models.MultipleChoiceTextQuestion();
-            Models.OpenQuestion q3 = new Models.OpenQuestion();
-            Models.MultipleChoiceTextQuestion q4 = new Models.MultipleChoiceTextQuestion();
-            Models.OpenQuestion q5 = new Models.OpenQuestion();
+            MultipleChoiceTextQuestion q1 = new MultipleChoiceTextQuestion();
+            MultipleChoiceTextQuestion q2 = new MultipleChoiceTextQuestion();
+            OpenQuestion q3 = new OpenQuestion();
+            MultipleChoiceTextQuestion q4 = new MultipleChoiceTextQuestion();
+            OpenQuestion q5 = new OpenQuestion();
 
             q1.Answers.Add("16");
             q1.Answers.Add("10");
@@ -65,7 +67,7 @@ namespace Library
 
             #endregion Exam 1 Questions
 
-            Models.Exam exam1 = new Models.Exam();
+            Exam exam1 = new Exam();
             exam1.Title = "Simple Math Test";
             exam1.Id = 0;
             exam1.ClassroomId = 0;
@@ -80,10 +82,10 @@ namespace Library
             #region Math Classroom Exam2
             #region Exam 2 Questions
 
-            Models.MultipleChoiceTextQuestion q21 = new Models.MultipleChoiceTextQuestion();
-            Models.MultipleChoiceTextQuestion q22 = new Models.MultipleChoiceTextQuestion();
-            Models.OpenQuestion q23 = new Models.OpenQuestion();
-            Models.MultipleChoiceTextQuestion q24 = new Models.MultipleChoiceTextQuestion();
+            MultipleChoiceTextQuestion q21 = new MultipleChoiceTextQuestion();
+            MultipleChoiceTextQuestion q22 = new MultipleChoiceTextQuestion();
+            OpenQuestion q23 = new OpenQuestion();
+            MultipleChoiceTextQuestion q24 = new MultipleChoiceTextQuestion();
 
             q21.Answers.Add("16");
             q21.Answers.Add("10");
@@ -119,7 +121,7 @@ namespace Library
 
             #endregion Exam 2 Questions
 
-            Models.Exam exam2 = new Models.Exam();
+            Exam exam2 = new Exam();
             exam2.Title = "Simple Math Test2";
             exam2.Id = 1;
             exam2.ClassroomId = 0;
@@ -131,7 +133,7 @@ namespace Library
 
             #endregion
 
-            Models.Classroom class2 = new Models.Classroom();
+            Classroom class2 = new Classroom();
             class2.Id = 1;
             class2.Name = "Programming";
 
@@ -140,9 +142,9 @@ namespace Library
 
             #region Exam 3 Questions
 
-            Models.MultipleChoiceTextQuestion q31 = new Models.MultipleChoiceTextQuestion();
-            Models.MultipleChoiceTextQuestion q32 = new Models.MultipleChoiceTextQuestion();
-            Models.OpenQuestion q33 = new Models.OpenQuestion();
+            MultipleChoiceTextQuestion q31 = new MultipleChoiceTextQuestion();
+            MultipleChoiceTextQuestion q32 = new MultipleChoiceTextQuestion();
+            OpenQuestion q33 = new OpenQuestion();
 
             q31.Answers.Add("11");
             q31.Answers.Add("9");
@@ -170,7 +172,7 @@ namespace Library
 
             #endregion Exam 1 Questions
 
-            Models.Exam exam3 = new Models.Exam();
+            Exam exam3 = new Exam();
             exam3.Title = "Simple Programming Test";
             exam3.Id = 2;
             exam3.ClassroomId = 1;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Models
+namespace Library.Models.Questions
 {
-    public class MultipleChoiceImageQuestion:MultipleChoiceQuestion
-    {
-    }
+	public class MultipleChoiceImageQuestion : MultipleChoiceQuestion
+	{
+	}
 }

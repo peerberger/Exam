@@ -49,11 +49,16 @@ namespace Exam.Controllers
             return idEntered;
         }
 
+        internal void ClearFields()
+        {
+            _view.Id = "";
+            _view.Password = "";
+        }
 
         public void PreformLogin()
         {
             //Check Id/Password and decide if can login or not
-            //Loads User (with exam list) and passes to WelcomePage_Student
+            //Loads User (with exam list) and passes to WelcomePage
 
             User user = new User();
             string enteredId = _view.Id;
@@ -67,6 +72,20 @@ namespace Exam.Controllers
                     if (enteredPass == user.Password)
                     {
                         user.Classrooms.ToList<Classroom>();
+                        foreach (var classroom in user.Classrooms)
+                        {
+                            //user.Exams.AddRange(unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList());
+
+                            var examList = unit.Exams.Find(ex => ex.ClassroomId == classroom.Id).ToList();
+                            foreach (var exam in examList)
+                            {
+                                user.Exams.Add(exam);
+                            }
+                            if (user.Role == Users.Teacher)
+                            {
+                                classroom.Users.ToList();
+                            }
+                        }
                     }
                     else
                     {
@@ -80,6 +99,18 @@ namespace Exam.Controllers
                     return;
                 }
                 unit.Complete();
+
+            }
+            if (user.Role == Users.Teacher)
+            {
+                foreach (var classroom in user.Classrooms)
+                {
+                    classroom.Users.Remove(user);
+                }
+            }
+            else if (user.Role == Users.Student)
+            {
+                user.UpdateExamsStatus();
             }
             Login.Invoke(user, null);
         }

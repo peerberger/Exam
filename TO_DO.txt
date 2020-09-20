@@ -1,0 +1,42 @@
+Question Builder - 
+-Multiple Questions - The answer in the "Right Answer" segment to be added to Answers
+-Finish Test button also saves viewed question if not null - SEMI DONE(??) on branch Images
+															(i mean, it hasn't been saving the last
+															 question at all, so i fixed that)
+-Validate The question (all fields entered)
+-Finish test button on non complete question alert
+-BUG: When moving foreward and backward, some answers glitch into other questions
+-- right answer to be added to options automatically
+-Points per question? Validation of total points? what do we want to do?
+-Exam time isn't changeable
+
+
+
+-Create MockData Database that is shared by us both and can be transfered to gad
+----Keep in mind the location and figure a way to set it static
+
+XML Stuff -
+-Add alert to whenever reading XML file fails
+
+
+WelcomePage -
+-Add Logout button
+
+Student Welcome Page -
+-Exams List box resize + add scrolling option
+
+Student Question Page/Exam in progress -
+- going previous and next deletes the selected answer. -> retrieve selected answer and show in UC
+
+
+
+
+Link between image and and question - DONE
+-Image has exam_id and image_id
+-image_id = question index
+---> add image_id elemnt to XML file -> if element exists -> get image - DONE - Needs Cheking
+Convert image from DB to model - DONE converted to Image - figure how to show it
+Integrate into Exam
+
+
+Check if QuestionXMLRepository is Needed

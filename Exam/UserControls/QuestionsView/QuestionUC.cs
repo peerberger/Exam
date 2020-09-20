@@ -10,13 +10,16 @@ using System.Windows.Forms;
 using Exam.UserControls;
 using Exam.Controllers;
 using Library.Models;
+using Library.Models.Questions;
 
 namespace Exam.Student
 {
-	public partial class QuestionUC : UserControl, IQuestionView
+    public partial class QuestionUC : UserControl, IQuestionView
     {
+        private Random rng = new Random();
         private List<RadioButton> _answers = new List<RadioButton>();
         private string openQuestionAnswer;
+        private PictureBox Img;
         QuestionController _controller;
         private EventHandler questionAnswered;
         public event EventHandler QuestionAnswered
@@ -39,6 +42,15 @@ namespace Exam.Student
 
         public void LoadQuestion(IQuestion question)
         {
+            var pictureBoxArr = this.Controls.Find("pictureBox", true);
+            if(pictureBoxArr.Length > 0)
+            {
+                this.TableLayout.Controls.Remove(pictureBoxArr[0]);
+                this.DescriptionTextBox.Visible = true;
+                this.QuestionTextBox.Visible = true;
+                this.AnswersFlowLayout.Visible = true;
+
+            }
             _answers.Clear();
             if (question is MultipleChoiceQuestion)
             {
@@ -54,7 +66,7 @@ namespace Exam.Student
         private void SetAnswerPartOfView()
         {
             AnswersFlowLayout.Controls.Clear();
-            TextBox answerTextBox = new TextBox() { Margin = new Padding(10)};
+            TextBox answerTextBox = new TextBox() { Margin = new Padding(10) };
             answerTextBox.TextChanged += AnswerTextBox_TextChanged;
             AnswersFlowLayout.Controls.Add(answerTextBox);
         }
@@ -70,7 +82,7 @@ namespace Exam.Student
             AnswersFlowLayout.Controls.Clear();
 
             // inserting the current answers
-            int answerId = 0;
+            ShuffleList(answers);
             foreach (string answer in answers)
             {
                 RadioButton radioButton = new RadioButton();
@@ -78,17 +90,42 @@ namespace Exam.Student
 
                 radioButton.Margin = new Padding(10);
                 radioButton.Text = answer;
-                radioButton.Name = answerId.ToString();
+
+                _answers.Add(radioButton);
 
                 this.AnswersFlowLayout.Controls.Add(radioButton);
-                answerId++;
-                _answers.Add(radioButton);
+
             }
+        }
+
+        public void LoadImage(Image img)
+        {
+            this.DescriptionTextBox.Visible = false;
+            this.QuestionTextBox.Visible = false;
+            this.AnswersFlowLayout.Visible = false;
+            Img = new PictureBox();
+            Img.Image = img;
+            Img.Name = "pictureBox";
+            Img.Dock = DockStyle.Fill;
+            this.Img.SizeMode = PictureBoxSizeMode.Zoom;
+            this.TableLayout.Controls.Add(Img);
+            this.TableLayout.SetRowSpan(Img, 3);
         }
         #endregion
 
         #region Events 
-
+        private void ShuffleList<T>(IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }    
         private void radioButtons_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
@@ -112,7 +149,7 @@ namespace Exam.Student
             {
                 if (radio != null && radio.Checked)
                 {
-                    return radio.Name;
+                    return radio.Text;
                 }
             }
             //if there are no radio buttons -> this is an open question

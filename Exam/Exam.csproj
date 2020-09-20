@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\QuestionBuilderController.cs" />
+    <Compile Include="Controllers\WelcomePage\TeacherWelcomePageController.cs" />
+    <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Forms\AlertMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,11 +71,15 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\WelcomePage\IWelcomePageController.cs" />
+    <Compile Include="UserControls\WelcomeViews\WelcomeViewUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="IAppsForms.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainAppController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\StudentWelcomePageController.cs" />
+    <Compile Include="Controllers\WelcomePage\StudentWelcomePageController.cs" />
     <Compile Include="Forms\FormEventArgs.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -104,14 +111,15 @@
     <Compile Include="UserControls\AnswerOptionUC.Designer.cs">
       <DependentUpon>AnswerOptionUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\QuestionBuilderUC.cs">
+    <Compile Include="UserControls\Class1.cs" />
+    <Compile Include="UserControls\QuestionBuilderView\IQuestionBuilderView.cs" />
+    <Compile Include="UserControls\QuestionBuilderView\QuestionBuilderUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\QuestionBuilderUC.Designer.cs">
+    <Compile Include="UserControls\QuestionBuilderView\QuestionBuilderUC.Designer.cs">
       <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Class1.cs" />
-    <Compile Include="UserControls\StudentWelcome\IStudentWelcomePage.cs" />
+    <Compile Include="UserControls\WelcomeViews\StudentWelcome\IStudentWelcomePage.cs" />
     <Compile Include="UserControls\QuestionsView\IQuestionView.cs" />
     <Compile Include="UserControls\LoginView\ILoginView.cs" />
     <Compile Include="UserControls\LoginView\LoginUC.cs">
@@ -134,16 +142,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.cs">
+    <Compile Include="UserControls\WelcomeViews\TeacherWelcome\ITeacherWelcomeView.cs" />
+    <Compile Include="UserControls\TimerView\ITimerView.cs" />
+    <Compile Include="UserControls\TimerView\TimeBarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\StudentWelcome\StudentWelcomePageUC.Designer.cs">
-      <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TimeBarUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\TimeBarUC.Designer.cs">
+    <Compile Include="UserControls\TimerView\TimeBarUC.Designer.cs">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\WelcomePage.cs">
@@ -158,16 +162,16 @@
     <Compile Include="UserControls\FinishMessageUC.Designer.cs">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\WelcomeStudentViewUC.cs">
+    <Compile Include="UserControls\WelcomeViews\StudentWelcome\WelcomeStudentViewUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\WelcomeStudentViewUC.Designer.cs">
+    <Compile Include="UserControls\WelcomeViews\StudentWelcome\WelcomeStudentViewUC.Designer.cs">
       <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\WelcomeTeacherViewUC.cs">
+    <Compile Include="UserControls\WelcomeViews\TeacherWelcome\WelcomeTeacherViewUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\WelcomeTeacherViewUC.Designer.cs">
+    <Compile Include="UserControls\WelcomeViews\TeacherWelcome\WelcomeTeacherViewUC.Designer.cs">
       <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\AlertMessage.resx">
@@ -190,6 +194,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Forms\Student\GradePage_Student.resx">
       <DependentUpon>GradePage_Student.cs</DependentUpon>
@@ -203,19 +208,16 @@
     <EmbeddedResource Include="UserControls\AnswerOptionUC.resx">
       <DependentUpon>AnswerOptionUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\QuestionBuilderUC.resx">
-      <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LoginView\LoginUC.resx">
       <DependentUpon>LoginUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\QuestionBuilderView\QuestionBuilderUC.resx">
+      <DependentUpon>QuestionBuilderUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\QuestionsView\QuestionUC.resx">
       <DependentUpon>QuestionUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\StudentWelcome\StudentWelcomePageUC.resx">
-      <DependentUpon>StudentWelcomePageUC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\TimeBarUC.resx">
+    <EmbeddedResource Include="UserControls\TimerView\TimeBarUC.resx">
       <DependentUpon>TimeBarUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WelcomePage.resx">
@@ -224,10 +226,10 @@
     <EmbeddedResource Include="UserControls\FinishMessageUC.resx">
       <DependentUpon>FinishMessageUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\WelcomeStudentViewUC.resx">
+    <EmbeddedResource Include="UserControls\WelcomeViews\StudentWelcome\WelcomeStudentViewUC.resx">
       <DependentUpon>WelcomeStudentViewUC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\WelcomeTeacherViewUC.resx">
+    <EmbeddedResource Include="UserControls\WelcomeViews\TeacherWelcome\WelcomeTeacherViewUC.resx">
       <DependentUpon>WelcomeTeacherViewUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

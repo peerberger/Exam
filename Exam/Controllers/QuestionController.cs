@@ -23,9 +23,6 @@ namespace Exam.Controllers
             _view.SetController(this);
             _view.QuestionAnswered += _view_QuestionAnswered;
             LoadQuestionToView();
-
-         //   form.NextClicked += Form_NextClicked;
-
         }
 
         private void _view_QuestionAnswered(object sender, EventArgs e)
@@ -54,20 +51,9 @@ namespace Exam.Controllers
             _view.QuestionDescription = _question.QuestionDescription;
             _view.QuestionText = _question.QuestionText;
             _view.LoadQuestion(_question);
-            //if (_question is MultipleChoiceQuestion)
-            //{
-            //    MultipleChoiceQuestion multipleQuestion = _question as MultipleChoiceQuestion;
-            //    _view.SetAnswerPartOfView(multipleQuestion.Answers);
-            //}
-            //else if (_question is OpenQuestion)
-            //{
-            //    OpenQuestion openQuestion = _question as OpenQuestion;
-            //    _view.SetAnswerPartOfView();
-            //}
         }
         public void UpdateIsRightAnswer()
         {
-            //     bool isRightAnswer = false;
             string userAnswer = _view.GetAnswer();
             if (userAnswer != null)
             {
@@ -75,10 +61,13 @@ namespace Exam.Controllers
                 if (userAnswer == _question.RightAnswer)
                 {
                     _question.IsCorrect = true;
-                    //       isRightAnswer = true;
                 }
             }
-            // return isRightAnswer;
+        }
+
+        public void ShowImage(IQuestion question)
+        {
+            _view.LoadImage(question.QuestionImage);
         }
     }
 }

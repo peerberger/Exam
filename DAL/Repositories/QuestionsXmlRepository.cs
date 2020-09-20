@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Library.Models;
+using Library.Models.Questions;
 
 namespace DAL.Repositories
 {
@@ -129,6 +130,7 @@ namespace DAL.Repositories
             }
             var filePath = $"{dirPath}\\ExamsQuestions\\{fileName}";
             xEntity.Save(filePath);
+            entityToUpdate.QuestionsPath = fileName;
 
 
             GetById(entityToUpdate.Id);
