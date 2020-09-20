@@ -145,26 +145,34 @@ namespace Exam.Forms.Student
 		#region Peer's
 		private void NextButton_Click(object sender, EventArgs e)
 		{
-			if (CurrQuestionIndex == exam.Questions.Count - 1)
+			// validating the question
+			if (QuestionBuilder.AreFieldsFull())
 			{
-				UpdateCurrQuestion();
-				QuestionBuilder.Reset();
+				if (CurrQuestionIndex == exam.Questions.Count - 1)
+				{
+					UpdateCurrQuestion();
+					QuestionBuilder.Reset();
 
-				exam.Questions.Add(new Question());
+					exam.Questions.Add(new Question());
 
-				CurrQuestionIndex++;
+					CurrQuestionIndex++;
+				}
+				else
+				{
+					UpdateCurrQuestion();
+
+					CurrQuestionIndex++;
+					LoadCurrQuestion();
+
+					if (CurrQuestionIndex == exam.Questions.Count - 1)
+					{
+						NextButton.Text = "New Question";
+					}
+				} 
 			}
 			else
 			{
-				UpdateCurrQuestion();
-
-				CurrQuestionIndex++;
-				LoadCurrQuestion();
-
-				if (CurrQuestionIndex == exam.Questions.Count - 1)
-				{
-					NextButton.Text = "New Question";
-				}
+				MessageBox.Show("fill out all fields and make sure multi-option questions have options pls");
 			}
 		}
 

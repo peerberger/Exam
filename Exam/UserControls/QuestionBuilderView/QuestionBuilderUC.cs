@@ -69,6 +69,28 @@ namespace Exam.UserControls
 			QuestionPictureBox.Image = null;
 		}
 
+		public bool AreFieldsFull()
+		{
+			bool areFieldsFull = true;
+
+			if (QuestionTextBox.Text == string.Empty)
+			{
+				areFieldsFull = false;
+			}
+
+			if (RightAnswerTextBox.Text == string.Empty)
+			{
+				areFieldsFull = false;
+			}
+
+			if (MultipleOptionsRadioButton.Checked == true && AnswersFlowLayout.Controls.Count == 0)
+			{
+				areFieldsFull = false;
+			}
+
+			return areFieldsFull;
+		}
+
 		public void PopulateAnswers(List<string> answers)
 		{
 			foreach (var answer in answers)

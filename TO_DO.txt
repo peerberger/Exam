@@ -3,8 +3,9 @@ Question Builder -
 -Finish Test button also saves viewed question if not null - SEMI DONE(??) on branch Images
 															(i mean, it hasn't been saving the last
 															 question at all, so i fixed that)
--Validate The question (all fields entered)
--Finish test button on non complete question alert
+
+-Validate The question (all fields entered) - DONE ('if' statement in 'Next Question' button)
+-Finish test button on non complete question alert - DONE (as part of the previous fix)
 -BUG: When moving foreward and backward, some answers glitch into other questions
 -- right answer to be added to options automatically
 -Points per question? Validation of total points? what do we want to do?
